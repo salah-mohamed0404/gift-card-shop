@@ -2,7 +2,7 @@ import NavLink from "./NavLink";
 
 export default function NavLinks() {
 	return (
-		<ul>
+		<ul className="flex items-center gap-6">
 			{navLinks.map((link) => (
 				<li key={link.title}>
 					<NavLink title={link.title} link={link.link} />
