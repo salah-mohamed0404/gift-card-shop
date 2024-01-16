@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
+import LanguageSwitcher from "./LanguageSwitcher";
+import Cart from "./Cart";
 
 export default function Navbar() {
 	const [isFixed, setIsFixed] = useState(false);
@@ -16,7 +18,7 @@ export default function Navbar() {
 				} else {
 					setIsFixed(false);
 				}
-			}, 200);
+			}, 100);
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -27,17 +29,23 @@ export default function Navbar() {
 	}, []);
 
 	return (
-		<header
+		<nav
 			className={`${
-				isFixed ? "fixed" : "absolute"
-			} top-0 flex justify-between items-center px-32 py-4`}
+				isFixed
+					? "fixed backdrop-blur-sm shadow-sm animate-slide-down"
+					: "absolute"
+			} top-0 w-full py-4`}
 		>
-			<Logo />
-			<NavLinks />
-			<div>
-				{/* <LanguageSwitcher /> */}
-				{/* <Cart /> */}
+			<div className="flex justify-between items-center w-3/4 mx-auto">
+				<Logo />
+
+				<div className="flex items-center gap-6">
+					<NavLinks />
+					<LanguageSwitcher />
+				</div>
+
+				<Cart />
 			</div>
-		</header>
+		</nav>
 	);
 }
