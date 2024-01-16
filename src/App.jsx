@@ -1,12 +1,11 @@
-import { RouterProvider } from "react-router-dom";
-import "./i18n";
-import { router } from "./router";
+import { Outlet } from "react-router-dom";
+import RootLayout from "./RootLayout";
 
 function App() {
 	return (
-		<>
-			<RouterProvider router={router} />
-		</>
+		<RootLayout>
+			<Outlet />
+		</RootLayout>
 	);
 }
 
