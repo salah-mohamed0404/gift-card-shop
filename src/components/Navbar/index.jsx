@@ -32,14 +32,14 @@ export default function Navbar() {
 		<nav
 			className={`${
 				isFixed
-					? "fixed backdrop-blur-sm shadow-sm animate-slide-down"
-					: "absolute"
-			} top-0 w-full py-4`}
+					? "fixed bg-gray-50/60 backdrop-blur-sm shadow-sm animate-slide-down"
+					: "absolute text-gray-50"
+			} top-0 w-full py-4 z-50`}
 		>
 			<div className="flex justify-between items-center w-3/4 mx-auto">
 				<Logo />
 
-				<div className="flex items-center gap-6">
+				<div className="flex items-center gap-7">
 					<NavLinks />
 					<LanguageSwitcher />
 				</div>
