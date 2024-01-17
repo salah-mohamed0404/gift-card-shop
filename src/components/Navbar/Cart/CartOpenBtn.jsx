@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 
 export default function CartOpenBtn({ onOpenDrawer }) {
 	return (
-		<IconButton onClick={onOpenDrawer} className="!text-primary-500">
+		<IconButton onClick={onOpenDrawer} className="!text-inherit">
 			<ShoppingBag />
 		</IconButton>
 	);
