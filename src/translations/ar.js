@@ -7,6 +7,7 @@ export default {
 				description: "احصل على بطاقة هدايا لأحبائك",
 			},
 			cards: {
+				title: "اختار ما يناسبك",
 				gift: {
 					title: "بطاقات الهدايا",
 					description: "اختر بطاقة هدايا من مجموعتنا الواسعة",
