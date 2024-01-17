@@ -5,7 +5,11 @@ export default function CustomCard({ imgUrl, title, description }) {
 	return (
 		<Card className="!shadow-none text-center w-full">
 			<Link to="/gift-card">
-				<CardMedia sx={{ height: 260 }} image={imgUrl} title={title} />
+				<CardMedia
+					sx={{ height: 260, objectFit: "cover" }}
+					image={imgUrl}
+					title={title}
+				/>
 			</Link>
 
 			<CardContent>
