@@ -12,7 +12,8 @@ export default function CardsSection() {
 				component="h2"
 				className="text-primary-700 text-center !mb-10"
 			>
-				{t("home.cards.title")}
+				- <span className="text-gray-700">{t("home.cards.titlePrefix")}</span>{" "}
+				{t("home.cards.title")} -
 			</Typography>
 
 			<div className="flex md:flex-row flex-col gap-24">
