@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html[lang="en"] body {
+	font-family: "Montserrat", sans-serif;
+}
+
+html[lang="ar"] body {
+	font-family: "Cairo", sans-serif;
+}
