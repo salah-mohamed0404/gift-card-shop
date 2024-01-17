@@ -4,7 +4,7 @@ import PolicySection from "./components/PolicySection";
 
 export default function Home() {
 	return (
-		<main className="flex flex-col gap-28">
+		<main className="flex flex-col *:mb-28">
 			<HeroSection />
 			<CardsSection />
 			<PolicySection />
