@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
 import NavLink from "./NavLink";
 
 export default function NavLinks() {
+	const { t } = useTranslation();
+
 	return (
 		<ul className="flex items-center gap-7">
 			{navLinks.map((link) => (
 				<li key={link.title}>
-					<NavLink title={link.title} link={link.link} />
+					<NavLink title={t(`navbar.${link.title}`)} link={link.link} />
 				</li>
 			))}
 		</ul>
@@ -14,19 +17,19 @@ export default function NavLinks() {
 
 const navLinks = [
 	{
-		title: "Home",
+		title: "home",
 		link: "/",
 	},
 	{
-		title: "About",
+		title: "about",
 		link: "/about",
 	},
 	{
-		title: "Buy a card",
+		title: "buy a card",
 		link: "/gift-card",
 	},
 	{
-		title: "Create a card",
+		title: "create a card",
 		link: "/custom-gift-card",
 	},
 ];
