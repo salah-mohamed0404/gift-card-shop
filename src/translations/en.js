@@ -7,7 +7,8 @@ export default {
 				description: "Get a gift card for your loved ones",
 			},
 			cards: {
-				title: "Choose what suits you",
+				titlePrefix: "Choose",
+				title: "what suits you",
 				gift: {
 					title: "Gift Cards",
 					description: "Choose a gift card from our wide collection",
@@ -16,6 +17,12 @@ export default {
 					title: "Custom Cards",
 					description: "Create a custom gift card for your loved ones",
 				},
+			},
+			policy: {
+				titlePrefix: "Our",
+				title: "Policy",
+				description:
+					"We offer a wide range of gift cards that suit all tastes and occasions. We also offer the possibility of creating a custom gift card with your own design and text.",
 			},
 		},
 		navbar: {
