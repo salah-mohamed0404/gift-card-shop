@@ -2,8 +2,20 @@ export default {
 	translation: {
 		siteTitle: "gift card shop",
 		home: {
-			title: "Welcome to our",
-			paragraph: "Get a gift card for your loved ones",
+			hero: {
+				title: "Welcome to our",
+				description: "Get a gift card for your loved ones",
+			},
+			cards: {
+				gift: {
+					title: "Gift Cards",
+					description: "Choose a gift card from our wide collection",
+				},
+				custom: {
+					title: "Custom Cards",
+					description: "Create a custom gift card for your loved ones",
+				},
+			},
 		},
 		navbar: {
 			home: "Home",
