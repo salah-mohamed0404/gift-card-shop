@@ -8,7 +8,6 @@ export default function CardsSection() {
 	return (
 		<Container
 			component="section"
-			maxWidth="lg"
 			className="!flex md:flex-row flex-col gap-24"
 		>
 			{cards.map((card, index) => (
