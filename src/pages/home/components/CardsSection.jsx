@@ -6,7 +6,7 @@ export default function CardsSection() {
 
 	return (
 		<section>
-			<div className="flex md:flex-row flex-col gap-24 md:w-3/4 w-4/5 mx-auto py-24 px-2">
+			<div className="flex md:flex-row flex-col gap-24 md:w-3/4 w-4/5 mx-auto px-2">
 				{cards.map((card, index) => (
 					<CustomCard
 						key={`${index}-${card.title}`}
