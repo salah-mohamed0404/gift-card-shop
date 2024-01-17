@@ -24,6 +24,12 @@ export default {
 				description:
 					"We offer a wide range of gift cards that suit all tastes and occasions. We also offer the possibility of creating a custom gift card with your own design and text.",
 			},
+			about: {
+				titlePrefix: "About",
+				title: "Us",
+				description:
+					"The Gift Card Shop is an online store that offers gift cards for various occasions. You can choose a gift card from our wide collection or create a custom gift card with your own design and text.",
+			},
 		},
 		navbar: {
 			home: "Home",
