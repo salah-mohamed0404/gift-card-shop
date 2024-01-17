@@ -1,23 +1,30 @@
 import { useTranslation } from "react-i18next";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
 
 export default function CardsSection() {
 	const { t } = useTranslation();
 
 	return (
-		<Container
-			component="section"
-			className="!flex md:flex-row flex-col gap-24"
-		>
-			{cards.map((card, index) => (
-				<CustomCard
-					key={`${index}-${card.title}`}
-					imgUrl={card.imgUrl}
-					title={t(`home.cards.${card.title}.title`)}
-					description={t(`home.cards.${card.title}.description`)}
-				/>
-			))}
+		<Container component="section">
+			<Typography
+				variant="h3"
+				component="h2"
+				className="text-primary-700 text-center !mb-10"
+			>
+				{t("home.cards.title")}
+			</Typography>
+
+			<div className="flex md:flex-row flex-col gap-24">
+				{cards.map((card, index) => (
+					<CustomCard
+						key={`${index}-${card.title}`}
+						imgUrl={card.imgUrl}
+						title={t(`home.cards.${card.title}.title`)}
+						description={t(`home.cards.${card.title}.description`)}
+					/>
+				))}
+			</div>
 		</Container>
 	);
 }
