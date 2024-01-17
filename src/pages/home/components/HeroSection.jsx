@@ -1,9 +1,6 @@
 import { Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
 
-export default function HeroSection() {
-	const { t } = useTranslation();
-
+export default function HeroSection({ t }) {
 	return (
 		<header className="relative flex flex-col justify-center items-center gap-4 bg-[url('https://source.unsplash.com/random/1920x1080')] min-h-[90dvh] px-2">
 			<div className="absolute inset-0 bg-black opacity-50"></div>
