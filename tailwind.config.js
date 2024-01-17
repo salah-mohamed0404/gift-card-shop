@@ -2,7 +2,7 @@
 import { violet } from "tailwindcss/colors";
 
 export default {
-	purge: ["./src/**/*.{js,jsx}", "./index.html"],
+	content: ["./src/**/*.{js,jsx}", "./index.html"],
 	theme: {
 		extend: {
 			colors: {
