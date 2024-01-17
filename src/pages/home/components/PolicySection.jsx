@@ -16,7 +16,6 @@ export default function PolicySection() {
 					component="h2"
 					className="text-primary-700 !mb-6"
 				>
-					-{" "}
 					<span className="text-gray-700">{t("home.policy.titlePrefix")}</span>{" "}
 					{t("home.policy.title")}
 				</Typography>
