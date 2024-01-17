@@ -1,10 +1,7 @@
-import { useTranslation } from "react-i18next";
 import { Container, Typography } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
 
-export default function CardsSection() {
-	const { t } = useTranslation();
-
+export default function CardsSection({ t }) {
 	return (
 		<Container component="section">
 			<Typography
