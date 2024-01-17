@@ -2,8 +2,20 @@ export default {
 	translation: {
 		siteTitle: "متجر بطاقات الهدايا",
 		home: {
-			title: "مرحبا بكم في",
-			paragraph: "احصل على بطاقة هدايا لأحبائك",
+			hero: {
+				title: "مرحبا بكم في",
+				description: "احصل على بطاقة هدايا لأحبائك",
+			},
+			cards: {
+				gift: {
+					title: "بطاقات الهدايا",
+					description: "اختر بطاقة هدايا من مجموعتنا الواسعة",
+				},
+				custom: {
+					title: "بطاقات مخصصة",
+					description: "أنشئ بطاقة هدايا مخصصة لأحبائك",
+				},
+			},
 		},
 		navbar: {
 			home: "الرئيسية",
