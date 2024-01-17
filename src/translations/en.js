@@ -7,6 +7,7 @@ export default {
 				description: "Get a gift card for your loved ones",
 			},
 			cards: {
+				title: "Choose what suits you",
 				gift: {
 					title: "Gift Cards",
 					description: "Choose a gift card from our wide collection",
