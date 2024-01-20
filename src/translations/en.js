@@ -1,10 +1,10 @@
 export default {
 	translation: {
-		siteTitle: "gift card shop",
+		siteTitle: "give a gift",
 		home: {
 			hero: {
-				title: "Welcome to our",
-				description: "Get a gift card for your loved ones",
+				title: "Give Choice",
+				description: "When gifting becomes persona",
 			},
 			cards: {
 				titlePrefix: "Choose",
