@@ -8,6 +8,7 @@ export default function AboutSection({ t }) {
 			title={t("home.about.title")}
 			description={t("home.about.description")}
 			reverse
+			secondary
 		/>
 	);
 }
