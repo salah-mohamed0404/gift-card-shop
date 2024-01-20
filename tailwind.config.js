@@ -1,12 +1,15 @@
 /** @type {import('tailwindcss').Config} */
-import { violet } from "tailwindcss/colors";
+import { blue } from "tailwindcss/colors";
 
 export default {
 	content: ["./src/**/*.{js,jsx}", "./index.html"],
 	theme: {
 		extend: {
 			colors: {
-				primary: violet,
+				primary: blue,
+			},
+			backgroundImage: {
+				"hero-background": 'url("/images/banner.webp")',
 			},
 			transitionDuration: {
 				DEFAULT: "300ms",
