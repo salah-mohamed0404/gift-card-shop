@@ -6,6 +6,7 @@ export default function CustomTextImgSection({
 	title,
 	description,
 	reverse = false,
+	secondary = false,
 }) {
 	return (
 		<Container
@@ -22,7 +23,9 @@ export default function CustomTextImgSection({
 				<Typography
 					variant="h3"
 					component="h2"
-					className="text-primary-700 !mb-6"
+					className={`${
+						!secondary ? "text-primary-700" : "text-rose-700"
+					} !mb-6`}
 				>
 					<span className="text-gray-700">{titlePrefix}</span> {title}
 				</Typography>
