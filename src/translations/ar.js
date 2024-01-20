@@ -1,10 +1,10 @@
 export default {
 	translation: {
-		siteTitle: "متجر بطاقات الهدايا",
+		siteTitle: "اهد هدية",
 		home: {
 			hero: {
-				title: "مرحبا بكم في",
-				description: "احصل على بطاقة هدايا لأحبائك",
+				title: "اهدى اختيار",
+				description: "عندما تصبح الهدية شخصية",
 			},
 			cards: {
 				titlePrefix: "اختار",
