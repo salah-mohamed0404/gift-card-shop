@@ -15,7 +15,7 @@ export default function CustomTextImgSection({
 			} justify-between flex-wrap`}
 		>
 			<div className="md:w-6/12 w-full">
-				<img src={imgUrl} alt={title} className="object-cover" />
+				<img src={imgUrl} alt={title} className="object-cover rounded" />
 			</div>
 
 			<div className="flex flex-col justify-center md:w-5/12 w-full">
