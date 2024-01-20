@@ -1,5 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
+// import giftCardImg from "/assets/card design-04.webp";
 
 export default function CardsSection({ t }) {
 	return (
@@ -7,7 +8,7 @@ export default function CardsSection({ t }) {
 			<Typography
 				variant="h3"
 				component="h2"
-				className="text-primary-700 text-center !mb-10"
+				className="text-primary-700 text-center capitalize !mb-10"
 			>
 				- <span className="text-gray-700">{t("home.cards.titlePrefix")}</span>{" "}
 				{t("home.cards.title")} -
@@ -29,11 +30,11 @@ export default function CardsSection({ t }) {
 
 const cards = [
 	{
-		imgUrl: "https://source.unsplash.com/random/1000x900",
+		imgUrl: "/images/card design-04.webp",
 		title: "gift",
 	},
 	{
-		imgUrl: "https://source.unsplash.com/random/1000x900",
+		imgUrl: "/images/card design-05.webp",
 		title: "custom",
 	},
 ];
