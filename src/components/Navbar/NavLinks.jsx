@@ -1,17 +1,37 @@
-import { useTranslation } from "react-i18next";
 import NavLink from "./NavLink";
+import { Menu } from "@mui/icons-material";
+import LanguageSwitcher from "./LanguageSwitcher";
+import DrawerWithIconBtn from "../DrawerWithIconBTN";
 
-export default function NavLinks() {
-	const { t } = useTranslation();
+export default function NavLinks({ t, language }) {
+	const navLinksList = navLinks.map((link) => (
+		<li key={link.title}>
+			<NavLink title={t(`navbar.${link.title}`)} link={link.link} />
+		</li>
+	));
 
 	return (
-		<ul className="flex items-center gap-7">
-			{navLinks.map((link) => (
-				<li key={link.title}>
-					<NavLink title={t(`navbar.${link.title}`)} link={link.link} />
+		<>
+			<ul className="md:flex hidden items-center gap-7">
+				{navLinksList}
+
+				<li>
+					<LanguageSwitcher />
 				</li>
-			))}
-		</ul>
+			</ul>
+
+			<div className="md:hidden block">
+				<DrawerWithIconBtn BtnIcon={Menu} language={language}>
+					<ul className="flex flex-col justify-center items-center gap-12 ps-8 text-3xl h-full">
+						{navLinksList}
+
+						<li>
+							<LanguageSwitcher />
+						</li>
+					</ul>
+				</DrawerWithIconBtn>
+			</div>
+		</>
 	);
 }
 
