@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import LanguageSwitcher from "./LanguageSwitcher";
 import Cart from "./Cart";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
 	const [isFixed, setIsFixed] = useState(false);
+	const {
+		t,
+		i18n: { language },
+	} = useTranslation();
 
 	useEffect(() => {
 		let timeoutId;
@@ -39,12 +43,9 @@ export default function Navbar() {
 			<div className="flex justify-between items-center w-3/4 mx-auto">
 				<Logo />
 
-				<div className="flex items-center gap-7">
-					<NavLinks />
-					<LanguageSwitcher />
-				</div>
+				<NavLinks t={t} language={language} />
 
-				<Cart />
+				<Cart language={language} />
 			</div>
 		</nav>
 	);
