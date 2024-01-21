@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import Cart from "./Cart";
 import { useTranslation } from "react-i18next";
+import { useResolvedPath } from "react-router-dom";
 
 export default function Navbar() {
 	const [isFixed, setIsFixed] = useState(false);
@@ -10,8 +11,11 @@ export default function Navbar() {
 		t,
 		i18n: { language },
 	} = useTranslation();
+	const { pathname } = useResolvedPath();
 
 	useEffect(() => {
+		if (pathname !== "/") return setIsFixed(true);
+
 		let timeoutId;
 
 		const handleScroll = () => {
@@ -30,7 +34,7 @@ export default function Navbar() {
 			clearTimeout(timeoutId);
 			window.removeEventListener("scroll", handleScroll);
 		};
-	}, []);
+	}, [pathname]);
 
 	return (
 		<nav
