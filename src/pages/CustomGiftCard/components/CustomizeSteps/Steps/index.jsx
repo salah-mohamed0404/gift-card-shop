@@ -1,4 +1,4 @@
-import { cardSittingActions } from "../../../hooks/useCardSitting";
+import { cardSittingActions } from "../../../hooks/useCardSittingReducer";
 import BrandStep from "./BrandStep";
 import ColorStep from "./ColorStep";
 import MessageAndPriceStep from "./MessageAndPriceStep";
