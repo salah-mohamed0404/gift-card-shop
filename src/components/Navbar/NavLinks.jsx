@@ -1,7 +1,7 @@
 import NavLink from "./NavLink";
 import { Menu } from "@mui/icons-material";
 import LanguageSwitcher from "./LanguageSwitcher";
-import DrawerWithIconBtn from "../DrawerWithIconBTN";
+import DrawerWithIconBtn from "../DrawerWithIconBtn";
 
 export default function NavLinks({ t, language }) {
 	const navLinksList = navLinks.map((link) => (
