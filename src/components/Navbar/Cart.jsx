@@ -1,5 +1,5 @@
 import { ShoppingBag } from "@mui/icons-material";
-import DrawerWithIconBtn from "../DrawerWithIconBTN";
+import DrawerWithIconBtn from "../DrawerWithIconBtn";
 
 export default function Cart({ language }) {
 	return (
