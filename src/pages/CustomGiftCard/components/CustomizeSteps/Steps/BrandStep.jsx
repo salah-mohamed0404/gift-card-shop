@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 
-export default function BrandStep({ brand, onBrandChange }) {
+export default function BrandStep({ brand, onBrandChange, t }) {
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography variant="h4" className="capitalize">
-				choose card shape
+				{t("customCard.brand.title")}
 			</Typography>
 
 			<ul className="flex justify-center gap-12 flex-wrap">
