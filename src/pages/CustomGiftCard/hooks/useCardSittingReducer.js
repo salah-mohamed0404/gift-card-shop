@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { blue } from "tailwindcss/colors";
 
-const PRICE_LIMITS = {
+export const PRICE_LIMITS = {
 	min: 100,
 	max: 500,
 };
@@ -25,6 +25,10 @@ const initialState = {
 	message: "Card Description",
 	textColor: "white",
 	price: PRICE_LIMITS.min,
+	receiverInfo: {
+		name: "",
+		phone: "",
+	},
 };
 
 export const cardSittingActions = {
@@ -34,6 +38,8 @@ export const cardSittingActions = {
 	SET_MESSAGE: "SET_MESSAGE",
 	SET_TEXT_COLOR: "SET_TEXT_COLOR",
 	SET_PRICE: "SET_PRICE",
+	SET_RECEIVER_INFO_NAME: "SET_RECEIVER_INFO_NAME",
+	SET_RECEIVER_INFO_PHONE: "SET_RECEIVER_INFO_PHONE",
 };
 
 const cardSittingReducer = (state, action) => {
@@ -64,14 +70,25 @@ const cardSittingReducer = (state, action) => {
 				textColor: action.payload,
 			};
 		case cardSittingActions.SET_PRICE:
-			if (
-				action.payload < PRICE_LIMITS.min ||
-				action.payload > PRICE_LIMITS.max
-			)
-				return state;
 			return {
 				...state,
 				price: action.payload,
+			};
+		case cardSittingActions.SET_RECEIVER_INFO_NAME:
+			return {
+				...state,
+				receiverInfo: {
+					...state.receiverInfo,
+					name: action.payload,
+				},
+			};
+		case cardSittingActions.SET_RECEIVER_INFO_PHONE:
+			return {
+				...state,
+				receiverInfo: {
+					...state.receiverInfo,
+					phone: action.payload,
+				},
 			};
 		default:
 			return state;
