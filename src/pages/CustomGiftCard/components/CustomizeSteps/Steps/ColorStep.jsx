@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import colors from "tailwindcss/colors";
 
-export default function ColorStep({ color, onColorChange }) {
+export default function ColorStep({ t, color, onColorChange }) {
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography variant="h4" className="capitalize">
-				choose card color
+				{t("customCard.color.title")}
 			</Typography>
 
 			<ul className="flex justify-center gap-6 flex-wrap">
