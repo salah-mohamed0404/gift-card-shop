@@ -1,6 +1,12 @@
 export default {
 	translation: {
 		siteTitle: "اهد هدية",
+		navbar: {
+			home: "الرئيسية",
+			about: "عنا",
+			"buy a card": "اشتري بطاقة",
+			"create a card": "أنشئ بطاقة",
+		},
 		home: {
 			hero: {
 				title: "اهدى اختيار",
@@ -31,11 +37,34 @@ export default {
 					"متجر بطاقات الهدايا هو متجر إلكتروني يقدم بطاقات هدايا مخصصة للمناسبات المختلفة. يمكنك اختيار بطاقة هدايا من مجموعتنا الواسعة أو إنشاء بطاقة هدايا مخصصة بتصميمك ونصك الخاص.",
 			},
 		},
-		navbar: {
-			home: "الرئيسية",
-			about: "عنا",
-			"buy a card": "اشتري بطاقة",
-			"create a card": "أنشئ بطاقة",
+		customCard: {
+			steps: {
+				color: "اللون",
+				shape: "الشكل",
+				brand: "المتجر",
+				message: "الرسالة والسعر",
+				receiverInfo: "معلومات المستلم",
+			},
+			color: {
+				title: "اختر لون",
+			},
+			shape: {
+				title: "اختر شكل",
+			},
+			brand: {
+				title: "اختر متجر",
+			},
+			message: {
+				title: "املأ الرسالة والسعر",
+				message: "الرسالة",
+				price: "السعر",
+			},
+			receiverInfo: {
+				title: "املأ معلومات المستلم",
+				name: "الاسم",
+				phone: "رقم الهاتف",
+			},
+			addToCart: "أضف إلى السلة",
 		},
 	},
 };
