@@ -1,6 +1,12 @@
 export default {
 	translation: {
 		siteTitle: "give a gift",
+		navbar: {
+			home: "Home",
+			about: "About",
+			"buy a card": "Buy a card",
+			"create a card": "Create a card",
+		},
 		home: {
 			hero: {
 				title: "Give Choice",
@@ -31,11 +37,34 @@ export default {
 					"The Gift Card Shop is an online store that offers gift cards for various occasions. You can choose a gift card from our wide collection or create a custom gift card with your own design and text.",
 			},
 		},
-		navbar: {
-			home: "Home",
-			about: "About",
-			"buy a card": "Buy a card",
-			"create a card": "Create a card",
+		customCard: {
+			steps: {
+				color: "Color",
+				shape: "Shape",
+				brand: "Brand",
+				message: "Message And Price",
+				receiverInfo: "Receiver Info",
+			},
+			color: {
+				title: "Choose a color",
+			},
+			shape: {
+				title: "Choose a shape",
+			},
+			brand: {
+				title: "Choose a brand",
+			},
+			message: {
+				title: "Fill Message And Price",
+				message: "Message",
+				price: "Price",
+			},
+			receiverInfo: {
+				title: "Fill Receiver Info",
+				name: "Name",
+				phone: "Phone Number",
+			},
+			addToCart: "Add To Cart",
 		},
 	},
 };
