@@ -1,7 +1,8 @@
-import { TextField, Typography } from "@mui/material";
+import { FormControl, FormLabel, TextField, Typography } from "@mui/material";
 import { PRICE_LIMITS } from "../../../hooks/useCardSittingReducer";
 
 export default function MessageAndPriceStep({
+	t,
 	message,
 	price,
 	onMessageChange,
@@ -11,14 +12,16 @@ export default function MessageAndPriceStep({
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography variant="h4" className="capitalize">
-				fill message and price
+				{t("customCard.message.title")}
 			</Typography>
 
 			<div className="flex flex-col gap-6 w-3/4 mx-auto">
-				<div className="relative w-full">
+				<FormControl fullWidth className="relative">
+					<FormLabel className="capitalize" classes={{ root: "!text-lg" }}>
+						{t("customCard.message.message")}
+					</FormLabel>
 					<TextField
 						variant="outlined"
-						label="Message"
 						value={message}
 						multiline
 						maxRows={2}
@@ -27,7 +30,7 @@ export default function MessageAndPriceStep({
 						className="[&_textarea]:pe-20"
 					/>
 
-					<div className="absolute end-3 top-0 translate-y-1/3 flex gap-3">
+					<div className="absolute end-3 bottom-0 -translate-y-3 flex gap-3">
 						<button
 							className="w-8 h-8 bg-white border-4 rounded-full shadow-lg"
 							title="text color black"
@@ -39,26 +42,30 @@ export default function MessageAndPriceStep({
 							onClick={() => onTextColorChange("black")}
 						></button>
 					</div>
-				</div>
+				</FormControl>
 
-				<TextField
-					label="Price"
-					variant="outlined"
-					value={price}
-					onChange={(e) => {
-						const value = e.target.value;
-						if (!isNaN(value)) {
-							onPriceChange(value);
+				<FormControl fullWidth>
+					<FormLabel className="capitalize" classes={{ root: "!text-lg" }}>
+						{t("customCard.message.price")}
+					</FormLabel>
+					<TextField
+						variant="outlined"
+						value={price}
+						onChange={(e) => {
+							const value = e.target.value;
+							if (!isNaN(value)) {
+								onPriceChange(value);
+							}
+						}}
+						fullWidth
+						error={price < PRICE_LIMITS.min || price > PRICE_LIMITS.max}
+						helperText={
+							price < PRICE_LIMITS.min || price > PRICE_LIMITS.max
+								? `price must be between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
+								: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
 						}
-					}}
-					fullWidth
-					error={price < PRICE_LIMITS.min || price > PRICE_LIMITS.max}
-					helperText={
-						price < PRICE_LIMITS.min || price > PRICE_LIMITS.max
-							? `price must be between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
-							: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
-					}
-				/>
+					/>
+				</FormControl>
 			</div>
 		</div>
 	);
