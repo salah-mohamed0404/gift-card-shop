@@ -4,14 +4,55 @@ import {
 	ArrowForwardIosRounded,
 } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
+import { PRICE_LIMITS } from "../../hooks/useCardSittingReducer";
 
 const MAX_STEPS = 4;
 
-export default function NavigationBtns({ activeStep, onActiveStepChange }) {
+export default function NavigationBtns({
+	activeStep,
+	onActiveStepChange,
+	onError,
+	cardSitting,
+}) {
 	const isLastStep = activeStep === MAX_STEPS;
 
+	const handleAddToCart = () => {
+		if (cardSitting.receiverInfo.name !== "")
+			return onError("Please enter a name");
+		else if (!cardSitting.receiverInfo.phone !== "")
+			return onError("Please enter a phone number");
+
+		// TODO: Add to cart logic
+	};
+
+	const handleNextStep = () => {
+		if (activeStep === 2) {
+			if (cardSitting.brand.name === "") {
+				onError("Please select a brand");
+				return;
+			}
+		}
+
+		if (activeStep === 3) {
+			if (!cardSitting.message) {
+				onError("Please enter a message");
+				return;
+			} else if (
+				cardSitting.price < PRICE_LIMITS.min ||
+				cardSitting.price > PRICE_LIMITS.max
+			) {
+				onError(
+					`Please enter a price between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
+				);
+				return;
+			}
+		}
+
+		onActiveStepChange(activeStep + 1);
+	};
+
 	return (
-		<div className="flex justify-between px-4">
+		<div className="flex justify-between px-4 mt-6">
 			<IconButton
 				disabled={activeStep === 0}
 				onClick={() => onActiveStepChange(activeStep - 1)}
@@ -21,15 +62,16 @@ export default function NavigationBtns({ activeStep, onActiveStepChange }) {
 
 			<div>
 				{isLastStep && (
-					<Button type="button" startIcon={<AddCircleOutlineRounded />}>
+					<Button
+						type="button"
+						startIcon={<AddCircleOutlineRounded />}
+						onClick={handleAddToCart}
+					>
 						Add to Cart
 					</Button>
 				)}
 
-				<IconButton
-					disabled={isLastStep}
-					onClick={() => onActiveStepChange(activeStep + 1)}
-				>
+				<IconButton disabled={isLastStep} onClick={handleNextStep}>
 					<ArrowForwardIosRounded />
 				</IconButton>
 			</div>
