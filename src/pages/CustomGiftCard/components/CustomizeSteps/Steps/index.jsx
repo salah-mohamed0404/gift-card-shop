@@ -2,6 +2,7 @@ import { cardSittingActions } from "../../../hooks/useCardSittingReducer";
 import BrandStep from "./BrandStep";
 import ColorStep from "./ColorStep";
 import MessageAndPriceStep from "./MessageAndPriceStep";
+import ReceiverInfoStep from "./ReceiverInfoStep";
 import ShapeStep from "./ShapeStep";
 
 export default function Steps({
@@ -65,6 +66,24 @@ export default function Steps({
 						dispatchCardSitting({
 							type: cardSittingActions.SET_TEXT_COLOR,
 							payload: textColor,
+						})
+					}
+				/>
+			)}
+			{activeStep === 4 && (
+				<ReceiverInfoStep
+					name={cardSitting.receiverInfo.name}
+					phone={cardSitting.receiverInfo.phone}
+					onNameChange={(name) =>
+						dispatchCardSitting({
+							type: cardSittingActions.SET_RECEIVER_INFO_NAME,
+							payload: name,
+						})
+					}
+					onPhoneChange={(phone) =>
+						dispatchCardSitting({
+							type: cardSittingActions.SET_RECEIVER_INFO_PHONE,
+							payload: phone,
 						})
 					}
 				/>
