@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { cardSittingActions } from "../../../hooks/useCardSittingReducer";
 import BrandStep from "./BrandStep";
 import ColorStep from "./ColorStep";
@@ -10,10 +11,13 @@ export default function Steps({
 	dispatchCardSitting,
 	activeStep,
 }) {
+	const { t } = useTranslation();
+
 	return (
 		<div>
 			{activeStep === 0 && (
 				<ColorStep
+					t={t}
 					color={cardSitting.color}
 					onColorChange={(color) =>
 						dispatchCardSitting({
@@ -25,6 +29,7 @@ export default function Steps({
 			)}
 			{activeStep === 1 && (
 				<ShapeStep
+					t={t}
 					shape={cardSitting.shape}
 					color={cardSitting.color}
 					onShapeChange={(shape) =>
@@ -37,6 +42,7 @@ export default function Steps({
 			)}
 			{activeStep === 2 && (
 				<BrandStep
+					t={t}
 					brand={cardSitting.brand}
 					onBrandChange={(brand) =>
 						dispatchCardSitting({
@@ -48,6 +54,7 @@ export default function Steps({
 			)}
 			{activeStep === 3 && (
 				<MessageAndPriceStep
+					t={t}
 					message={cardSitting.message}
 					price={cardSitting.price}
 					onMessageChange={(message) =>
@@ -72,6 +79,7 @@ export default function Steps({
 			)}
 			{activeStep === 4 && (
 				<ReceiverInfoStep
+					t={t}
 					name={cardSitting.receiverInfo.name}
 					phone={cardSitting.receiverInfo.phone}
 					onNameChange={(name) =>
