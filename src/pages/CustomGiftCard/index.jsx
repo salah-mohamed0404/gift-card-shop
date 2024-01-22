@@ -8,7 +8,7 @@ export default function CustomGiftCard() {
 	const [activeStep, setActiveStep] = useState(0);
 
 	return (
-		<main className="mt-36 mb-28">
+		<main className=" flex items-center mt-36 mb-28 min-h-[60dvh]">
 			<div className="flex items-center gap-16 w-3/4 mx-auto">
 				<CardPreview cardSitting={cardSitting} back={activeStep === 3} />
 				<CustomizeSteps
