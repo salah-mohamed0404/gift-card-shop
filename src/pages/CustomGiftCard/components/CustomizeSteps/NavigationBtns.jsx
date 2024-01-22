@@ -5,6 +5,7 @@ import {
 } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { PRICE_LIMITS } from "../../hooks/useCardSittingReducer";
+import { useTranslation } from "react-i18next";
 
 const MAX_STEPS = 4;
 
@@ -14,6 +15,7 @@ export default function NavigationBtns({
 	onError,
 	cardSitting,
 }) {
+	const { t } = useTranslation();
 	const isLastStep = activeStep === MAX_STEPS;
 
 	const handleAddToCart = () => {
@@ -56,6 +58,7 @@ export default function NavigationBtns({
 			<IconButton
 				disabled={activeStep === 0}
 				onClick={() => onActiveStepChange(activeStep - 1)}
+				className="rtl:rotate-180"
 			>
 				<ArrowBackIosNewRounded />
 			</IconButton>
@@ -64,14 +67,20 @@ export default function NavigationBtns({
 				{isLastStep && (
 					<Button
 						type="button"
-						startIcon={<AddCircleOutlineRounded />}
+						startIcon={
+							<AddCircleOutlineRounded className="rtl:-mr-2 rtl:ml-2" />
+						}
 						onClick={handleAddToCart}
 					>
-						Add to Cart
+						{t("customCard.addToCart")}
 					</Button>
 				)}
 
-				<IconButton disabled={isLastStep} onClick={handleNextStep}>
+				<IconButton
+					disabled={isLastStep}
+					onClick={handleNextStep}
+					className="rtl:rotate-180"
+				>
 					<ArrowForwardIosRounded />
 				</IconButton>
 			</div>
