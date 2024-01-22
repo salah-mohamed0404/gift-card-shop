@@ -6,10 +6,7 @@ export default function useLangSwitch() {
 	} = useTranslation();
 
 	const toggleLanguage = () => {
-		const newLang = language === "en" ? "ar" : "en";
-		changeLanguage(newLang);
-		document.documentElement.lang = newLang;
-		document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
+		changeLanguage(language === "en" ? "ar" : "en");
 	};
 
 	return { toggleLanguage, language };
