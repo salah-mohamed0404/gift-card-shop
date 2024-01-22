@@ -1,4 +1,5 @@
 import { TextField, Typography } from "@mui/material";
+import { PRICE_LIMITS } from "../../../hooks/useCardSittingReducer";
 
 export default function MessageAndPriceStep({
 	message,
@@ -41,11 +42,22 @@ export default function MessageAndPriceStep({
 				</div>
 
 				<TextField
+					label="Price"
 					variant="outlined"
-					type="number"
 					value={price}
-					onChange={(e) => onPriceChange(e.target.value)}
+					onChange={(e) => {
+						const value = e.target.value;
+						if (!isNaN(value)) {
+							onPriceChange(value);
+						}
+					}}
 					fullWidth
+					error={price < PRICE_LIMITS.min || price > PRICE_LIMITS.max}
+					helperText={
+						price < PRICE_LIMITS.min || price > PRICE_LIMITS.max
+							? `price must be between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
+							: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
+					}
 				/>
 			</div>
 		</div>
