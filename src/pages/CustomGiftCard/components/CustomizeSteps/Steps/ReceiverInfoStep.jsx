@@ -1,6 +1,13 @@
-import { InputAdornment, TextField, Typography } from "@mui/material";
+import {
+	FormControl,
+	FormLabel,
+	InputAdornment,
+	TextField,
+	Typography,
+} from "@mui/material";
 
 export default function ReceiverInfoStep({
+	t,
 	name,
 	phone,
 	onNameChange,
@@ -9,35 +16,43 @@ export default function ReceiverInfoStep({
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography variant="h4" className="capitalize">
-				fill receiver info
+				{t("customCard.receiverInfo.title")}
 			</Typography>
 
 			<div className="flex flex-col gap-6 w-3/4 mx-auto">
-				<TextField
-					variant="outlined"
-					label="Name"
-					value={name}
-					onChange={(e) => onNameChange(e.target.value)}
-					fullWidth
-				/>
+				<FormControl fullWidth>
+					<FormLabel className="capitalize" classes={{ root: "!text-lg" }}>
+						{t("customCard.receiverInfo.name")}
+					</FormLabel>
+					<TextField
+						variant="outlined"
+						value={name}
+						onChange={(e) => onNameChange(e.target.value)}
+						fullWidth
+					/>
+				</FormControl>
 
-				<TextField
-					label="Phone"
-					variant="outlined"
-					value={phone}
-					InputProps={{
-						startAdornment: (
-							<InputAdornment position="start" className="*:!text-gray-800">
-								+
-							</InputAdornment>
-						),
-					}}
-					onChange={(e) => {
-						const value = e.target.value;
-						if (!isNaN(value)) return onPhoneChange(value);
-					}}
-					fullWidth
-				/>
+				<FormControl fullWidth>
+					<FormLabel className="capitalize" classes={{ root: "!text-lg" }}>
+						{t("customCard.receiverInfo.phone")}
+					</FormLabel>
+					<TextField
+						variant="outlined"
+						value={phone}
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start" className="*:!text-gray-800">
+									+
+								</InputAdornment>
+							),
+						}}
+						onChange={(e) => {
+							const value = e.target.value;
+							if (!isNaN(value)) return onPhoneChange(value);
+						}}
+						fullWidth
+					/>
+				</FormControl>
 			</div>
 		</div>
 	);
