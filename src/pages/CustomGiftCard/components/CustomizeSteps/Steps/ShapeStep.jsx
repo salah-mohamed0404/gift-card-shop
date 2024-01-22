@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 
-export default function ShapeStep({ shape, onShapeChange, color }) {
+export default function ShapeStep({ t, shape, onShapeChange, color }) {
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography variant="h4" className="capitalize">
-				choose card shape
+				{t("customCard.shape.title")}
 			</Typography>
 
 			<ul className="grid md:grid-cols-2 justify-center gap-6 flex-wrap">
