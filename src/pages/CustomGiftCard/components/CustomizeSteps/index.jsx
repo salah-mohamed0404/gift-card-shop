@@ -1,3 +1,5 @@
+import { useState } from "react";
+import ErrorHandler from "../../../../components/ErrorHandler";
 import CustomStepper from "./CustomStepper";
 import NavigationBtns from "./NavigationBtns";
 import Steps from "./Steps";
@@ -8,20 +10,26 @@ export default function CustomizeSteps({
 	activeStep,
 	onActiveStepChange,
 }) {
+	const [errorMsg, setErrorMsg] = useState("");
+
 	return (
-		<div className="flex flex-col gap-8 grow">
-			<CustomStepper activeStep={activeStep} />
+		<ErrorHandler errorMsg={errorMsg} setErrorMsg={setErrorMsg}>
+			<div className="flex flex-col gap-9 grow">
+				<CustomStepper activeStep={activeStep} />
 
-			<Steps
-				cardSitting={cardSitting}
-				dispatchCardSitting={dispatchCardSitting}
-				activeStep={activeStep}
-			/>
+				<Steps
+					cardSitting={cardSitting}
+					dispatchCardSitting={dispatchCardSitting}
+					activeStep={activeStep}
+				/>
 
-			<NavigationBtns
-				activeStep={activeStep}
-				onActiveStepChange={onActiveStepChange}
-			/>
-		</div>
+				<NavigationBtns
+					activeStep={activeStep}
+					onActiveStepChange={onActiveStepChange}
+					onError={setErrorMsg}
+					cardSitting={cardSitting}
+				/>
+			</div>
+		</ErrorHandler>
 	);
 }
