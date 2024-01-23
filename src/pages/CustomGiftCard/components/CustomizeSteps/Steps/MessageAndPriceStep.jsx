@@ -62,7 +62,7 @@ export default function MessageAndPriceStep({
 						helperText={
 							price < PRICE_LIMITS.min || price > PRICE_LIMITS.max
 								? `price must be between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
-								: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
+								: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max} in english numbers`
 						}
 					/>
 				</FormControl>
