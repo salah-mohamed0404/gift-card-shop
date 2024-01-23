@@ -4,7 +4,11 @@ import colors from "tailwindcss/colors";
 export default function ColorStep({ t, color, onColorChange }) {
 	return (
 		<div className="flex flex-col items-center gap-6">
-			<Typography variant="h4" className="capitalize">
+			<Typography
+				variant="h4"
+				className="md:!text-4xl !text-3xl capitalize"
+				textAlign="center"
+			>
 				{t("customCard.color.title")}
 			</Typography>
 
