@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import { blue } from "@mui/material/colors";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { CartProvider } from "./store/CartContext";
 
 export default function RootLayout({ children }) {
 	const {
@@ -24,9 +25,11 @@ export default function RootLayout({ children }) {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Navbar />
-			{children}
-			<Footer />
+			<CartProvider>
+				<Navbar />
+				{children}
+				<Footer />
+			</CartProvider>
 		</ThemeProvider>
 	);
 }
