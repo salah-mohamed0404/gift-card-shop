@@ -42,7 +42,7 @@ export default function ReceiverInfoStep({
 						InputProps={{
 							startAdornment: (
 								<InputAdornment position="start" className="*:!text-gray-800">
-									+
+									+966
 								</InputAdornment>
 							),
 						}}
