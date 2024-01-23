@@ -22,7 +22,7 @@ export default function Cart({ t, language }) {
 				{t("cart.title")} ({cart.length})
 			</Typography>
 
-			<ul className="h-5/6 overflow-y-auto">
+			<ul className="h-[80dvh] overflow-y-auto">
 				{cart.map((item, index) => (
 					<li
 						key={`${item.brand.name}-${item.receiverInfo.name}-${index}`}
