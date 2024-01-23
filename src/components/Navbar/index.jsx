@@ -49,7 +49,7 @@ export default function Navbar() {
 
 				<NavLinks t={t} language={language} />
 
-				<Cart language={language} />
+				<Cart t={t} language={language} />
 			</div>
 		</nav>
 	);
