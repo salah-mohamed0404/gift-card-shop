@@ -67,5 +67,15 @@ export default {
 			},
 			addToCart: "Add To Cart",
 		},
+		cart: {
+			title: "Cart",
+			empty: "Your cart is empty",
+			checkout: "Checkout",
+			customCard: "Custom Card",
+			readyCard: "Ready Card",
+			receiverInfo: "Receiver Info",
+			brand: "Brand",
+			price: "Price",
+		},
 	},
 };

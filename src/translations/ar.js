@@ -67,5 +67,15 @@ export default {
 			},
 			addToCart: "أضف إلى السلة",
 		},
+		cart: {
+			title: "السلة",
+			empty: "السلة فارغة",
+			checkout: "الدفع",
+			customCard: "بطاقة مخصصة",
+			readyCard: "بطاقة جاهزة",
+			receiverInfo: "معلومات المستلم",
+			brand: "المتجر",
+			price: "السعر",
+		},
 	},
 };
