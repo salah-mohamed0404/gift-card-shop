@@ -19,9 +19,9 @@ export default function NavigationBtns({
 	const isLastStep = activeStep === MAX_STEPS;
 
 	const handleAddToCart = () => {
-		if (cardSitting.receiverInfo.name !== "")
+		if (cardSitting.receiverInfo.name === "")
 			return onError("Please enter a name");
-		else if (!cardSitting.receiverInfo.phone !== "")
+		else if (!cardSitting.receiverInfo.phone === "")
 			return onError("Please enter a phone number");
 
 		// TODO: Add to cart logic
