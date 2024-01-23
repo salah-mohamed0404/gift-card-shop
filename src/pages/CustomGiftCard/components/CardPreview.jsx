@@ -7,7 +7,7 @@ export default function CardPreview({ cardSitting, back }) {
 			style={{ backgroundColor: cardSitting.color }}
 		>
 			{!back ? (
-				<div className="flex justify-end h-full">
+				<>
 					<div className="absolute inset-0">
 						{cardSitting.shape ? (
 							<img
@@ -18,7 +18,7 @@ export default function CardPreview({ cardSitting, back }) {
 						) : null}
 					</div>
 
-					<div className="p-2 h-full z-10">
+					<div className="absolute top-2 right-2 z-10">
 						{cardSitting.brand.logo ? (
 							<img
 								src={cardSitting.brand.logo}
@@ -27,7 +27,7 @@ export default function CardPreview({ cardSitting, back }) {
 							/>
 						) : null}
 					</div>
-				</div>
+				</>
 			) : (
 				<div
 					className="flex flex-col justify-center items-center text-center p-4 gap-2 h-full"
@@ -39,7 +39,7 @@ export default function CardPreview({ cardSitting, back }) {
 					<Typography variant="h6" component="p" className="transition-colors">
 						{cardSitting.price}
 					</Typography>
-					<div className="absolute bottom-4 start-4">
+					<div className="absolute bottom-4 left-4">
 						<img src="/images/logo.webp" alt="logo" width={100} />
 					</div>
 				</div>
