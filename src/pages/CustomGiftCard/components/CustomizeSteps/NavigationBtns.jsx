@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import {
 	AddCircleOutlineRounded,
 	ArrowBackIosNewRounded,
@@ -5,7 +7,7 @@ import {
 } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { PRICE_LIMITS } from "../../hooks/useCardSittingReducer";
-import { useTranslation } from "react-i18next";
+import { CartContext } from "../../../../store/CartContext";
 
 const MAX_STEPS = 4;
 
@@ -16,15 +18,16 @@ export default function NavigationBtns({
 	cardSitting,
 }) {
 	const { t } = useTranslation();
+	const { dispatchCart } = useContext(CartContext);
 	const isLastStep = activeStep === MAX_STEPS;
 
 	const handleAddToCart = () => {
 		if (cardSitting.receiverInfo.name === "")
 			return onError("Please enter a name");
-		else if (!cardSitting.receiverInfo.phone === "")
+		else if (cardSitting.receiverInfo.phone === "")
 			return onError("Please enter a phone number");
 
-		// TODO: Add to cart logic
+		dispatchCart({ type: "ADD_ITEM", payload: cardSitting });
 	};
 
 	const handleNextStep = () => {
