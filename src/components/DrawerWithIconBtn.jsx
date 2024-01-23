@@ -1,33 +1,30 @@
-import { useState } from "react";
 import { IconButton, SwipeableDrawer } from "@mui/material";
 
-export default function DrawerWithIconBtn({ BtnIcon, language, children }) {
-	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-	const openDrawer = () => {
-		setIsDrawerOpen(true);
-	};
-
-	const closeDrawer = () => {
-		setIsDrawerOpen(false);
-	};
-
+export default function DrawerWithIconBtn({
+	isOpen,
+	onOpen,
+	onClose,
+	BtnIcon,
+	language,
+	className = "",
+	children,
+}) {
 	return (
 		<>
 			<IconButton
 				type="button"
-				onClick={openDrawer}
+				onClick={onOpen}
 				className="!text-inherit !text-3xl"
 			>
 				<BtnIcon fontSize="inherit" />
 			</IconButton>
 			<SwipeableDrawer
 				anchor={`${language === "en" ? "left" : "right"}`}
-				open={isDrawerOpen}
-				onClose={closeDrawer}
-				onOpen={openDrawer}
+				open={isOpen}
+				onClose={onClose}
+				onOpen={onOpen}
 			>
-				<div className="w-96 h-full" onKeyDown={closeDrawer}>
+				<div className={`w-[26rem] h-full ${className}`} onKeyDown={onClose}>
 					{children}
 				</div>
 			</SwipeableDrawer>
