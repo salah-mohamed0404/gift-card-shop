@@ -1,6 +1,7 @@
 export default {
 	translation: {
 		siteTitle: "اهد هدية",
+		currency: "ر.س",
 		navbar: {
 			home: "الرئيسية",
 			about: "عنا",
