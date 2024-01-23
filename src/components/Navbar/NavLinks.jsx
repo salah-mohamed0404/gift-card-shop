@@ -1,9 +1,12 @@
-import NavLink from "./NavLink";
+import { useState } from "react";
 import { Menu } from "@mui/icons-material";
+import NavLink from "./NavLink";
 import LanguageSwitcher from "./LanguageSwitcher";
 import DrawerWithIconBtn from "../DrawerWithIconBtn";
 
 export default function NavLinks({ t, language }) {
+	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
 	const navLinksList = navLinks.map((link) => (
 		<li key={link.title}>
 			<NavLink title={t(`navbar.${link.title}`)} link={link.link} />
@@ -21,7 +24,13 @@ export default function NavLinks({ t, language }) {
 			</ul>
 
 			<div className="md:hidden block">
-				<DrawerWithIconBtn BtnIcon={Menu} language={language}>
+				<DrawerWithIconBtn
+					isOpen={isDrawerOpen}
+					onOpen={() => setIsDrawerOpen(true)}
+					onClose={() => setIsDrawerOpen(false)}
+					BtnIcon={Menu}
+					language={language}
+				>
 					<ul className="flex flex-col justify-center items-center gap-12 ps-8 text-3xl h-full">
 						{navLinksList}
 
