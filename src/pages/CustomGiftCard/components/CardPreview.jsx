@@ -1,6 +1,9 @@
 import { Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function CardPreview({ cardSitting, back }) {
+	const { t } = useTranslation();
+
 	return (
 		<figure
 			className="relative w-[30rem] shrink-0 h-72 rounded-2xl shadow-xl overflow-hidden transition-colors"
@@ -36,13 +39,8 @@ export default function CardPreview({ cardSitting, back }) {
 					<Typography variant="h5" component="p" className="transition-colors">
 						{cardSitting.message}
 					</Typography>
-					<Typography
-						variant="h6"
-						component="p"
-						className="transition-colors"
-						dir="ltr"
-					>
-						{cardSitting.price} SAR
+					<Typography variant="h6" component="p" className="transition-colors">
+						{cardSitting.price} {t("currency")}
 					</Typography>
 					<div className="absolute bottom-4 left-4">
 						<img src="/images/logo.webp" alt="logo" width={100} />
