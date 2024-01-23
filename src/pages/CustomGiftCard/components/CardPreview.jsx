@@ -6,7 +6,7 @@ export default function CardPreview({ cardSitting, back }) {
 
 	return (
 		<figure
-			className="relative w-[30rem] shrink-0 h-72 rounded-2xl shadow-xl overflow-hidden transition-colors"
+			className="relative md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl shadow-xl overflow-hidden transition-colors"
 			style={{ backgroundColor: cardSitting.color }}
 		>
 			{!back ? (
@@ -26,7 +26,7 @@ export default function CardPreview({ cardSitting, back }) {
 							<img
 								src={cardSitting.brand.logo}
 								alt={`${cardSitting.brand.name} logo`}
-								className="w-40 rounded object-cover"
+								className="md:w-40 w-28 rounded object-cover"
 							/>
 						) : null}
 					</div>
