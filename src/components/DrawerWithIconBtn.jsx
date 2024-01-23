@@ -24,7 +24,10 @@ export default function DrawerWithIconBtn({
 				onClose={onClose}
 				onOpen={onOpen}
 			>
-				<div className={`w-[26rem] h-full ${className}`} onKeyDown={onClose}>
+				<div
+					className={`md:w-[26rem] w-dvw h-full ${className}`}
+					onKeyDown={onClose}
+				>
 					{children}
 				</div>
 			</SwipeableDrawer>
