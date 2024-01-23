@@ -7,7 +7,7 @@ export default function CardPreview({ cardSitting, back }) {
 			style={{ backgroundColor: cardSitting.color }}
 		>
 			{!back ? (
-				<div className="flex justify-center items-center h-full">
+				<div className="flex justify-end h-full">
 					<div className="absolute inset-0">
 						{cardSitting.shape ? (
 							<img
@@ -18,7 +18,7 @@ export default function CardPreview({ cardSitting, back }) {
 						) : null}
 					</div>
 
-					<div className="flex justify-center items-center w-full h-full z-10">
+					<div className="p-2 h-full z-10">
 						{cardSitting.brand.logo ? (
 							<img
 								src={cardSitting.brand.logo}
