@@ -1,6 +1,7 @@
 export default {
 	translation: {
 		siteTitle: "give a gift",
+		currency: "SAR",
 		navbar: {
 			home: "Home",
 			about: "About",
