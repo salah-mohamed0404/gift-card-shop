@@ -36,8 +36,13 @@ export default function CardPreview({ cardSitting, back }) {
 					<Typography variant="h5" component="p" className="transition-colors">
 						{cardSitting.message}
 					</Typography>
-					<Typography variant="h6" component="p" className="transition-colors">
-						{cardSitting.price}
+					<Typography
+						variant="h6"
+						component="p"
+						className="transition-colors"
+						dir="ltr"
+					>
+						{cardSitting.price} SAR
 					</Typography>
 					<div className="absolute bottom-4 left-4">
 						<img src="/images/logo.webp" alt="logo" width={100} />
