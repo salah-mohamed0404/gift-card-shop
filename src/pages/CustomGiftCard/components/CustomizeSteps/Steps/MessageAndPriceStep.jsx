@@ -1,4 +1,10 @@
-import { FormControl, FormLabel, TextField, Typography } from "@mui/material";
+import {
+	FormControl,
+	FormLabel,
+	InputAdornment,
+	TextField,
+	Typography,
+} from "@mui/material";
 import { PRICE_LIMITS } from "../../../hooks/useCardSittingReducer";
 
 export default function MessageAndPriceStep({
@@ -64,6 +70,16 @@ export default function MessageAndPriceStep({
 								? `price must be between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max}`
 								: `Enter price in SAR between ${PRICE_LIMITS.min} and ${PRICE_LIMITS.max} in english numbers`
 						}
+						InputProps={{
+							endAdornment: (
+								<InputAdornment
+									position="end"
+									className="*:!text-gray-800 rtl:px-2"
+								>
+									{t("currency")}
+								</InputAdornment>
+							),
+						}}
 					/>
 				</FormControl>
 			</div>
