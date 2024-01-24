@@ -1,35 +1,30 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useCallback } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-export const CartContext = createContext();
+const initialState = [];
 
-const cartReducer = (state, action) => {
-	const { setStoredCart, payload } = action;
-
-	switch (action.type) {
-		case "ADD_ITEM":
-			return setStoredCart([...state, payload]);
-		case "REMOVE_ITEM":
-			return setStoredCart(state.filter((_, index) => index !== payload));
-		case "INIT":
-			return action.payload;
-		default:
-			return state;
-	}
-};
+export const CartContext = createContext(initialState);
 
 export const CartProvider = ({ children }) => {
-	const [storedCart, setStoredCart] = useLocalStorage("cart", []);
-	const [cart, dispatch] = useReducer(cartReducer, storedCart);
+	const [cart, setCart] = useLocalStorage("cart", initialState);
 
-	useEffect(() => {
-		dispatch({ type: "INIT", payload: storedCart });
-	}, [storedCart]);
-
-	const dispatchCart = (action) => {
-		action.setStoredCart = setStoredCart;
-		dispatch(action);
-	};
+	const dispatchCart = useCallback(
+		(action) => {
+			const { type, payload } = action;
+			switch (type) {
+				case "ADD_ITEM":
+					setCart((prev) => [...prev, payload]);
+					break;
+				case "REMOVE_ITEM":
+					setCart((prev) => prev.filter((_, index) => index !== payload));
+					break;
+				case "INIT":
+					setCart(action.payload);
+					break;
+			}
+		},
+		[setCart]
+	);
 
 	return (
 		<CartContext.Provider value={{ cart, dispatchCart }}>
