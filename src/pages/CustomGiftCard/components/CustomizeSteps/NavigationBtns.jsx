@@ -22,9 +22,9 @@ export default function NavigationBtns({
 	const isLastStep = activeStep === MAX_STEPS;
 
 	const handleAddToCart = () => {
-		if (cardSitting.receiverInfo.name.trim() === "")
+		if (cardSitting.receiverInfo.name === "")
 			return onError("Please enter a name");
-		else if (cardSitting.receiverInfo.phone.trim() === "")
+		else if (cardSitting.receiverInfo.phone === "")
 			return onError("Please enter a phone number");
 
 		dispatchCart({ type: "ADD_ITEM", payload: cardSitting });
@@ -32,14 +32,14 @@ export default function NavigationBtns({
 
 	const handleNextStep = () => {
 		if (activeStep === 2) {
-			if (cardSitting.brand.name.trim() === "") {
+			if (cardSitting.brand.name === "") {
 				onError("Please select a brand");
 				return;
 			}
 		}
 
 		if (activeStep === 3) {
-			if (cardSitting.message.trim() === "") {
+			if (!cardSitting.message) {
 				onError("Please enter a message");
 				return;
 			} else if (

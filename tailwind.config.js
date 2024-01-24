@@ -4,13 +4,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: {
-					500: "#41547b",
-					700: "#222a40",
-				},
-				secondary: {
-					500: "#b62026",
-				},
+				primary: blue,
 			},
 			backgroundImage: {
 				"hero-background": 'url("/images/banner.webp")',
