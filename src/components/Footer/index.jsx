@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
 	return (
-		<footer className="flex justify-center items-center gap-10 py-5 px-2 bg-primary-700">
+		<footer className="flex justify-center items-center gap-10 py-5 px-2 bg-subBlack">
 			{socialMedia.map(({ name, link, Icon }) => (
 				<Link
 					key={name}
 					href={link}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-3xl text-gray-50 hover:text-gray-200 transition-colors"
+					className="text-3xl text-gray-50 hover:text-gray-200 transition-colors hover:text-rose-700"
 				>
 					<Icon fontSize="inherit" />
 				</Link>

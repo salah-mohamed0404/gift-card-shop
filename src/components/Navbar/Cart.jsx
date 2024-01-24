@@ -72,7 +72,6 @@ export default function Cart({ t, language }) {
 					disabled={!cart.length}
 					LinkComponent={Link}
 					to="/checkout"
-					onClick={() => setIsDrawerOpen(false)}
 				>
 					{t("cart.checkout")}
 				</Button>
