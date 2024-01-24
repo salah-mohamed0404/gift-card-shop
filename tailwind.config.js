@@ -7,6 +7,7 @@ export default {
 		extend: {
 			colors: {
 				primary: blue,
+				subBlack:'#1A263C'
 			},
 			backgroundImage: {
 				"hero-background": 'url("/images/banner.webp")',
