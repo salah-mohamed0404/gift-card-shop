@@ -85,6 +85,13 @@ export default {
 			name: "Name",
 			phone: "Phone Number",
 			addToCart: "Add To Cart",
+			filters: {
+				button: "Filters",
+				title: "Filters",
+				brands: "Brands",
+				price: "Price",
+				apply: "Apply",
+			},
 		},
 	},
 };

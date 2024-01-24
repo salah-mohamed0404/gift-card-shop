@@ -85,6 +85,13 @@ export default {
 			name: "الاسم",
 			phone: "رقم الهاتف",
 			addToCart: "أضف إلى السلة",
+			filters: {
+				button: "الفلاتر",
+				title: "الفلاتر",
+				brands: "المتاجر",
+				price: "السعر",
+				apply: "تطبيق",
+			},
 		},
 	},
 };
