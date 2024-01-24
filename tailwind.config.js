@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-import { blue } from "tailwindcss/colors";
-
 export default {
 	content: ["./src/**/*.{js,jsx}", "./index.html"],
 	theme: {
 		extend: {
 			colors: {
-				primary: blue,
+				primary: {
+					500: "#41547b",
+					700: "#222a40",
+				},
+				secondary: {
+					500: "#b62026",
+				},
 			},
 			backgroundImage: {
 				"hero-background": 'url("/images/banner.webp")',
