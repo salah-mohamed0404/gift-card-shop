@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CartProvider } from "./store/CartContext";
 import { ThemeProvider, createTheme } from "@mui/material";
-import { blue } from "tailwindcss/colors";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -13,7 +12,7 @@ export default function RootLayout({ children }) {
 	const theme = createTheme({
 		palette: {
 			primary: {
-				main: blue[500],
+				main: "#41547b",
 			},
 		},
 	});
