@@ -24,7 +24,7 @@ export default function CustomTextImgSection({
 					variant="h3"
 					component="h2"
 					className={`${
-						!secondary ? "text-primary-700" : "text-rose-700"
+						!secondary ? "!text-primary-500" : "!text-secondary-500"
 					} !mb-6`}
 				>
 					<span className="text-gray-700">{titlePrefix}</span> {title}
