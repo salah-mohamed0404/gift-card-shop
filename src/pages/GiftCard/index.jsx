@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import CardItem from "./CardItem";
 import CardPagination from "./CardPagination";
+import CardFilters from "./CardFilters";
 
 export default function GiftCard() {
 	const { t } = useTranslation();
@@ -15,6 +16,7 @@ export default function GiftCard() {
 
 				<div className="flex justify-between items-center mb-6 pb-2 border-b-2 text-lg">
 					<p>{t("readyCards.results", { count: cards.length })}</p>
+					<CardFilters t={t} />
 				</div>
 
 				<ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6">
