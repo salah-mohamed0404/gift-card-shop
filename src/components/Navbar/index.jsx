@@ -40,27 +40,16 @@ export default function Navbar() {
 		<nav
 			className={`${
 				isFixed
-					? "fixed top-0 w-full bg-gray-50/60 backdrop-blur-sm shadow-sm animate-slide-down"
-					: "absolute top-0 w-full bg-opacity-0 text-gray-50 py-5"
-			} z-50 px-4 py-5 sm:px-6 lg:px-8`} // Adjusted padding for different screen sizes
+					? "fixed bg-gray-50/60 backdrop-blur-sm shadow-sm animate-slide-down"
+					: "absolute text-gray-50"
+			} top-0 w-full py-4 z-50`}
 		>
-			<div className="flex  items-center mx-auto max-w-7xl">
+			<div className="flex justify-between items-center w-3/4 mx-auto">
 				<Logo />
 
-				<div className="hidden sm:flex sm:justify-end  flex-grow lg:justify-center">
-					{/* NavLinks component */}
-					<NavLinks t={t} language={language} />
-				</div>
+				<NavLinks t={t} language={language} />
 
-				<div>
-					{/* Cart component */}
-					<Cart t={t} language={language} />
-
-					{/* Optional: Hamburger menu for smaller screens */}
-					<div className="sm:hidden float-right">
-						{/* Hamburger menu icon */}
-					</div>
-				</div>
+				<Cart t={t} language={language} />
 			</div>
 		</nav>
 	);
