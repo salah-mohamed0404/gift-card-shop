@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Custom hook for storing and retrieving data in local storage.
@@ -22,17 +22,20 @@ export default function useLocalStorage(key, initialValue) {
 		}
 	}, [key, initialValue]);
 
-	const setValue = (value) => {
-		try {
-			const valueToStore =
-				value instanceof Function ? value(storedValue) : value;
-			setStoredValue(valueToStore);
-			localStorage.setItem(key, JSON.stringify(valueToStore));
-			return valueToStore;
-		} catch (error) {
-			console.error(error);
-		}
-	};
+	const setValue = useCallback(
+		(value) => {
+			try {
+				const valueToStore =
+					value instanceof Function ? value(storedValue) : value;
+				setStoredValue(valueToStore);
+				localStorage.setItem(key, JSON.stringify(valueToStore));
+				return valueToStore;
+			} catch (error) {
+				console.error(error);
+			}
+		},
+		[key, storedValue]
+	);
 
 	return [storedValue, setValue];
 }
