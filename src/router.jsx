@@ -5,6 +5,7 @@ import About from "./pages/About";
 import GiftCard from "./pages/GiftCard";
 import CustomGiftCard from "./pages/CustomGiftCard";
 import Checkout from "./pages/Checkout";
+import GiftCardPreview from "./pages/GiftCardPreview";
 
 export const router = createBrowserRouter([
 	{
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/custom-gift-card",
 				element: <CustomGiftCard />,
+			},
+			{
+				path: "gift-card-preview/:cardId",
+				element: <GiftCardPreview />,
 			},
 			{
 				path: "/checkout",
