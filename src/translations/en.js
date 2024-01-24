@@ -77,5 +77,14 @@ export default {
 			brand: "Brand",
 			price: "Price",
 		},
+		readyCards: {
+			title: "Ready Cards",
+			titleSuffix: "for you",
+			results: "results ({{count}})",
+			modalTitle: "Add card to cart",
+			name: "Name",
+			phone: "Phone Number",
+			addToCart: "Add To Cart",
+		},
 	},
 };

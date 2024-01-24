@@ -77,5 +77,14 @@ export default {
 			brand: "المتجر",
 			price: "السعر",
 		},
+		readyCards: {
+			title: "بطاقات جاهزة",
+			titleSuffix: "لك",
+			results: "النتائج ({{count}})",
+			modalTitle: "أضف البطاقة إلى السلة",
+			name: "الاسم",
+			phone: "رقم الهاتف",
+			addToCart: "أضف إلى السلة",
+		},
 	},
 };
