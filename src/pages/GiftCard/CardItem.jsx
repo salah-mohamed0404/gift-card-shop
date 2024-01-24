@@ -9,14 +9,14 @@ export default function CardItem({ card, t }) {
 
 	return (
 		<Card className="!shadow-none">
-			<div className="relative group flex overflow-hidden">
+			<div className="relative group flex">
 				<img
-					className="w-full h-52 rounded-2xl shadow-lg object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
+					className="w-full h-52 rounded-2xl shadow-2xl object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
 					src={front}
 					alt="card front face"
 				/>
 				<img
-					className="absolute top-0 w-full h-52 rounded-2xl shadow-lg object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
+					className="absolute top-0 w-full h-52 rounded-2xl shadow-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
 					src={back}
 					alt="card back face"
 				/>
