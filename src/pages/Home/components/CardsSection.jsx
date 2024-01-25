@@ -15,7 +15,7 @@ export default function CardsSection({ t }) {
 
       <Grid container spacing={3}>
         {cards.map((card, index) => (
-          <Grid item xs={12} md={6} key={`${index}-${card.title}`}>
+          <Grid item xs={12} sm={6} key={`${index}-${card.title}`}>
             <CustomCard
               imgUrl={card.imgUrl}
               title={t(`home.cards.${card.title}.title`)}
@@ -30,11 +30,11 @@ export default function CardsSection({ t }) {
 
 const cards = [
   {
-    imgUrl: "/images/gift-card.webp",
+    imgUrl: "/images/home1.png",
     title: "gift",
   },
   {
-    imgUrl: "/images/custom-card.jpg",
+    imgUrl: "/images/home2.png",
     title: "custom",
   },
 ];
