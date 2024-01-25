@@ -1,7 +1,7 @@
 import { useState } from "react";
-import CardPreview from "./components/CardPreview";
 import CustomizeSteps from "./components/CustomizeSteps";
 import useCardSitting from "./hooks/useCardSittingReducer";
+import CardPreview from "../../components/CardPreview";
 
 export default function CustomGiftCard() {
 	const { cardSitting, dispatchCardSitting } = useCardSitting();
