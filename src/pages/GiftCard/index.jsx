@@ -7,7 +7,7 @@ export default function GiftCard() {
 	const { t } = useTranslation();
 
 	return (
-		<main className="mt-40 md:mb-20 mb-16">
+		<main className="mt-40 md:mb-14 mb-12">
 			<div className="w-3/4 mx-auto">
 				<h1 className="md:text-4xl text-2xl font-medium text-center mb-20">
 					<span className="text-primary-500">{t("readyCards.title")}</span>{" "}
@@ -27,7 +27,7 @@ export default function GiftCard() {
 					))}
 				</ul>
 
-				<div className="grid place-content-center mt-8">
+				<div className="grid place-content-center mt-20">
 					<CardPagination />
 				</div>
 			</div>
