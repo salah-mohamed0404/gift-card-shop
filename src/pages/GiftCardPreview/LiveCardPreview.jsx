@@ -5,7 +5,7 @@ export default function LiveCardPreview({ card, back }) {
 	return (
 		<>
 			{card.color && <CardPreview cardSitting={card} back={back} ShowBrand />}
-			{card.front && <ReadyCardPreview card={card} back={back} />}
+			{!card.color && <ReadyCardPreview card={card} back={back} />}
 		</>
 	);
 }
