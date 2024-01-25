@@ -93,5 +93,9 @@ export default {
 				apply: "تطبيق",
 			},
 		},
+		preview: {
+			front: "الوجه الأمامي",
+			back: "الوجه الخلفي",
+		},
 	},
 };

@@ -93,5 +93,9 @@ export default {
 				apply: "Apply",
 			},
 		},
+		preview: {
+			front: "Front",
+			back: "Back",
+		},
 	},
 };
