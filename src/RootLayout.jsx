@@ -15,6 +15,9 @@ export default function RootLayout({ children }) {
 				main: "#41547b",
 			},
 		},
+		typography: {
+			fontFamily: "ARAHAMAH1982, sans-serif",
+		},
 	});
 
 	useEffect(() => {
