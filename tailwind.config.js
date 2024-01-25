@@ -13,7 +13,7 @@ export default {
 				},
 			},
 			backgroundImage: {
-				"hero-background": 'url("/images/banner.webp")',
+				"hero-background": 'url("/images/banner-empty-01.png")',
 			},
 			transitionDuration: {
 				DEFAULT: "300ms",
