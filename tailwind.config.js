@@ -1,3 +1,5 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ["./src/**/*.{js,jsx}", "./index.html"],
@@ -11,6 +13,9 @@ export default {
 				secondary: {
 					500: "#b62026",
 				},
+			},
+			fontFamily: {
+				sans: ["ARAHAMAH1982", ...defaultTheme.fontFamily.sans],
 			},
 			backgroundImage: {
 				"hero-background": 'url("/images/banner-empty-01.png")',
