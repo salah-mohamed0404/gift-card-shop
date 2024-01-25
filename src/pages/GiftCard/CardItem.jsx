@@ -8,10 +8,16 @@ export default function CardItem({ card, t }) {
 	const [openCart, setOpenCart] = useState(false);
 
 	return (
-		<Card className="!shadow-none">
+		<Card
+			sx={{
+				boxShadow:
+					" rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
+			}}
+			className="!rounded-2xl"
+		>
 			<div className="relative group flex">
 				<img
-					className="w-full h-52 rounded-2xl shadow-2xl object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
+					className="w-full h-52 rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
 					src={front}
 					alt="card front face"
 				/>
