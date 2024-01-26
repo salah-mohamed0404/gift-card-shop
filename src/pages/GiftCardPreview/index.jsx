@@ -19,7 +19,7 @@ export default function GiftCardPreview() {
 	}, [cardId]);
 
 	return (
-		<Box
+		<div
 			component="main"
 			className="flex flex-col justify-center items-center gap-12 px-2 h-[95dvh]"
 		>
@@ -35,7 +35,7 @@ export default function GiftCardPreview() {
 			</Box>
 
 			<LiveCardPreview card={card} back={activeTab === 1} />
-		</Box>
+		</div>
 	);
 }
 

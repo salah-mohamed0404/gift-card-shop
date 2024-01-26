@@ -8,11 +8,8 @@ export default function CardItem({ card, t }) {
 	const [openCart, setOpenCart] = useState(false);
 
 	return (
-		<Card
-			sx={{
-				boxShadow:
-					" rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px",
-			}}
+		<div
+			
 			className="!rounded-2xl"
 		>
 			<div className="relative group flex">
@@ -22,7 +19,7 @@ export default function CardItem({ card, t }) {
 					alt="card front face"
 				/>
 				<img
-					className="absolute top-0 w-full h-52 rounded-2xl shadow-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
+					className="absolute top-0 w-full h-52 rounded-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
 					src={back}
 					alt="card back face"
 				/>
@@ -55,6 +52,6 @@ export default function CardItem({ card, t }) {
 					{price} {t("currency")}
 				</p>
 			</CardContent>
-		</Card>
+		</div>
 	);
 }

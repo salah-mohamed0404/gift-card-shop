@@ -7,6 +7,7 @@ export default function CustomTextImgSection({
 	description,
 	reverse = false,
 	secondary = false,
+	className
 }) {
 	return (
 		<Container
@@ -15,7 +16,7 @@ export default function CustomTextImgSection({
 				reverse ? "flex-row-reverse" : ""
 			} justify-between flex-wrap *:rtl:text-right`}
 		>
-			<div className="md:w-6/12 w-full h-full">
+			<div className={`${className ? 'w-full': 'md:w-6/12  w-full h-full'}`}>
 				<img
 					src={imgUrl}
 					alt={title}
