@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
 	return (
-		<footer className="flex justify-center items-center gap-10 py-5 px-2 bg-primary-700">
+		<footer className="flex justify-center items-center gap-10 py-5 px-2 bg-secondary-500">
 			{socialMedia.map(({ name, link, Icon }) => (
 				<Link
 					key={name}
