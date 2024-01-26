@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function CustomCard({ imgUrl, title, description }) {
 	return (
-		<Card
+		<div
 			className="text-center !rounded-2xl"
 			sx={{
 				boxShadow:
@@ -32,6 +32,6 @@ export default function CustomCard({ imgUrl, title, description }) {
 					<Typography>{description}</Typography>
 				</CardContent>
 			</div>
-		</Card>
+		</div>
 	);
 }

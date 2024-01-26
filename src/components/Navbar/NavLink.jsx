@@ -5,8 +5,8 @@ export default function NavLink({ title, link }) {
 		<RouterNavLink
 			to={link}
 			className={({ isActive }) => {
-				return `capitalize transition-colors hover:text-primary-500 ${
-					isActive ? "text-primary-500" : ""
+				return `capitalize transition-colors hover:text-secondary-500 ${
+					isActive ? "text-secondary-500" : ""
 				}`;
 			}}
 		>
