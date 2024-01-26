@@ -24,6 +24,7 @@ const initialState = {
 	brand: { name: "", logo: "" },
 	message: "Card Description",
 	textColor: "white",
+	font: "ARAHAMAH1982",
 	price: PRICE_LIMITS.min,
 	receiverInfo: {
 		name: "",
@@ -37,6 +38,7 @@ export const cardSittingActions = {
 	SET_BRAND: "SET_BRAND",
 	SET_MESSAGE: "SET_MESSAGE",
 	SET_TEXT_COLOR: "SET_TEXT_COLOR",
+	SET_FONT: "SET_FONT",
 	SET_PRICE: "SET_PRICE",
 	SET_RECEIVER_INFO_NAME: "SET_RECEIVER_INFO_NAME",
 	SET_RECEIVER_INFO_PHONE: "SET_RECEIVER_INFO_PHONE",
@@ -68,6 +70,16 @@ const cardSittingReducer = (state, action) => {
 			return {
 				...state,
 				textColor: action.payload,
+			};
+		case cardSittingActions.SET_FONT:
+			if (action.payload === "default")
+				return {
+					...state,
+					font: "ARAHAMAH1982",
+				};
+			return {
+				...state,
+				font: action.payload,
 			};
 		case cardSittingActions.SET_PRICE:
 			return {

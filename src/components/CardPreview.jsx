@@ -3,6 +3,14 @@ import { useTranslation } from "react-i18next";
 
 export default function CardPreview({ cardSitting, back, ShowBrand }) {
 	const { t } = useTranslation();
+	const fontClassName =
+		cardSitting.font === "Noto Sans Arabic"
+			? "!font-notoSansArabic"
+			: cardSitting.font === "Amiri"
+			? "!font-amiri"
+			: cardSitting.font === "Cairo"
+			? "!font-cairo"
+			: "";
 
 	return (
 		<div>
@@ -40,14 +48,14 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 						<Typography
 							variant="h5"
 							component="p"
-							className="transition-colors"
+							className={`${fontClassName} transition-colors`}
 						>
 							{cardSitting.message}
 						</Typography>
 						<Typography
 							variant="h6"
 							component="p"
-							className="transition-colors"
+							className={`${fontClassName} transition-colors`}
 						>
 							{cardSitting.price} {t("currency")}
 						</Typography>

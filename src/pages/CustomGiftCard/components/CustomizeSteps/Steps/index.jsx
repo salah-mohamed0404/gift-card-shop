@@ -57,6 +57,7 @@ export default function Steps({
 					t={t}
 					message={cardSitting.message}
 					price={cardSitting.price}
+					font={cardSitting.font}
 					onMessageChange={(message) =>
 						dispatchCardSitting({
 							type: cardSittingActions.SET_MESSAGE,
@@ -73,6 +74,12 @@ export default function Steps({
 						dispatchCardSitting({
 							type: cardSittingActions.SET_TEXT_COLOR,
 							payload: textColor,
+						})
+					}
+					onFontChange={(font) =>
+						dispatchCardSitting({
+							type: cardSittingActions.SET_FONT,
+							payload: font,
 						})
 					}
 				/>

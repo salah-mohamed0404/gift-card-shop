@@ -16,6 +16,9 @@ export default {
 			},
 			fontFamily: {
 				sans: ["ARAHAMAH1982", ...defaultTheme.fontFamily.sans],
+				notoSansArabic: ["Noto Sans Arabic", ...defaultTheme.fontFamily.sans],
+				amiri: ["Amiri", ...defaultTheme.fontFamily.sans],
+				cairo: ["Cairo", ...defaultTheme.fontFamily.sans],
 			},
 			backgroundImage: {
 				"hero-background": 'url("/images/banner-empty-01.png")',
