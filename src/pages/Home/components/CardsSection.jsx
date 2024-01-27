@@ -20,7 +20,7 @@ export default function CardsSection({ t}) {
 				className="px-8"
 			>
 				{cards.map((card, index) => (
-					<Grid item xs={12} sm={5} key={`${index}-${card.title}`}>
+					<Grid item xs={12} sm={5} key={`${index}-${card.title} shadow-0`}>
 						<CustomCard
 				
 							title={t(`home.cards.${card.title}.title`)}
@@ -39,14 +39,14 @@ const cards = [
 	{
 		
 		title: "gift",
-		front:'/images/home1.png',
-		back:'/images/home1-back.png'
+		front:'/images/home2.webp',
+		back:'/images/home1-back.webp'
        
     },
 
 	{
 		title: "custom",
-		front: '/images/home2.png',
-		back: '/images/home2-back.png'
+		front: '/images/home1.webp',
+		back: '/images/home2-back.webp'
 	},
 ];
