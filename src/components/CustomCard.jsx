@@ -13,19 +13,15 @@ export default function CustomCard({ imgUrl, title, description }) {
 			<div className=" text-center  ">
 				<Link to="/gift-card">
 					<CardMedia
-						sx={{ height: 260, objectFit: "cover" }}
 						image={imgUrl}
 						title={title}
-						className="!rounded-2xl"
+						className="!rounded-2xl object-cover md:h-64 h-40"
 					/>
 				</Link>
 
 				<CardContent>
 					<Link to="/gift-card">
-						<Typography
-							variant="h4"
-							className="text-primary-700 sm:fs-5 !mb-1 sm-mt-4 sm-text-center"
-						>
+						<Typography variant="h4" className="text-primary-700 !mb-1">
 							{title}
 						</Typography>
 					</Link>
