@@ -21,7 +21,7 @@ export default {
 				cairo: ["Cairo", ...defaultTheme.fontFamily.sans],
 			},
 			backgroundImage: {
-				"hero-background": 'url("/images/banner-empty-01.png")',
+				"hero-background": 'url("/images/banner-01.png")',
 			},
 			transitionDuration: {
 				DEFAULT: "300ms",

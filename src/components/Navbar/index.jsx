@@ -40,9 +40,9 @@ export default function Navbar() {
 		<nav
 			className={`${
 				isFixed
-					? "fixed bg-gray-50/60 backdrop-blur-sm shadow-sm animate-slide-down"
+					? "fixed bg-gray-50/60 backdrop-blur-sm shadow-sm  animate-slide-down"
 					: "absolute text-gray-50"
-			} top-0 w-full py-4 z-50`}
+			} top-0 w-full py-4 z-50 text-lg font-semibold`}
 		>
 			<div className="flex justify-between items-center w-3/4 mx-auto">
 				<Logo />
