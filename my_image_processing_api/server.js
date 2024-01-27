@@ -4,8 +4,8 @@ const port = 3000;
 const stripe = require('stripe')('your_stripe_secret_key');
 const { Twilio } = require('twilio');
 // Twilio setup - replace with your Twilio credentials
-const accountSid = 'YOUR_TWILIO_ACCOUNT_SID';
-const authToken = 'YOUR_TWILIO_AUTH_TOKEN';
+const accountSid = 'ACa5fb2c6c60350e228fd36d3a66ee8b6a';
+const authToken = '17b492667376584b4ac557fbf0503df6';
 const client = new Twilio(accountSid, authToken);
 
 

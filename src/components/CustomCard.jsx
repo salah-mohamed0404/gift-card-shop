@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function CustomCard({ imgUrl, title, description }) {
+export default function CustomCard({  title, description,front,back }) {
 	return (
 		<div
 			className="text-center !rounded-2xl"
@@ -12,12 +12,19 @@ export default function CustomCard({ imgUrl, title, description }) {
 		>
 			<div className=" text-center  ">
 				<Link to="/gift-card">
-					<CardMedia
-						sx={{ height: 260, objectFit: "cover" }}
-						image={imgUrl}
-						title={title}
-						className="!rounded-2xl"
-					/>
+					<div className="relative group flex">
+						<img
+							className="w-full h-64 rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
+							src={front}
+							alt="card front face"
+						/>
+						<img
+							className="absolute top-0 w-full h-64 rounded-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
+							src={back}
+							alt="card back face"
+						/>
+					</div>
+					
 				</Link>
 
 				<CardContent>

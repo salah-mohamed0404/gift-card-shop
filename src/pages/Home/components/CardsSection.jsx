@@ -1,7 +1,7 @@
 import { Container, Typography, Grid } from "@mui/material";
 import CustomCard from "../../../components/CustomCard";
 
-export default function CardsSection({ t }) {
+export default function CardsSection({ t}) {
 	return (
 		<Container component="section">
 			<Typography
@@ -22,9 +22,11 @@ export default function CardsSection({ t }) {
 				{cards.map((card, index) => (
 					<Grid item xs={12} sm={5} key={`${index}-${card.title}`}>
 						<CustomCard
-							imgUrl={card.imgUrl}
+				
 							title={t(`home.cards.${card.title}.title`)}
 							description={t(`home.cards.${card.title}.description`)}
+							front={card.front}
+							back={card.back}
 						/>
 					</Grid>
 				))}
@@ -35,11 +37,16 @@ export default function CardsSection({ t }) {
 
 const cards = [
 	{
-		imgUrl: "/images/home1.png",
+		
 		title: "gift",
-	},
+		front:'/images/home1.png',
+		back:'/images/home1-back.png'
+       
+    },
+
 	{
-		imgUrl: "/images/home2.png",
 		title: "custom",
+		front: '/images/home2.png',
+		back: '/images/home2-back.png'
 	},
 ];
