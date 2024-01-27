@@ -1,3 +1,4 @@
+import { Close } from "@mui/icons-material";
 import { IconButton, SwipeableDrawer } from "@mui/material";
 
 export default function DrawerWithIconBtn({
@@ -25,9 +26,14 @@ export default function DrawerWithIconBtn({
 				onOpen={onOpen}
 			>
 				<div
-					className={`md:w-[26rem] w-dvw h-full ${className}`}
+					className={`relative md:w-[26rem] w-dvw h-full ${className}`}
 					onKeyDown={onClose}
 				>
+					<div className="absolute top-7 end-6">
+						<IconButton type="button" onClick={onClose}>
+							<Close fontSize="large" />
+						</IconButton>
+					</div>
 					{children}
 				</div>
 			</SwipeableDrawer>
