@@ -7,7 +7,7 @@ export default function CardsSection({ t }) {
 			<Typography
 				variant="h3"
 				component="h2"
-				className="text-primary-700 text-center capitalize !mb-10"
+				className="text-primary-700 text-center md:!text-5xl !text-3xl capitalize !mb-10"
 			>
 				- <span className="text-gray-700">{t("home.cards.titlePrefix")}</span>{" "}
 				{t("home.cards.title")} -
