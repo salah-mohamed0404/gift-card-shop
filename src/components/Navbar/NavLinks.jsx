@@ -31,7 +31,7 @@ export default function NavLinks({ t, language }) {
 					BtnIcon={Menu}
 					language={language}
 				>
-					<ul className="flex flex-col justify-center items-center gap-12 ps-8  h-full">
+					<ul className="flex flex-col justify-center items-center gap-12 ps-8  h-full text-3xl">
 						{navLinksList}
 
 						<li>
