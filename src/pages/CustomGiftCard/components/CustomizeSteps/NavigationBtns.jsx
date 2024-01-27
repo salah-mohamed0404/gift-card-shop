@@ -15,6 +15,7 @@ export default function NavigationBtns({
 	activeStep,
 	onActiveStepChange,
 	onError,
+	onSuccess,
 	cardSitting,
 }) {
 	const { t } = useTranslation();
@@ -28,6 +29,7 @@ export default function NavigationBtns({
 			return onError("Please enter a phone number");
 
 		dispatchCart({ type: "ADD_ITEM", payload: cardSitting });
+		onSuccess(t("addToCartSuccess"));
 	};
 
 	const handleNextStep = () => {
