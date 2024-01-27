@@ -7,7 +7,7 @@ export default function CustomTextImgSection({
 	description,
 	reverse = false,
 	secondary = false,
-	className
+	className,
 }) {
 	return (
 		<Container
@@ -16,15 +16,17 @@ export default function CustomTextImgSection({
 				reverse ? "flex-row-reverse" : ""
 			} justify-between flex-wrap *:rtl:text-right`}
 		>
-			<div className={`${className ? 'w-full': 'md:w-6/12  w-full h-full'}`}>
+			<div className={`${className ? "w-full" : "md:w-6/12  w-full h-full"}`}>
 				<img
 					src={imgUrl}
 					alt={title}
-					className="object-cover rounded h-[300px] w-full"
+					className={`object-cover rounded ${
+						secondary ? "h-52 md:h-auto" : "h-[300px]"
+					} w-full`}
 				/>
 			</div>
 
-			<div className="flex flex-col justify-center md:w-5/12 w-full text-center mt-5 lg:text-left lg:mt-0">
+			<div className="flex flex-col justify-center md:w-5/12 w-full !text-center lg:!text-start mt-5 lg:mt-0">
 				<Typography
 					variant="h3"
 					component="h2"
