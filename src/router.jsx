@@ -6,6 +6,7 @@ import GiftCard from "./pages/GiftCard";
 import CustomGiftCard from "./pages/CustomGiftCard";
 import Checkout from "./pages/Checkout";
 import GiftCardPreview from "./pages/GiftCardPreview";
+import Stores from "./pages/Stores";
 
 export const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
 			{
 				path: "/checkout",
 				element: <Checkout />,
+			},
+			{
+				path: "/stores",
+				element: <Stores />,
 			},
 		],
 	},
