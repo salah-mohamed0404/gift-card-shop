@@ -98,5 +98,9 @@ export default {
 			back: "Back",
 		},
 		addToCartSuccess: "Card added to cart successfully",
+		stores: {
+			title: "Stores",
+			titleSuffix: "we work with",
+		},
 	},
 };

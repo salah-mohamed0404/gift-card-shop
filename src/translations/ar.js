@@ -98,5 +98,9 @@ export default {
 			back: "الوجه الخلفي",
 		},
 		addToCartSuccess: "تمت إضافة البطاقة إلى السلة بنجاح",
+		stores: {
+			title: "المتاجر",
+			titleSuffix: "التي نعمل معها",
+		},
 	},
 };
