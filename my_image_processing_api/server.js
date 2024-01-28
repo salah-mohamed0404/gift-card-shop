@@ -22,6 +22,7 @@ const predefinedImageUrls = [
     // ... add more as needed
 ];
 
+
 const predefinedSvgUrls = [
    './logoipsum-263.svg',
    './logoipsum-274.svg',
@@ -47,6 +48,44 @@ const predefinedColorCodes = [
     "#a43a34"
     // ... add more as needed
 ];
+
+
+
+app.get("/api/cards", (req, res) => {
+  const { price, brands, page = 1, limit = 10 } = req.query;
+
+  // Replace the following with your actual data fetching and filtering logic
+  const allCards = []; // Your cards data array
+
+  const priceRange = price ? price.split("-").map(Number) : null;
+  const selectedBrands = brands ? brands.split("-") : [];
+
+  let filteredCards = allCards;
+
+  if (priceRange) {
+    filteredCards = filteredCards.filter(
+      (card) => card.price >= priceRange[0] && card.price <= priceRange[1]
+    );
+  }
+
+  if (selectedBrands.length > 0) {
+    filteredCards = filteredCards.filter((card) =>
+      selectedBrands.includes(card.brand)
+    );
+  }
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const paginatedCards = filteredCards.slice(startIndex, endIndex);
+
+  res.json({
+    data: paginatedCards,
+    page: parseInt(page),
+    limit: parseInt(limit),
+    total: filteredCards.length,
+  });
+});
 
 
 const calculateOrderAmount = (items) => {
@@ -182,6 +221,23 @@ app.post('/apply-discount', async (req, res) => {
     res.json(result);
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+
+const discountCodes = {
+  ABC123: { valid: true, discount: 10 }, // 10% discount
+  XYZ789: { valid: true, discount: 15 }, // 15% discount
+  // ... more codes
+};
+
+app.post("/api/validate-code", (req, res) => {
+  const { code } = req.body;
+  const discount = discountCodes[code];
+
+  if (discount && discount.valid) {
+    res.json({ valid: true, discount: discount.discount });
+  } else {
+    res.json({ valid: false });
   }
 });
 
