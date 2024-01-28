@@ -97,5 +97,6 @@ export default {
 			front: "الوجه الأمامي",
 			back: "الوجه الخلفي",
 		},
+		addToCartSuccess: "تمت إضافة البطاقة إلى السلة بنجاح",
 	},
 };

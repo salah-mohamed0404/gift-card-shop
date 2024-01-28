@@ -97,5 +97,6 @@ export default {
 			front: "Front",
 			back: "Back",
 		},
+		addToCartSuccess: "Card added to cart successfully",
 	},
 };

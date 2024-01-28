@@ -15,7 +15,7 @@ export default function NavLinks({ t, language }) {
 
 	return (
 		<>
-			<ul className="md:flex hidden items-center text-2xl gap-7">
+			<ul className="md:flex hidden items-center text-xl gap-7">
 				{navLinksList}
 
 				<li>
