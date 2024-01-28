@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 3000;
-const stripe = require('stripe')('your_stripe_secret_key');
-const { Twilio } = require('twilio');
+const port = 3001;
+const cors = require('cors');
+const axios = require('axios');
+// const { Twilio } = require('twilio');
 // Twilio setup - replace with your Twilio credentials
-const accountSid = 'ACa5fb2c6c60350e228fd36d3a66ee8b6a';
-const authToken = '17b492667376584b4ac557fbf0503df6';
-const client = new Twilio(accountSid, authToken);
+// const accountSid = 'ACa5fb2c6c60350e228fd36d3a66ee8b6a';
+// const authToken = '17b492667376584b4ac557fbf0503df6';
+// const client = new Twilio(accountSid, authToken);
 
-
+app.use(cors())
 // Predefined data
 const predefinedImageUrls = [
    './1.svg',
@@ -48,6 +49,58 @@ const predefinedColorCodes = [
     "#a43a34"
     // ... add more as needed
 ];
+
+
+app.use(express.json());
+
+
+// async function createMyFatoorahInvoice(apiUrl, apiKey, invoiceData) {
+//   try {
+//     const headers = {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${apiKey}`
+//     };
+
+//     const response = await axios.post(`${apiUrl}/v2/SendPayment`, invoiceData, { headers });
+//     return response.data; // Process response data as needed
+//   } catch (error) {
+//     console.error('Error creating MyFatoorah invoice:', error);
+//     // Handle error appropriately
+//     return null;
+//   }
+// }
+
+
+const myFatoorahApiUrl = "https://apitest.myfatoorah.com/";
+token='rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL'
+const myFatoorahApiKey = ''; // Keep this secret
+
+app.post("/process-payment", async (req, res) => {
+  console.log("Processing payment with MyFatoorah");
+  try {
+    const paymentData = req.body;
+    console.log(req.body)
+    const response = await axios.post(
+      `${myFatoorahApiUrl}/v2/InitiatePayment`,
+      paymentData, // data received from the client
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Replace with actual API key
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log("Payment Response:", response.data);
+    res.send(response.data); // Send back the response from MyFatoorah
+  } catch (error) {
+    console.error("Error processing payment:", error);
+    res.status(500).send("Payment processing failed.");
+  }
+});
+// createMyFatoorahInvoice(myFatoorahApiUrl, myFatoorahApiKey, invoiceData)
+//   .then((invoice) => console.log("Invoice created:", invoice))
+//   .catch((err) => console.error("Error:", err));
 
 
 
@@ -95,23 +148,7 @@ const calculateOrderAmount = (items) => {
 };
 
 
-app.post('/create-payment-intent', async (req, res) => {
-  const { items } = req.body;
 
-  try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: calculateOrderAmount(items),
-      currency: 'usd',
-      // Add any other required payment intent parameters here
-    });
-
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    });
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-});
 
 
 app.get('/get-predefined-data', (req, res) => {

@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
 				element: <GiftCardPreview />,
 			},
 			{
-				path: "/checkout",
+				path : "/checkout/:index",
 				element: <Checkout />,
 			},
 			{

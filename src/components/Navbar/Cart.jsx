@@ -2,14 +2,20 @@ import { useContext, useState } from "react";
 import { DeleteOutline, ShoppingBag } from "@mui/icons-material";
 import DrawerWithIconBtn from "../DrawerWithIconBtn";
 import { CartContext } from "../../store/CartContext";
-import { Badge, Button, IconButton, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Badge, IconButton, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 export default function Cart({ t, language }) {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const { cart, dispatchCart } = useContext(CartContext);
+	const navigate = useNavigate(); // Create navigate instance
 
-	return (
+	// Function to handle checkout navigation
+	const handleCheckout = (index) => {
+		navigate(`/checkout/${index}`); // Navigate to checkout with index as parameter
+	};
+
+	return(
 		<Badge
 			badgeContent={cart.length}
 			color="error"
@@ -56,7 +62,7 @@ export default function Cart({ t, language }) {
 									</Typography>
 								</div>
 							</div>
-							<div>
+							<div className="flex gap-x-3">
 								<IconButton
 									onClick={() =>
 										dispatchCart({ type: "REMOVE_ITEM", payload: index })
@@ -65,22 +71,25 @@ export default function Cart({ t, language }) {
 								>
 									<DeleteOutline fontSize="inherit" />
 								</IconButton>
+								<div className="grid place-items-center">
+									<IconButton
+										
+										onClick={() => handleCheckout(index)}
+										className="!text-red-500 !bg-white "
+										
+									>
+
+										<ShoppingBag fontSize="inherit" />
+										</IconButton>
+										{/* {t("cart.checkout")} */}
+									{/* </Button> */}
+								</div>
 							</div>
 						</li>
 					))}
 				</ul>
 
-				<div className="grid place-items-center">
-					<Button
-						variant="contained"
-						size="large"
-						disabled={!cart.length}
-						LinkComponent={Link}
-						to="/checkout"
-					>
-						{t("cart.checkout")}
-					</Button>
-				</div>
+				
 			</DrawerWithIconBtn>
 		</Badge>
 	);
