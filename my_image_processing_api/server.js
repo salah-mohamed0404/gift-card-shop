@@ -102,6 +102,34 @@ app.post("/process-payment", async (req, res) => {
 //   .then((invoice) => console.log("Invoice created:", invoice))
 //   .catch((err) => console.error("Error:", err));
 
+const validDiscountCodes = {
+  ABC123: { isValid: true, discountValue: 10 },
+  XYZ789: { isValid: true, discountValue: 20 },
+};
+
+// Mock API keys storage
+const validApiKeys = ["12345", "67890"]; // In real scenario, this should be stored securely
+
+// Middleware for API key authentication
+function authenticateApiKey(req, res, next) {
+  const apiKey = req.headers["x-api-key"];
+  if (validApiKeys.includes(apiKey)) {
+    next();
+  } else {
+    res.status(401).json({ message: "Invalid API Key" });
+  }
+}
+
+// POST endpoint to validate gift cards with API key authentication
+app.post("/api/validate-gift-card", authenticateApiKey, (req, res) => {
+  const { code } = req.body;
+
+  if (validDiscountCodes[code]) {
+    res.json(validDiscountCodes[code]);
+  } else {
+    res.json({ isValid: false, discountValue: 0 });
+  }
+});
 
 
 app.get("/api/cards", (req, res) => {

@@ -15,12 +15,12 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 	return (
 		<div>
 			<figure
-				className="relative md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl  overflow-hidden transition-colors"
+				className="relative w-[260px] md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
 			>
 				{!back ? (
 					<>
-						<div className="absolute inset-0">
+						<div className="absolute w-full">
 							{cardSitting.shape ? (
 								<img
 									src={cardSitting.shape}

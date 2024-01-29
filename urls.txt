@@ -33,11 +33,24 @@ https://ibb.co/k632nwp
 https://ibb.co/DQD55qj
 
 ================================
-
+https://i.ibb.co/HKbNQ8b/logoipsum-332-svg.png
+https://i.ibb.co/bPhBtnP/logoipsum-331-svg.png
+https://i.ibb.co/FYsFHgB/logoipsum-325-svg.png
+https://i.ibb.co/VMJww10/logoipsum-321-svg.png
+https://i.ibb.co/F7BFNsK/logoipsum-317-svg.png
+https://i.ibb.co/ZWhPhxy/logoipsum-300-svg.png
+https://i.ibb.co/sWkFYDg/logoipsum-299-svg.png
+https://i.ibb.co/XkyxBK9/logoipsum-263-svg.png
+https://i.ibb.co/9tcZCWc/logoipsum-269-svg.png
+https://i.ibb.co/Lp8YX4F/logoipsum-287-svg.png
+https://i.ibb.co/LCLh7d4/logoipsum-294-svg.png
+https://i.ibb.co/7VTftgF/logoipsum-297-svg.png
 1- filters
 2- giftCards data
 3- custom cards data
 4-send messages with twilio sms and whatsapp
-5-payment checkout and form client side
-6-connect with other stores
-7-new page clientside
+
+
+1-about banner modfiy to make text on iamge,-remove frame from card gift custom
+2-stikcers isloate img stikcers and make other shapes iamges witohut backogrund
+3-add payment methodes

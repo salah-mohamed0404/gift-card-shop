@@ -1,6 +1,6 @@
 import { NavLink as RouterNavLink } from "react-router-dom";
 
-export default function NavLink({ title, link }) {
+export default function NavLink({ title, link, onClick }) {
 	return (
 		<RouterNavLink
 			to={link}
@@ -9,6 +9,7 @@ export default function NavLink({ title, link }) {
 					isActive ? "text-secondary-500" : ""
 				}`;
 			}}
+			onClick={onClick}
 		>
 			{title}
 		</RouterNavLink>

@@ -9,7 +9,7 @@ export default function NavLinks({ t, language }) {
 
 	const navLinksList = navLinks.map((link) => (
 		<li key={link.title}>
-			<NavLink title={t(`navbar.${link.title}`)} link={link.link} />
+			<NavLink title={t(`navbar.${link.title}`)} link={link.link} onClick={() => setIsDrawerOpen(false)} />
 		</li>
 	));
 
