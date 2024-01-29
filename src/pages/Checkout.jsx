@@ -165,6 +165,7 @@ const Checkout = () => {
 				<FormLabel text={t("checkoutForm.expiryDate")} />
 				<TextField
 					variant="outlined"
+					type="date"
 					className={textFieldClasses}
 					value={expiryDate}
 					onChange={(e) => setExpiryDate(e.target.value)}
@@ -178,7 +179,8 @@ const Checkout = () => {
 							onChange={() => setIsScheduled((prev) => !prev)}
 						/>
 					}
-					label="Schedule"
+					label={t("checkoutForm.schedule")}
+					className="capitalize"
 				/>
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<StaticDateTimePicker
