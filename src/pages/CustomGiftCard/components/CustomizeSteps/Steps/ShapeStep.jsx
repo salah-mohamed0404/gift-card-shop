@@ -11,7 +11,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 				{t("customCard.shape.title")}
 			</Typography>
 
-			<ul className="grid md:grid-cols-2 justify-center gap-6 flex-wrap">
+			<ul className="grid md:grid-cols-3 justify-center gap-6 flex-wrap">
 				{shapes.map((cardShape) => (
 					<li
 						key={cardShape}
@@ -54,8 +54,18 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 }
 
 const shapes = [
-	"/images/card-shapes/stars-1.png",
-	"/images/card-shapes/ribbon-1.png",
+	
 	"/images/card-shapes/ribbon-2.png",
 	"/images/card-shapes/stars-2.png",
+	"https://i.ibb.co/7QQMKKY/valentines-day-120-a-ai.png",
+	"https://i.ibb.co/BfxXVKV/90183910-SL-122720-39270-21-ai.png",
+	"https://i.ibb.co/r6yYvV0/26117764-7109696-ai.png",
+	"https://i.ibb.co/KDStSHZ/11952284-11-pattern-ai.png",
+	"https://i.ibb.co/vwLFJRY/9599741.png",
+	"https://i.ibb.co/y0yPSrL/4475791-93294-ai.png",
+	"https://i.ibb.co/kSNkSYQ/3676941-1948701-ai.png",
+	"https://i.ibb.co/Yh2ZDqt/3603081-67660-ai.png",
+	"https://i.ibb.co/mRs360P/3565535-527331-PJIQ9-E-46-ai.png",
+	"https://i.ibb.co/JKq9Mc8/1023864-123-ai.png"
+
 ];

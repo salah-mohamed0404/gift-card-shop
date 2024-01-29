@@ -118,6 +118,7 @@ export default {
       cancel: "إلغاء",
       mobileCode: "966",
       invoice: "الفاتورة",
+      pay: "دفع",
     },
   },
 };

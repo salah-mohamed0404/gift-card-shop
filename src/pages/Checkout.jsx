@@ -150,11 +150,11 @@ const Checkout = () => {
 			<Button
 				variant="contained"
 				color="primary"
-				className="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-lg"
+				className="mt-4 w-full bg-blue-500 text-2xl hover:bg-blue-700 text-white font-bold flex  rounded "
 				disabled={loading}
 				type="submit"
 			>
-				{loading ? <CircularProgress size={24} /> : t('checkoutForm.pay')}
+				{loading ? <CircularProgress size={24} /> : <span className=" p-2 text-2xl">{t('checkoutForm.pay')}</span>}
 			</Button>
 			{error && <div className="text-red-500 mt-2 text-lg">{error}</div>}
 			<Dialog open={modalOpen} onClose={() => setModalOpen(false)}>

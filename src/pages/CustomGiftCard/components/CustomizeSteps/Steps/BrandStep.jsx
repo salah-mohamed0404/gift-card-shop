@@ -23,7 +23,7 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 									: ""
 							}`}
 						>
-							<img src={logo} alt="shape" className="w-32  object-cover" />
+							<img src={logo} alt="shape" className="w-16  object-cover" />
 						</button>
 					</li>
 				))}
@@ -34,11 +34,16 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 
 const brands = [
 	{ name: "test-1", logo: "/images/logo.webp" },
-	{ name: "test-2", logo: "/images/logo.webp" },
-	{ name: "test-3", logo: "/images/logo.webp" },
-	{ name: "test-4", logo: "/images/logo.webp" },
-	{ name: "test-5", logo: "/images/logo.webp" },
-	{ name: "test-6", logo: "/images/logo.webp" },
-	{ name: "test-7", logo: "/images/logo.webp" },
-	{ name: "test-8", logo: "/images/logo.webp" },
+	{ name: "test-2", logo: "https://i.ibb.co/HKbNQ8b/logoipsum-332-svg.png" },
+	{ name: "test-3", logo: "https://i.ibb.co/bPhBtnP/logoipsum-331-svg.png" },
+	{ name: "test-4", logo: "https://i.ibb.co/FYsFHgB/logoipsum-325-svg.png" },
+	{ name: "test-5", logo: "https://i.ibb.co/VMJww10/logoipsum-321-svg.png" },
+	{name: "test-6", logo: "https://i.ibb.co/ZWhPhxy/logoipsum-300-svg.png" },
+	{name: "test-7", logo: "https://i.ibb.co/sWkFYDg/logoipsum-299-svg.png" },
+	{ name: "test-8", logo: "https://i.ibb.co/XkyxBK9/logoipsum-263-svg.png" },
+	{
+		name: "test-9", logo: "https://i.ibb.co/9tcZCWc/logoipsum-269-svg.png" },
+	{ name: "test-10", logo: "https://i.ibb.co/Lp8YX4F/logoipsum-287-svg.png" },
+
 ];
+

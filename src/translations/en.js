@@ -117,7 +117,8 @@ export default {
 	  amount: "Amount",
       cancel: "cancel",
 	  mobileCode:"966",
-	  invoice: "invoice"
+	  invoice: "invoice",
+    pay:"pay"
     },
   },
 };
