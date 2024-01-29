@@ -47,119 +47,119 @@ export default function Stores() {
 const stores = [
 	{
 		name: "test",
-		logo: "/images/card design-04.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/card design-05.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/home2.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "test",
-		logo: "/images/logo.webp",
+		logo: "/images/logos/shop.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",

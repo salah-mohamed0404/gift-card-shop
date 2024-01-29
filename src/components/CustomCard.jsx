@@ -9,15 +9,15 @@ export default function CustomCard({ title, description, front, back }) {
 		>
 			<div className=" text-center  ">
 				<Link to="/custom-gift-card">
-					<div className="relative group flex">
+					<div className="relative group max-w-[30rem] flex">
 						<img
-							className="w-full md:h-52 rounded-2xl  h-52    object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
+							className="w-full md:h-52 rounded-2xl  h-52    object-fill transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
 							src={front}
 				           
 							alt="card front face"
 						/>
 						<img
-							className="absolute top-0 w-full md:h-52 h-52   rounded-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
+							className="absolute top-0 w-full md:h-52 h-52   rounded-2xl object-fill opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
 							src={back}
 				
 							alt="card back face"

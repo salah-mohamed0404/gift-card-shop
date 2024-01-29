@@ -17,18 +17,18 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 						key={cardShape}
 						className={`overflow-hidden rounded-xl shadow-lg ${
 							cardShape === shape
-								? "outline-none ring-2 ring-offset-8 ring-red-500"
+								? "outline-none  ring-red-500"
 								: ""
 						}`}
 						style={{
 							backgroundColor: color,
 						}}
 					>
-						<button type="button" onClick={() => onShapeChange(cardShape)}>
+						<button type="button" className="h-[100%]" onClick={() => onShapeChange(cardShape)}>
 							<img
 								src={cardShape}
 								alt="shape"
-								className="w-60 h-36 object-cover"
+								className="w-60 h-[100%] object-fill"
 							/>
 						</button>
 					</li>
@@ -36,7 +36,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 
 				<li
 					className={`overflow-hidden rounded-xl shadow-lg ${
-						!shape ? "outline-none ring-2 ring-offset-[10px] ring-red-500" : ""
+						!shape ? "outline-none  ring-red-500" : ""
 					}`}
 					style={{
 						backgroundColor: color,
@@ -64,8 +64,16 @@ const shapes = [
 	"https://i.ibb.co/vwLFJRY/9599741.png",
 	"https://i.ibb.co/y0yPSrL/4475791-93294-ai.png",
 	"https://i.ibb.co/kSNkSYQ/3676941-1948701-ai.png",
-	"https://i.ibb.co/Yh2ZDqt/3603081-67660-ai.png",
-	"https://i.ibb.co/mRs360P/3565535-527331-PJIQ9-E-46-ai.png",
-	"https://i.ibb.co/JKq9Mc8/1023864-123-ai.png"
+	
+
+	
+	"./images/11.png",
+	"./images/8.png",
+	"./images/10.png",
+	
+
+	
+
+	
 
 ];

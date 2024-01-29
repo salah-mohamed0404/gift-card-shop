@@ -13,19 +13,19 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 			: "";
 
 	return (
-		<div className="w-[30rem] px-[14px] h-[280px] ">
+		<div className="w-full lg:w-[30rem] sm:px-[32px] h-[208px] ">
 			<figure
-				className="relative w-[260px] md:w-[30rem] w-full h-full shrink-0 md:h-72  rounded-2xl  overflow-hidden transition-colors"
+				className="relative w-[260px] md:w-[30rem] w-full h-full shrink-0   rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
 			>
 				{!back ? (
 					<>
-						<div className="absolute w-full">
+						<div className="absolute h-full w-full">
 							{cardSitting.shape ? (
 								<img
 									src={cardSitting.shape}
 									alt="gift card"
-									className="w-full h-full object-cover"
+									className="w-full h-full object-fill"
 								/>
 							) : null}
 						</div>

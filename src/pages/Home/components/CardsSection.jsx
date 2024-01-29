@@ -20,7 +20,7 @@ export default function CardsSection({ t}) {
 				className="px-8"
 			>
 				{cards.map((card, index) => (
-					<Grid item xs={12} sm={5} key={`${index}-${card.title} shadow-0`}>
+					<Grid item xs={12} sm={6} key={`${index}-${card.title}  shadow-0`}>
 						<CustomCard
 				
 							title={t(`home.cards.${card.title}.title`)}
