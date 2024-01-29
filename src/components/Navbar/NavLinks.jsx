@@ -61,4 +61,8 @@ const navLinks = [
 		title: "create a card",
 		link: "/custom-gift-card",
 	},
+	{
+		title: "stores",
+		link: "/stores",
+	},
 ];

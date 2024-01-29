@@ -7,6 +7,7 @@ export default {
 			about: "عنا",
 			"buy a card": "اشتري بطاقة",
 			"create a card": "أنشئ بطاقة",
+			stores: "المتاجر",
 		},
 		home: {
 			hero: {

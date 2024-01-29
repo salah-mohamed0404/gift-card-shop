@@ -7,6 +7,7 @@ export default {
 			about: "About",
 			"buy a card": "Buy a card",
 			"create a card": "Create a card",
+			stores: "Stores",
 		},
 		home: {
 			hero: {
