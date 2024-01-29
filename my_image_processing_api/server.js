@@ -81,7 +81,7 @@ app.post("/process-payment", async (req, res) => {
     const paymentData = req.body;
     console.log(req.body)
     const response = await axios.post(
-      `${myFatoorahApiUrl}/v2/InitiatePayment`,
+      `${myFatoorahApiUrl}/v2/ExecutePayment`,
       paymentData, // data received from the client
       {
         headers: {

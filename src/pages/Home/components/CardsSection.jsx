@@ -39,14 +39,15 @@ const cards = [
 	{
 		
 		title: "gift",
-		front:'/images/home2.webp',
-		back:'/images/home1-back.webp'
+		front: '/images/home1.webp',
+		back: '/images/home2-back.webp'
        
     },
 
 	{
 		title: "custom",
-		front: '/images/home1.webp',
-		back: '/images/home2-back.webp'
+		front: '/images/home2.webp',
+		back: '/images/home1-back.webp'
+
 	},
 ];

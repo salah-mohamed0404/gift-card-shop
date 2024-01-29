@@ -8,7 +8,7 @@ export default function CustomCard({ title, description, front, back }) {
 			
 		>
 			<div className=" text-center  ">
-				<Link to="/gift-card">
+				<Link to="/custom-gift-card">
 					<div className="relative group flex">
 						<img
 							className="w-full md:h-42  rounded-2xl  h-42   object-cover transition duration-500 group-hover:opacity-0 group:hover:scale-75 z-10"
