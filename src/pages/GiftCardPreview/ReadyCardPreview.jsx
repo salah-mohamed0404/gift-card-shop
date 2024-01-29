@@ -5,7 +5,7 @@ export default function ReadyCardPreview({ card, back }) {
 	const { t } = useTranslation();
 
 	return (
-		<div>
+		<div className="w-[250px]">
 			<figure
 				className="relative md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl overflow-hidden transition-colors"
 				style={{ backgroundColor: card.color }}
