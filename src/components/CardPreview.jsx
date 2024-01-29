@@ -13,9 +13,9 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 			: "";
 
 	return (
-		<div className="w-[250px]">
+		<div className="w-[30rem] px-[14px] h-[280px] ">
 			<figure
-				className="relative w-[260px] md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl  overflow-hidden transition-colors"
+				className="relative w-[260px] md:w-[30rem] w-full h-full shrink-0 md:h-72  rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
 			>
 				{!back ? (
