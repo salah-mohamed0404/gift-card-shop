@@ -143,10 +143,6 @@ const Checkout = () => {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 						<TextField label="First Name *" name="firstName" value={billingDetails.firstName} onChange={handleInputChange} required className="w-full" />
 						<TextField label="Last Name *" name="lastName" value={billingDetails.lastName} onChange={handleInputChange} required className="w-full" />
-						<TextField label="Country / Region *" name="country" value={billingDetails.country} onChange={handleInputChange} required className="w-full" />
-						<TextField label="Address *" name="address" value={billingDetails.address} onChange={handleInputChange} required className="w-full" />
-						<TextField label="City *" name="city" value={billingDetails.city} onChange={handleInputChange} required className="w-full" />
-						<TextField label="ZIP / Postal Code *" name="zip" value={billingDetails.zip} onChange={handleInputChange} required className="w-full" />
 						<TextField label="Email Address *" name="email" value={billingDetails.email} onChange={handleInputChange} required type="email" className="w-full" />
 					</div>
 					<Divider />

@@ -9,14 +9,11 @@ export default function GiftCard() {
 	const [cards, setCards] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [filters, setFilters] = useState({
-		price: []
-		
-		,
-		brand: ''
-			
-			// Add additional brands as needed
-		,
-});
+		price: '0-1000', // Example range, adjust according to your needs
+		brand: '',
+	});
+
+
 	const [totalPages, setTotalPages] = useState(1);
 	
 	
@@ -24,11 +21,14 @@ export default function GiftCard() {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const queryParams = new URLSearchParams({
-				page: currentPage,
-				price: filters.price,
-				brands: filters.brand,
-			}).toString();
+			const queryParams = new URLSearchParams({ page: currentPage });
+
+			if (filters.price && filters.price !== '0-1000') { // Check against your default range
+				queryParams.set('price', filters.price);
+			}
+			if (filters.brand) {
+				queryParams.set('brands', filters.brand);
+			}
 
 			try {
 				const response = await axios.get(`http://localhost:3001/api/cards?${queryParams}`);
@@ -43,25 +43,22 @@ export default function GiftCard() {
 	}, [currentPage, filters]);
 
 
-
 	
 	// Function to be called when a filter changes, e.g., a checkbox for a price is toggled
-	const handleFilterChange = (filterCategory, filterValue) => {
-		setFilters(prevFilters => {
-			// Ensure the filter category exists
-			const updatedCategory = prevFilters[filterCategory]
-				? { ...prevFilters[filterCategory] }
-				: {};
+	const handleFilterChange = (newFilters) => {
+		console.log('newFilters.price:', newFilters.price); // Debugging line
 
-			// Update the specific filter value
-			updatedCategory[filterValue] = !updatedCategory[filterValue];
+		if (Array.isArray(newFilters.price)) {
+			newFilters.price = newFilters.price.join('-'); // Convert to '100-500' format
+		}
 
-			return {
-				...prevFilters,
-				[filterCategory]: updatedCategory,
-			};
-		});
+		setFilters(prevFilters => ({
+			...prevFilters,
+			...newFilters
+		}));
 	};
+
+
 
 	return (
 		<main className="mt-40 md:mb-14 mb-12">
@@ -79,7 +76,7 @@ export default function GiftCard() {
 
 				<ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6">
 					 {console.log(cards)}
-					{cards && cards.map(card => <CardItem key={card.id} card={card} t={t} />)}
+					{cards && cards.map(card => <CardItem key={card.id} front={'/images/front.png'} back={'images/back.png'} card={card} t={t} />)}
 				</ul>
 
 				<div className="grid place-content-center mt-20">
@@ -90,71 +87,71 @@ export default function GiftCard() {
 	);
 }
 
-// const cards = [
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop1.png" },
-// 		price: 100,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop.png" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop2.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop3.png" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop4.png" },
-// 		price: 100,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logo1.webp" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logo1.webp" },
-// 		price: 200,
-// 	},
-// ];
+const cards = [
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop1.png" },
+		price: 100,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop.png" },
+		price: 200,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop2.png" },
+		price: 300,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop3.png" },
+		price: 200,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop4.png" },
+		price: 100,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop5.png" },
+		price: 300,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop6.png" },
+		price: 300,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logo1.webp" },
+		price: 200,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop5.png" },
+		price: 300,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logos/shop6.png" },
+		price: 300,
+	},
+	{
+		front: "/images/front.png",
+		back: "/images/back.png",
+		brand: { name: "test", logo: "/images/logo1.webp" },
+		price: 200,
+	},
+];

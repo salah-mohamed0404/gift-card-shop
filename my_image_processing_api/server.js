@@ -133,15 +133,17 @@ app.post("/api/validate-gift-card", authenticateApiKey, (req, res) => {
 
 app.get("/api/cards", (req, res) => {
   const { price, brands, page = 1, limit = 10 } = req.query;
-  console.log("Filters received:", { price, brands }); // Debug: log received filters
+  console.log("Filters received:", { price, brands });
 
   let filteredCards = cardsData;
 
   // Apply price filter
   if (price) {
-    const priceRange = price.split(",").map(Number);
+    const priceRange = price.split("-").map(Number);
+    console.log(priceRange)
     filteredCards = filteredCards.filter((card) =>
-      priceRange.includes(card.price)
+    card.price  >= priceRange[0] && card.price <= priceRange[1]
+      
     );
   }
 
@@ -152,6 +154,8 @@ app.get("/api/cards", (req, res) => {
       selectedBrands.includes(card.brand)
     );
   }
+
+  // Pagination logic
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
   const paginatedCards = filteredCards.slice(startIndex, endIndex);
@@ -333,7 +337,7 @@ const cardsData = [
     id: 3,
     name: "Gift Card C",
     price: 300,
-    brand: "GooglePlay",
+    brand: "xBOX",
     imageUrl: "/13.jpg",
     description: "Google Play Gift Card worth $300",
   },
@@ -349,7 +353,15 @@ const cardsData = [
     id: 5,
     name: "Gift Card E",
     price: 200,
-    brand: "PlayStation",
+    brand: "Google Play",
+    imageUrl: "/HEZEL.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  {
+    id: 6,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
     imageUrl: "/HEZEL.png",
     description: "PlayStation Gift Card worth $200",
   },

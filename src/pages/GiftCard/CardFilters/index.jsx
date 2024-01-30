@@ -17,9 +17,20 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 export default function CardFilters({ t,onFilterChange ,filters}) {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-	const [priceRange, setPriceRange] = useState([100, 500]);
-	const [brands, setBrands] = useState(dummyBrands);
+
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [priceRange, setPriceRange] = useState(() => {
+		const price = searchParams.get("price");
+		return price ? price.split("-").map((p) => parseInt(p)) : [100, 500];
+	});
+
+	const [brands, setBrands] = useState(() => {
+		const brandsFromParams = searchParams.get("brands")?.split("-") || [];
+		return dummyBrands.map(brand => ({
+			...brand,
+			checked: brandsFromParams.includes(brand.name)
+		}));
+	});
 
 	useEffect(() => {
 		// TODO: filter cards from API
@@ -44,35 +55,16 @@ export default function CardFilters({ t,onFilterChange ,filters}) {
 			});
 		}
 	}, [searchParams]);
-
 	const handleFilter = (e) => {
 		e.preventDefault();
 
-		// Assuming the priceRange state is already set to reflect the slider's values
-		const priceFilterValue = priceRange.join("-");
-
-		// Brands are captured in an array of selected brands
+		const priceFilterValue = priceRange.join("-"); // priceRange should be an array
 		const selectedBrands = brands
 			.filter(brand => brand.checked)
-			.map(brand => brand.name);
+			.map(brand => brand.name)
+			.join(","); // Joining as string
 
-		// Construct the query parameters
-		const queryParams = new URLSearchParams();
-
-		// Only add price filter to the query if both values are not at their default
-		if (priceRange[0] !== 100 || priceRange[1] !== 500) {
-			queryParams.set("price", priceFilterValue);
-		}
-
-		// Only add brands filter to the query if at least one brand is selected
-		if (selectedBrands.length > 0) {
-			queryParams.set("brands", selectedBrands.join(","));
-		}
-
-		// Here we call the function that would send the query to the server
-		// This could be a call to fetchData or another method if you're using Redux or Context
-	
-
+		onFilterChange({ price: priceFilterValue, brand: selectedBrands });
 		setIsDrawerOpen(false);
 	};
 

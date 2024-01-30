@@ -17,7 +17,9 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 			<figure
 				className="relative md:w-[30rem] w-full h-full shrink-0   rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
-			>
+			>                   
+			
+			     <div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> 
 				{!back ? (
 					<>
 						<div className="absolute h-full w-full">
@@ -25,7 +27,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 								<img
 									src={cardSitting.shape}
 									alt="gift card"
-									className="w-full h-full object-cover"
+										className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
 						</div>
@@ -35,10 +37,11 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 								<img
 									src={cardSitting.brand.logo}
 									alt={`${cardSitting.brand.name} logo`}
-									className="md:w-40 w-28 rounded object-cover"
+										className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
 						</div>
+						
 					</>
 				) : (
 					<div
@@ -64,6 +67,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 						</div>
 					</div>
 				)}
+				</div>
 			</figure>
 
 			{ShowBrand && (

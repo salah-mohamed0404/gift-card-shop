@@ -23,7 +23,7 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 									: ""
 							}`}
 						>
-							<img src={logo} alt="shape" className="w-16  object-cover" />
+							<img src={logo} width={100} height={100} alt="shape" className="w-[100px]  object-cover" />
 						</button>
 					</li>
 				))}
@@ -33,11 +33,14 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 }
 
 const brands = [
-	{ name: "test-1", logo: "/images/logo.webp" },
-	{ name: "test-2", logo: "/images/brand1.png" },
-	{ name: "test-3", logo: "/images/brand2.png" },
-	{ name: "test-4", logo: "/images/brand3.png" },
-	{ name: "test-5", logo: "/images/brand4.png" },
+	{ name: "test-1", logo: "/images/logos/shop0.png" },
+	{ name: "test-2", logo: "/images/logos/shop1.png" },
+	{ name: "test-3", logo: "/images/logos/shop2.png" },
+	{ name: "test-4", logo: "/images/logos/shop3.png" },
+	{ name: "test-5", logo: "/images/logos/shop4.png" },
+
+	{ name: "test-6", logo: "/images/logos/shop6.png" },
+	
 
 
 ];
