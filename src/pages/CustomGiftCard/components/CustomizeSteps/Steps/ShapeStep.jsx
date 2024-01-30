@@ -30,7 +30,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 							<img
 								src={cardShape}
 								alt="shape"
-								className="w-full h-full object-fill"
+								className="w-full h-full object-cover"
 							/>
 						</button>
 					</li>
