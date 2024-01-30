@@ -127,9 +127,11 @@ app.post("/api/validate-gift-card", (req, res) => {
   const { code } = req.body;
 
   if (validDiscountCodes[code]) {
-    res.json(validDiscountCodes[code]);
+    // res.json(validDiscountCodes[code]);
+    res.json('yess code works')
   } else {
     res.json({ isValid: false, discountValue: 0 });
+     res.json("oh no");
   }
 });
 
