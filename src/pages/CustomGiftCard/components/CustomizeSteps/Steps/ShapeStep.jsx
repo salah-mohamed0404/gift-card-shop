@@ -30,7 +30,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 							<img
 								src={cardShape}
 								alt="shape"
-								className="w-full h-full object-cover"
+								className="w-full h-full object-fill"
 							/>
 						</button>
 					</li>
@@ -56,22 +56,29 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 }
 
 const shapes = [
-	"/images/card-shapes/ribbon-2.png",
-	"/images/card-shapes/stars-2.png",
-	"/images/card-shapes/12.png",
+	"/images/Shapes/1.png",
+	"/images/Shapes/2.png",
+	"/images/Shapes/3.png",
 
-	"/images/card-shapes/14.png",
-	"/images/card-shapes/15.png",
-	"/images/card-shapes/16.png",
-	"/images/card-shapes/17.png",
+	"/images/Shapes/4.png",
+	"/images/Shapes/5.png",
 
-	"https://i.ibb.co/7QQMKKY/valentines-day-120-a-ai.png",
-	"https://i.ibb.co/BfxXVKV/90183910-SL-122720-39270-21-ai.png",
-	"https://i.ibb.co/r6yYvV0/26117764-7109696-ai.png",
-	"https://i.ibb.co/KDStSHZ/11952284-11-pattern-ai.png",
-	"https://i.ibb.co/vwLFJRY/9599741.png",
-	"https://i.ibb.co/y0yPSrL/4475791-93294-ai.png",
-	"https://i.ibb.co/kSNkSYQ/3676941-1948701-ai.png",
+	"/images/Shapes/7.png",
+	"/images/Shapes/8.png",
+	"/images/Shapes/9.png",
+	"/images/Shapes/10.png",
+
+	"/images/Shapes/11.png",
+	"/images/Shapes/12.png",
+	"/images/Shapes/13.png",
+	"/images/Shapes/14.png",
+	//  "https://i.ibb.co/7QQMKKY/valentines-day-120-a-ai.png",
+	// "https://i.ibb.co/BfxXVKV/90183910-SL-122720-39270-21-ai.png",
+	// "https://i.ibb.co/r6yYvV0/26117764-7109696-ai.png",
+	// "https://i.ibb.co/KDStSHZ/11952284-11-pattern-ai.png",
+	// "https://i.ibb.co/vwLFJRY/9599741.png",
+	// "https://i.ibb.co/y0yPSrL/4475791-93294-ai.png",
+	// "https://i.ibb.co/kSNkSYQ/3676941-1948701-ai.png",
 
 
 ];
