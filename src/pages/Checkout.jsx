@@ -5,16 +5,36 @@ import {
 	CircularProgress,
 	FormControlLabel,
 	Checkbox,
-	Divider
+	Divider,
+	FormControl,
+    FormLabel,
+    RadioGroup,
+    Radio,
+    Select,
 } from '@mui/material';
 
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider, DatePicker, StaticDateTimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import {  FormControl, Radio, RadioGroup } from '@mui/material';
+
 import dayjs from 'dayjs';
-import PaymentForm from '../components/PaymentForm'
-import  axios  from 'axios';
+
+import axios from 'axios';
+
+
+
 const Checkout = () => {
+
+
+
+	const TOMORROW = dayjs()
+		.add(1, "day")
+		.set("hour", dayjs().hour() + 1);
+	const MAX_SCHEDULE_DATE = dayjs().add(31, "day");
+
+	const [isScheduled, setIsScheduled] = useState(false);
+	const [scheduleDate, setScheduleDate] = useState(dayjs().add(1, 'day'));
+	const [expiryDate, setExpiryDate] = useState("");
+	const [schedule, setSchedule] = useState(null);
 	// State declarations
 	const [billingDetails, setBillingDetails] = useState({
 		firstName: '',
@@ -59,8 +79,6 @@ const Checkout = () => {
 		}));
 	};
 
-	const [isScheduled, setIsScheduled] = useState(false);
-	const [scheduleDate, setScheduleDate] = useState(dayjs().add(1, 'day'));
 	const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('applePay');
 
 	const handlePaymentMethodChange = (event) => {
@@ -190,8 +208,29 @@ const Checkout = () => {
 						label="I agree to the terms and conditions *"
 						className="my-4"
 					/>
-				
+					{/* Schedule Delivery Checkbox */}
+					<FormControlLabel
+						control={
+							<Checkbox
+								checked={isScheduled}
+								onChange={(e) => setIsScheduled(e.target.checked)}
+							/>
+						}
+						label="Schedule Delivery"
+						className="self-start"
+					/>
 
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<StaticDateTimePicker
+							orientation="landscape"
+							value={schedule}
+							onChange={(newValue) => setSchedule(newValue)}
+							minDateTime={TOMORROW}
+							maxDateTime={MAX_SCHEDULE_DATE}
+							disabled={!isScheduled}
+							className={`${isScheduled ? "" : "opacity-50 pointer-events-none"}`}
+						/>
+					</LocalizationProvider>
 
 
 				{/* Submit Button */}

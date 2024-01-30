@@ -58,6 +58,13 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 const shapes = [
 	"/images/card-shapes/ribbon-2.png",
 	"/images/card-shapes/stars-2.png",
+	"/images/card-shapes/12.png",
+
+	"/images/card-shapes/14.png",
+	"/images/card-shapes/15.png",
+	"/images/card-shapes/16.png",
+	"/images/card-shapes/17.png",
+
 	"https://i.ibb.co/7QQMKKY/valentines-day-120-a-ai.png",
 	"https://i.ibb.co/BfxXVKV/90183910-SL-122720-39270-21-ai.png",
 	"https://i.ibb.co/r6yYvV0/26117764-7109696-ai.png",
@@ -66,7 +73,5 @@ const shapes = [
 	"https://i.ibb.co/y0yPSrL/4475791-93294-ai.png",
 	"https://i.ibb.co/kSNkSYQ/3676941-1948701-ai.png",
 
-	"./images/11.png",
-	"./images/8.png",
-	"./images/10.png",
+
 ];

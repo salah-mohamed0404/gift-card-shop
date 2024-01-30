@@ -1,15 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Pagination, PaginationItem } from "@mui/material";
 
-export default function CardPagination() {
-	const location = useLocation();
-	const query = new URLSearchParams(location.search);
-	const page = parseInt(query.get("page") || "1", 10);
+export default function CardPagination({ currentPage, setPage, totalPages }) {
+	const handlePageChange = (event, value) => {
+		setPage(value); // Update page in parent component's state
+	};
 
 	return (
 		<Pagination
-			page={page}
-			count={10}
+			page={currentPage}
+			count={totalPages}
+			onChange={handlePageChange}
 			renderItem={(item) => (
 				<PaginationItem
 					component={Link}

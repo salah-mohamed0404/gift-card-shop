@@ -1,105 +1,160 @@
+import React,{useEffect,useState,forwardRef} from "react";
 import { useTranslation } from "react-i18next";
 import CardItem from "./CardItem";
 import CardPagination from "./CardPagination";
 import CardFilters from "./CardFilters";
-
+import axios from 'axios'
 export default function GiftCard() {
 	const { t } = useTranslation();
+	const [cards, setCards] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [filters, setFilters] = useState({
+		price: []
+		
+		,
+		brand: ''
+			
+			// Add additional brands as needed
+		,
+});
+	const [totalPages, setTotalPages] = useState(1);
+	
+	
+	
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const queryParams = new URLSearchParams({
+				page: currentPage,
+				price: filters.price,
+				brands: filters.brand,
+			}).toString();
+
+			try {
+				const response = await axios.get(`http://localhost:3001/api/cards?${queryParams}`);
+				setCards(response.data.data);
+				setTotalPages(response.data.totalPages);
+			} catch (error) {
+				console.error('Error fetching cards:', error);
+			}
+		};
+
+		fetchData();
+	}, [currentPage, filters]);
+
+
+
+	
+	// Function to be called when a filter changes, e.g., a checkbox for a price is toggled
+	const handleFilterChange = (filterCategory, filterValue) => {
+		setFilters(prevFilters => {
+			// Ensure the filter category exists
+			const updatedCategory = prevFilters[filterCategory]
+				? { ...prevFilters[filterCategory] }
+				: {};
+
+			// Update the specific filter value
+			updatedCategory[filterValue] = !updatedCategory[filterValue];
+
+			return {
+				...prevFilters,
+				[filterCategory]: updatedCategory,
+			};
+		});
+	};
 
 	return (
 		<main className="mt-40 md:mb-14 mb-12">
 			<div className="w-3/4 mx-auto">
 				<h1 className="md:text-4xl text-2xl font-medium text-center mb-20">
-					<span className="text-primary-500">{t("readyCards.title")}</span>{" "}
+					<span className="text-primary-500">{t("readyCards.title")}</span>
 					{t("readyCards.titleSuffix")}
 				</h1>
 
 				<div className="flex justify-between items-center mb-6 pb-2 border-b-2 text-lg">
-					<p>{t("readyCards.results", { count: cards.length })}</p>
-					<CardFilters t={t} />
+					<p>{t("readyCards.results", { count: cards&& cards.length })}</p>
+					<CardFilters t={t} filters={filters}
+						onFilterChange={handleFilterChange} />
 				</div>
 
 				<ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6">
-					{cards.map((card, index) => (
-						<li key={`${card.brand}-${index}`}>
-							<CardItem card={card} t={t} />
-						</li>
-					))}
+					 {console.log(cards)}
+					{cards && cards.map(card => <CardItem key={card.id} card={card} t={t} />)}
 				</ul>
 
 				<div className="grid place-content-center mt-20">
-					<CardPagination />
+					<CardPagination currentPage={currentPage} setPage={setCurrentPage} totalPages={totalPages} />
 				</div>
 			</div>
 		</main>
 	);
 }
 
-const cards = [
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop1.png" },
-		price: 100,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop.png" },
-		price: 200,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop2.png" },
-		price: 300,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop3.png" },
-		price: 200,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop4.png" },
-		price: 100,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop5.png" },
-		price: 300,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop6.png" },
-		price: 300,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logo1.webp" },
-		price: 200,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop5.png" },
-		price: 300,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logos/shop6.png" },
-		price: 300,
-	},
-	{
-		front: "/images/front.png",
-		back: "/images/back.png",
-		brand: { name: "test", logo: "/images/logo1.webp" },
-		price: 200,
-	},
-];
+// const cards = [
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop1.png" },
+// 		price: 100,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop.png" },
+// 		price: 200,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop2.png" },
+// 		price: 300,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop3.png" },
+// 		price: 200,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop4.png" },
+// 		price: 100,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
+// 		price: 300,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
+// 		price: 300,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logo1.webp" },
+// 		price: 200,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
+// 		price: 300,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
+// 		price: 300,
+// 	},
+// 	{
+// 		front: "/images/front.png",
+// 		back: "/images/back.png",
+// 		brand: { name: "test", logo: "/images/logo1.webp" },
+// 		price: 200,
+// 	},
+// ];

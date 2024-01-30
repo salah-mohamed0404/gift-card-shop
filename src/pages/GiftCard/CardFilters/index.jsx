@@ -15,7 +15,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function CardFilters({ t }) {
+export default function CardFilters({ t,onFilterChange ,filters}) {
 	const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 	const [priceRange, setPriceRange] = useState([100, 500]);
 	const [brands, setBrands] = useState(dummyBrands);
@@ -48,33 +48,35 @@ export default function CardFilters({ t }) {
 	const handleFilter = (e) => {
 		e.preventDefault();
 
-		if (priceRange[0] === 100 && priceRange[1] === 500) {
-			setSearchParams((prev) => {
-				prev.delete("price");
-				return prev;
-			});
-		} else {
-			setSearchParams((prev) => {
-				prev.set("price", priceRange.join("-"));
-				return prev;
-			});
+		// Assuming the priceRange state is already set to reflect the slider's values
+		const priceFilterValue = priceRange.join("-");
+
+		// Brands are captured in an array of selected brands
+		const selectedBrands = brands
+			.filter(brand => brand.checked)
+			.map(brand => brand.name);
+
+		// Construct the query parameters
+		const queryParams = new URLSearchParams();
+
+		// Only add price filter to the query if both values are not at their default
+		if (priceRange[0] !== 100 || priceRange[1] !== 500) {
+			queryParams.set("price", priceFilterValue);
 		}
 
-		const checkedBrands = brands.filter((brand) => brand.checked);
-		if (checkedBrands.length === 0) {
-			setSearchParams((prev) => {
-				prev.delete("brands");
-				return prev;
-			});
-		} else {
-			setSearchParams((prev) => {
-				prev.set("brands", checkedBrands.map((brand) => brand.name).join("-"));
-				return prev;
-			});
+		// Only add brands filter to the query if at least one brand is selected
+		if (selectedBrands.length > 0) {
+			queryParams.set("brands", selectedBrands.join(","));
 		}
+
+		// Here we call the function that would send the query to the server
+		// This could be a call to fetchData or another method if you're using Redux or Context
+	
 
 		setIsDrawerOpen(false);
 	};
+
+
 
 	return (
 		<>

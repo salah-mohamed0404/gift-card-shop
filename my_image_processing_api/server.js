@@ -131,40 +131,34 @@ app.post("/api/validate-gift-card", authenticateApiKey, (req, res) => {
   }
 });
 
-
 app.get("/api/cards", (req, res) => {
   const { price, brands, page = 1, limit = 10 } = req.query;
+  console.log("Filters received:", { price, brands }); // Debug: log received filters
 
-  // Replace the following with your actual data fetching and filtering logic
-  const allCards = []; // Your cards data array
+  let filteredCards = cardsData;
 
-  const priceRange = price ? price.split("-").map(Number) : null;
-  const selectedBrands = brands ? brands.split("-") : [];
-
-  let filteredCards = allCards;
-
-  if (priceRange) {
-    filteredCards = filteredCards.filter(
-      (card) => card.price >= priceRange[0] && card.price <= priceRange[1]
+  // Apply price filter
+  if (price) {
+    const priceRange = price.split(",").map(Number);
+    filteredCards = filteredCards.filter((card) =>
+      priceRange.includes(card.price)
     );
   }
 
-  if (selectedBrands.length > 0) {
+  // Apply brand filter
+  if (brands) {
+    const selectedBrands = brands.split(",");
     filteredCards = filteredCards.filter((card) =>
       selectedBrands.includes(card.brand)
     );
   }
-
   const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
-
+  const endIndex = startIndex + limit;
   const paginatedCards = filteredCards.slice(startIndex, endIndex);
 
   res.json({
     data: paginatedCards,
-    page: parseInt(page),
-    limit: parseInt(limit),
-    total: filteredCards.length,
+    totalPages: Math.ceil(filteredCards.length / limit),
   });
 });
 
@@ -316,6 +310,65 @@ app.post('/api/initiateSession', async (req, res) => {
         res.status(500).send('Error initiating session');
     }
 });
+// Sample data array - replace with your actual data retrieval logic
+// Sample data array with dummy objects
+const cardsData = [
+  {
+    id: 1,
+    name: "Gift Card A",
+    price: 100,
+    brand: "Amazon",
+    imageUrl: "/13.jpg",
+    description: "Amazon Gift Card worth $100",
+  },
+  {
+    id: 2,
+    name: "Gift Card B",
+    price: 200,
+    brand: "Apple",
+    imageUrl: "/HEZEL.png",
+    description: "Apple Store Gift Card worth $200",
+  },
+  {
+    id: 3,
+    name: "Gift Card C",
+    price: 300,
+    brand: "GooglePlay",
+    imageUrl: "/13.jpg",
+    description: "Google Play Gift Card worth $300",
+  },
+  {
+    id: 4,
+    name: "Gift Card D",
+    price: 100,
+    brand: "Steam",
+    imageUrl: "/HEZEL.png",
+    description: "Steam Gift Card worth $100",
+  },
+  {
+    id: 5,
+    name: "Gift Card E",
+    price: 200,
+    brand: "PlayStation",
+    imageUrl: "/HEZEL.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  // ... add more objects as necessary
+];
+
+
+// Function to filter and paginate data
+function getPaginatedAndFilteredData(data, page, pageSize, filters) {
+    // Implement filtering logic based on filters
+    let filteredData = data; // Placeholder for actual filtering logic
+
+    // Implement pagination
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = page * pageSize;
+    return filteredData.slice(startIndex, endIndex);
+}
+
+// Route to handle requests for cards with pagination and filters
 
 
 
