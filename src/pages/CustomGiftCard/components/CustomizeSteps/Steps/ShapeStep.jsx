@@ -24,7 +24,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 							backgroundColor: color,
 						}}
 					>
-						<button type="button" className="h-[200px]" onClick={() => onShapeChange(cardShape)}>
+						<button type="button" className="aspect-[2/1] w-full" onClick={() => onShapeChange(cardShape)}>
 							<img
 								src={cardShape}
 								alt="shape"
