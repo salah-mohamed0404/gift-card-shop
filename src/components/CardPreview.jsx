@@ -13,13 +13,13 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 			: "";
 
 	return (
-		<div className="w-full lg:w-[30rem] sm:px-[32px]  aspect-[2/1]  ">
+		<div className="w-full lg:w-[30rem] sm:px-[32px]   ">
 			<figure
 				className="relative md:w-[30rem] w-full h-full shrink-0   rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
 			>                   
 			
-			     <div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> 
+				<div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }} style={{ maxWidth: '480px', height: '290px' }}> 
 				{!back ? (
 					<>
 						<div className="absolute h-full w-full">

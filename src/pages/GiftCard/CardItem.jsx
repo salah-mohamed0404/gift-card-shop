@@ -12,7 +12,7 @@ export default function CardItem({ card, t,front,back }) {
 			
 			className="!rounded-2xl"
 		>
-			<div className="relative group flex justify-center" style={{ maxWidth: '480px', height: '240px' }}>
+			<div className="relative group flex justify-center" style={{ maxWidth: '480px', height: '290pxpx' }}>
 				<div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> {/* Aspect ratio container */}
 					<img
 						className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
