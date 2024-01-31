@@ -46,87 +46,76 @@ export default function Stores() {
 
 const stores = [
 	{
-		name: "test",
+		name: "HEZEL",
 		logo: "/images/shops/shop0.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
+		name: "GETHER",
 		logo: "/images/shops/shop1.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
+		name: "ELCT",
 		logo: "/images/shops/shop2.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
+		name: "THE POP UP",
+		logo: "/images/shops/shop3.png",
+		description:
+			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+		link: "#",
+	},
+	{
+		name: "DURMA",
 		logo: "/images/shops/shop4.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
+		name: "FUN WBES",
 		logo: "/images/shops/shop5.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
+		name: "RUMORS",
 		logo: "/images/shops/shop6.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
-		logo: "/images/shops/shop0.png",
+		name: "KN",
+		logo: "/images/shops/shop7.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
-		logo: "/images/shops/shop1.jpg",
+		name: "SHAHIN",
+		logo: "/images/shops/shop8.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "test",
-		logo: "/images/shops/shop2.png",
+		name: "TWINS",
+		logo: "/images/shops/shop9.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
-	{
-		name: "test",
-		logo: "/images/shops/shop4.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "test",
-		logo: "/images/shops/shop5.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "test",
-		logo: "/images/shops/shop6.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
+	
+	
+	
 ];
