@@ -19,7 +19,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 				style={{ backgroundColor: cardSitting.color }}
 			>                   
 			
-				<div  className={'md:h-[290px] h-[180px]' } style={{ position: 'relative', width: '100%', paddingBottom: '50%',maxWidth: '480px' }}> 
+				<div  className={'md:h-[240px] h-[180px]' } style={{ position: 'relative', width: '100%',maxWidth: '480px' }}> 
 				{!back ? (
 					<>
 						<div className="absolute h-full w-full">

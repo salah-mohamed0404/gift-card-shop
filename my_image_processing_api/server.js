@@ -320,12 +320,13 @@ app.post('/api/initiateSession', async (req, res) => {
 });
 // Sample data array - replace with your actual data retrieval logic
 // Sample data array with dummy objects
+// CROWD
 const cardsData = [
   {
     id: 1,
     name: "Gift Card A",
     price: 100,
-    brand: "Amazon",
+    brand: "CROWD",
     imageUrl: "/13.jpg",
     description: "Amazon Gift Card worth $100",
   },
@@ -333,7 +334,7 @@ const cardsData = [
     id: 2,
     name: "Gift Card B",
     price: 200,
-    brand: "Apple",
+    brand: "SAHIN",
     imageUrl: "/HEZEL.png",
     description: "Apple Store Gift Card worth $200",
   },
@@ -341,7 +342,7 @@ const cardsData = [
     id: 3,
     name: "Gift Card C",
     price: 300,
-    brand: "xBOX",
+    brand: "HAZEL",
     imageUrl: "/13.jpg",
     description: "Google Play Gift Card worth $300",
   },
@@ -349,7 +350,7 @@ const cardsData = [
     id: 4,
     name: "Gift Card D",
     price: 100,
-    brand: "Steam",
+    brand: "HAZEL",
     imageUrl: "/HEZEL.png",
     description: "Steam Gift Card worth $100",
   },
@@ -372,6 +373,86 @@ const cardsData = [
   // ... add more objects as necessary
 ];
 
+
+const stores = [
+  {
+    name: "HEZEL",
+    logo: "/shop0.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "GETHER",
+    logo: "/shop1.PNG",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "ELCT",
+    logo: "/shop2.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "THE POP UP",
+    logo: "/images/shops/shop3.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "DURMA",
+    logo: "/images/shops/shop4.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "FUN WBES",
+    logo: "/images/shops/shop5.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "RUMORS",
+    logo: "/images/shops/shop6.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "KN",
+    logo: "/images/shops/shop7.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "SHAHIN",
+    logo: "/images/shops/shop8.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "TWINS",
+    logo: "/images/shops/shop9.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+  {
+    name: "CROWD",
+    logo: "/images/shops/shop10.png",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+    link: "#",
+  },
+];
 
 // Function to filter and paginate data
 function getPaginatedAndFilteredData(data, page, pageSize, filters) {

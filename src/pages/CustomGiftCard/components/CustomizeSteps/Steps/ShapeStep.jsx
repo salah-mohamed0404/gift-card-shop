@@ -24,7 +24,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 					>
 						<button
 							type="button"
-							className="aspect-[2/1] w-full h-full"
+							className="w-full h-full"
 							onClick={() => onShapeChange(cardShape)}
 						>
 							<img
@@ -59,11 +59,11 @@ const shapes = [
 	"/images/Shapes/1.png",
 	"/images/Shapes/2.png",
 	"/images/Shapes/3.png",
-
 	"/images/Shapes/4.png",
 	"/images/Shapes/5.png",
-
+	"/images/Shapes/6.png",
 	"/images/Shapes/7.png",
+
 	"/images/Shapes/8.png",
 	"/images/Shapes/9.png",
 	"/images/Shapes/10.png",
@@ -72,6 +72,49 @@ const shapes = [
 	"/images/Shapes/12.png",
 	"/images/Shapes/13.png",
 	"/images/Shapes/14.png",
+	"/images/Shapes/15.png",
+	"/images/Shapes/16.png",
+	"/images/Shapes/17.png",
+	"/images/Shapes/18.png", 
+	"/images/Shapes/19.png",
+	"/images/Shapes/20.png",
+	"/images/Shapes/21.png",
+	"/images/Shapes/22.png", 
+	"/images/Shapes/23.png",
+	"/images/Shapes/24.png",
+	"/images/Shapes/25.png",
+	"/images/Shapes/26.png", 
+	"/images/Shapes/27.png",
+	"/images/Shapes/28.png",
+	"/images/Shapes/29.png",
+	"/images/Shapes/30.png",
+	 "/images/Shapes/31.png",
+	"/images/Shapes/32.png",
+	"/images/Shapes/33.png",
+	"/images/Shapes/34.png",
+	"/images/Shapes/35.png",
+	"/images/Shapes/36.png",
+	"/images/Shapes/37.png",
+	"/images/Shapes/38.png",
+	"/images/Shapes/39.png",
+	"/images/Shapes/40.png",
+	"/images/Shapes/41.png",
+	"/images/Shapes/42.png",
+	"/images/Shapes/43.png",
+	"/images/Shapes/44.png",
+	"/images/Shapes/45.png",
+	"/images/Shapes/46.png",
+	"/images/Shapes/47.png",
+	"/images/Shapes/48.png",
+	"/images/Shapes/49.png",
+	"/images/Shapes/50.png",
+
+
+
+
+
+
+
 	//  "https://i.ibb.co/7QQMKKY/valentines-day-120-a-ai.png",
 	// "https://i.ibb.co/BfxXVKV/90183910-SL-122720-39270-21-ai.png",
 	// "https://i.ibb.co/r6yYvV0/26117764-7109696-ai.png",

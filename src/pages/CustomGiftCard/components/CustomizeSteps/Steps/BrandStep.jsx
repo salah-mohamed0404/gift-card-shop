@@ -38,9 +38,15 @@ const brands = [
 	{ name: "test-3", logo: "/images/logos/shop2.png" },
 	{ name: "test-4", logo: "/images/logos/shop3.png" },
 	{ name: "test-5", logo: "/images/logos/shop4.png" },
+	{ name: "test-6", logo: "/images/logos/shop5.png" },
+	{ name: "test-3", logo: "/images/logos/shop6.png" },
+	{ name: "test-4", logo: "/images/logos/shop7.png" },
+	{ name: "test-5", logo: "/images/logos/shop8.png" },
+	{ name: "test-6", logo: "/images/logos/shop9.png" },
+	{ name: "test-5", logo: "/images/logos/shop10.png" },
+	{ name: "test-6", logo: "/images/logos/shop11.png" }, 
 
-	{ name: "test-6", logo: "/images/logos/shop6.png" },
-	
+
 
 
 ];

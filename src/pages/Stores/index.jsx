@@ -115,7 +115,13 @@ const stores = [
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
-	
-	
+	{
+		name: "CROWD",
+		logo: "/images/shops/shop10.png",
+		description:
+			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+		link: "#",
+	},
+
 	
 ];
