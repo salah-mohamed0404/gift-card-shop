@@ -45,7 +45,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 					</>
 				) : (
 					<div
-						className="flex flex-col justify-center items-center text-center p-4 gap-2 h-full"
+						className="flex flex-col justify-center items-center text-center mt-5 p-4 gap-2 h-full"
 						style={{ color: cardSitting.textColor }}
 					>
 						<Typography
