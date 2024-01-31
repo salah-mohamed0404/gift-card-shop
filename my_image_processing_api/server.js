@@ -327,7 +327,7 @@ const cardsData = [
     name: "Gift Card A",
     price: 100,
     brand: "CROWD",
-    imageUrl: "/13.jpg",
+    imageUrl: "/shop0.png",
     description: "Amazon Gift Card worth $100",
   },
   {
@@ -335,7 +335,7 @@ const cardsData = [
     name: "Gift Card B",
     price: 200,
     brand: "SAHIN",
-    imageUrl: "/HEZEL.png",
+    imageUrl: "/shop1.png",
     description: "Apple Store Gift Card worth $200",
   },
   {
@@ -343,7 +343,7 @@ const cardsData = [
     name: "Gift Card C",
     price: 300,
     brand: "HAZEL",
-    imageUrl: "/13.jpg",
+    imageUrl: "/shop2.png",
     description: "Google Play Gift Card worth $300",
   },
   {
@@ -351,7 +351,7 @@ const cardsData = [
     name: "Gift Card D",
     price: 100,
     brand: "HAZEL",
-    imageUrl: "/HEZEL.png",
+    imageUrl: "/shop3.png",
     description: "Steam Gift Card worth $100",
   },
   {
@@ -359,7 +359,7 @@ const cardsData = [
     name: "Gift Card E",
     price: 200,
     brand: "Google Play",
-    imageUrl: "/HEZEL.png",
+    imageUrl: "/shop4.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
@@ -367,10 +367,51 @@ const cardsData = [
     name: "Gift Card E",
     price: 200,
     brand: "iTunes",
-    imageUrl: "/HEZEL.png",
+    imageUrl: "/shop5.png",
     description: "PlayStation Gift Card worth $200",
   },
-  // ... add more objects as necessary
+  {
+    id: 7,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
+    imageUrl: "/shop6.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  {
+    id: 8,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
+    imageUrl: "/shop7.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  {
+    id: 9,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
+    imageUrl: "/shop8.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  {
+    id: 9,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
+    imageUrl: "/shop9.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  {
+    id: 10,
+    name: "Gift Card E",
+    price: 200,
+    brand: "iTunes",
+    imageUrl: "/shop10.png",
+    description: "PlayStation Gift Card worth $200",
+  },
+  //
+  //  ... add more objects as necessary
 ];
 
 
@@ -398,7 +439,7 @@ const stores = [
   },
   {
     name: "THE POP UP",
-    logo: "/images/shops/shop3.png",
+    logo: "/shop3.png",
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
     link: "#",
