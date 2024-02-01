@@ -3,16 +3,14 @@ import { Avatar, Card, CardContent, IconButton } from "@mui/material";
 import AddToCartModal from "./AddToCartModal";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-export default function CardItem({ card, t,front,back }) {
-	const { brand, price,title } = card;
+
+export default function CardItem({ card, front, back, brandImage, brandName }) {
 	const [openCart, setOpenCart] = useState(false);
+	const { t } = useTranslation();
 
 	return (
-		<div
-			
-			className="!rounded-2xl"
-		>
-			<div className="relative group flex justify-center md:h-[290px] h-[220px]" style={{ maxWidth: '480px'}}>
+		<div className="rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+			<div className="relative group flex justify-center md:h-[240px] h-[180px]" style={{ maxWidth: '480px' }}>
 				<div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> {/* Aspect ratio container */}
 					<img
 						className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
@@ -29,33 +27,30 @@ export default function CardItem({ card, t,front,back }) {
 				</div>
 			</div>
 			<CardContent>
-				<div className="flex justify-between items-center">
-					<h3 className="flex items-center gap-2 text-lg">
-						<Avatar
-							src={card.imageUrl}
-							alt={card.name}
-							className="[&_img]:object-contain"
+				<div className="flex justify-between items-center p-4">
+					<div className="flex items-center gap-2">
+						<img
+							src={brandImage}
+							alt={brandName}
+							style={{ width: '80px', height: '80px', objectFit: 'contain' }}
 						/>
-						{card.name}
-					</h3>
-
+						<h3 className="text-2xl font-semibold text-gray-700">{brandName}</h3>
+					</div>
 					<IconButton
-						className="!text-primary-500 !text-3xl"
+						className="text-primary-500 text-3xl"
 						onClick={() => setOpenCart(true)}
 					>
 						<AddCircle fontSize="inherit" />
 					</IconButton>
-					<AddToCartModal
-						t={t}
-						open={openCart}
-						onClose={() => setOpenCart(false)}
-						card={card}
-					/>
 				</div>
-				<p>
-					{card.price} {t("currency")}
-				</p>
+				<p className="text-white p-2 text-2xl d-inline m-w-[80px] bg-primary-500">{`${card.price} ${t("currency")}`}</p>
 			</CardContent>
+			<AddToCartModal
+				t={t}
+				open={openCart}
+				onClose={() => setOpenCart(false)}
+				card={card}
+			/>
 		</div>
 	);
 }

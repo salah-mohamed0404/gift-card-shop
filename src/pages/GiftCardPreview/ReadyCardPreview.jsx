@@ -7,13 +7,13 @@ export default function ReadyCardPreview({ card, back }) {
 	return (
 		<div className="w-[250px]">
 			<figure
-				className="relative md:w-[30rem] w-full shrink-0 md:h-72 h-48 rounded-2xl overflow-hidden transition-colors"
+				className="relative md:w-[30rem] w-full shrink-0  md:h-[240px] h-[180px]  rounded-2xl overflow-hidden transition-colors"
 				style={{ backgroundColor: card.color }}
 			>
 				<img
 					src={back ? card.back : card.front}
 					alt="card"
-					className="w-full h-full object-cover"
+					className="w-full object-cover"
 				/>
 			</figure>
 

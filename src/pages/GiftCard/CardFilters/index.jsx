@@ -120,98 +120,17 @@ export default function CardFilters({ t,onFilterChange ,filters}) {
 
 const dummyBrands = [
 	{ name: "HEZEL", checked: false },
-	{ name: "GETHER", checked: false },
+	{ name: "2 GETHER", checked: false },
 	{ name: "THE POP UP", checked: false },
 	{ name: "ELCT", checked: false },
 	{ name: "DURMA", checked: false },
-	{ name: "FUN WBES", checked: false },
+	{ name: "FUN VIBES", checked: false },
 	{ name: "RUMORS", checked: false },
-	{ name: "DURMA", checked: false },
-	{ name: "KN", checked: false },
+	{ name: "KIN", checked: false },
 	{ name: "SHAHIN", checked: false },
-	{ name: "TWINS", checked: false },
-	{ name: "FUN WBES", checked: false },
+	{ name: "4TWINS", checked: false },
 	{ name: "CROWD", checked: false },
+	{ name: "MOVEN", checked: false },
+	{ name: "NAGD", checked: false },
 ];
 
-const stores = [
-	{
-		name: "HEZEL",
-		logo: "/images/shops/shop0.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "GETHER",
-		logo: "/images/shops/shop1.jpg",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "ELCT",
-		logo: "/images/shops/shop2.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "THE POP UP",
-		logo: "/images/shops/shop3.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "DURMA",
-		logo: "/images/shops/shop4.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "FUN WBES",
-		logo: "/images/shops/shop5.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "RUMORS",
-		logo: "/images/shops/shop6.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "KN",
-		logo: "/images/shops/shop7.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "SHAHIN",
-		logo: "/images/shops/shop8.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "TWINS",
-		logo: "/images/shops/shop9.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-	{
-		name: "CROWD",
-		logo: "/images/shops/shop10.png",
-		description:
-			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-		link: "#",
-	},
-
-
-];

@@ -30,7 +30,7 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 							<img
 								src={cardShape}
 								alt="shape"
-								className="w-full h-full object-cover"
+								className="w-full h-full object-cover object-left-top"
 							/>
 						</button>
 					</li>
@@ -57,24 +57,21 @@ export default function ShapeStep({ t, shape, onShapeChange, color }) {
 
 const shapes = [
 	"/images/Shapes/1.png",
-	"/images/Shapes/2.png",
+
 	"/images/Shapes/3.png",
 	"/images/Shapes/4.png",
-	"/images/Shapes/5.png",
-	"/images/Shapes/6.png",
+	
+	
 	"/images/Shapes/7.png",
 
-	"/images/Shapes/8.png",
-	"/images/Shapes/9.png",
-	"/images/Shapes/10.png",
 
 	"/images/Shapes/11.png",
 	"/images/Shapes/12.png",
 	"/images/Shapes/13.png",
-	"/images/Shapes/14.png",
-	"/images/Shapes/15.png",
+	
+
 	"/images/Shapes/16.png",
-	"/images/Shapes/17.png",
+	
 	"/images/Shapes/18.png", 
 	"/images/Shapes/19.png",
 	"/images/Shapes/20.png",

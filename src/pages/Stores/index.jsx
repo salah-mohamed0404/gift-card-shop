@@ -47,81 +47,96 @@ export default function Stores() {
 const stores = [
 	{
 		name: "HEZEL",
-		logo: "/images/shops/shop0.png",
+		logo: "https://i.ibb.co/bBF9Px6/shop0.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "GETHER",
-		logo: "/images/shops/shop1.jpg",
+		name: "2 GETHER",
+		logo: "https://i.ibb.co/DkfXmPN/shop1.jpg",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "ELCT",
-		logo: "/images/shops/shop2.png",
+		logo: "https://i.ibb.co/FVMr576/shop2.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "THE POP UP",
-		logo: "/images/shops/shop3.png",
+		logo: "https://i.ibb.co/PTcKjC2/shop3.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "DURMA",
-		logo: "/images/shops/shop4.png",
+		logo: "https://i.ibb.co/yqvgtWJ/shop4.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "FUN WBES",
-		logo: "/images/shops/shop5.png",
+		name: "FUN VIBES",
+		logo: "https://i.ibb.co/6YQbQtg/shop5.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "RUMORS",
-		logo: "/images/shops/shop6.png",
+		logo: "https://i.ibb.co/0XT0TM0/shop6.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "KN",
-		logo: "/images/shops/shop7.png",
+		name: "KIN",
+		logo: "https://i.ibb.co/68ZnHbD/shop7.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "SHAHIN",
-		logo: "/images/shops/shop8.png",
+		logo: "https://i.ibb.co/NZcqYk2/shop8.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
-		name: "TWINS",
-		logo: "/images/shops/shop9.png",
+		name: "4TWINS",
+		logo: "https://i.ibb.co/841wCL7/shop9.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
 	{
 		name: "CROWD",
-		logo: "/images/shops/shop10.png",
+		logo: "https://i.ibb.co/2MFhbkb/shop10.png",
 		description:
 			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
 		link: "#",
 	},
-
+	
+	
+	{
+		name: "MOVEN",
+		logo: "https://i.ibb.co/XzZtjmt/shop11.png",
+		description:
+			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+		link: "#",
+	},
+	{
+		name: "NAGD",
+		logo: "https://i.ibb.co/QK0gpFG/shop12.png",
+		description:
+			"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
+		link: "#",
+	},
 	
 ];

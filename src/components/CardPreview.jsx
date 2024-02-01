@@ -15,11 +15,11 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 	return (
 		<div className="w-full lg:w-[30rem] sm:px-[32px]   ">
 			<figure
-				className="relative md:w-[30rem] w-full h-full shrink-0   rounded-2xl  overflow-hidden transition-colors"
+				className="relative md:w-[30rem] w-full  shrink-0   rounded-2xl  overflow-hidden transition-colors"
 				style={{ backgroundColor: cardSitting.color }}
 			>                   
 			
-				<div  className={'md:h-[240px] h-[180px]' } style={{ position: 'relative', width: '100%',maxWidth: '480px' }}> 
+				<div className={'md:h-[240px] h-[180px]' } style={{ position: 'relative', width: '100%',maxWidth: '480px' }}> 
 				{!back ? (
 					<>
 						<div className="absolute h-full w-full">
@@ -37,6 +37,8 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 								<img
 									src={cardSitting.brand.logo}
 									alt={`${cardSitting.brand.name} logo`}
+									width={80}
+									height={80}
 										className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
@@ -45,7 +47,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 					</>
 				) : (
 					<div
-						className="flex flex-col justify-center items-center text-center mt-[32px] p-4 gap-2 h-full"
+						className="flex flex-col justify-center items-center text-center  p-4 gap-2 h-full"
 						style={{ color: cardSitting.textColor }}
 					>
 						<Typography

@@ -103,9 +103,11 @@ app.post("/process-payment", async (req, res) => {
 //   .catch((err) => console.error("Error:", err));
 
 const validDiscountCodes = {
-  ABC123: { isValid: true, discountValue: 10 },
-  XYZ789: { isValid: true, discountValue: 20 },
+ " ABC123": { isValid: true, discountValue: 100 },
+  "XYZ789": { isValid: true, discountValue: 100 },
+  // Add more codes as needed
 };
+
 
 // Mock API keys storage
 const validApiKeys = ["12345", "67890"]; // In real scenario, this should be stored securely
@@ -123,20 +125,31 @@ function authenticateApiKey(req, res, next) {
 
 
 // POST endpoint to validate gift cards with API key authentication
+// app.post("/api/validate-gift-card", (req, res) => {
+//   const { code } = req.body;
+
+//   if (validDiscountCodes[code]) {
+//     // res.json(validDiscountCodes[code]);
+//     res.status(200).json(validDiscountCodes.isValid);
+//   } else {
+//    res.status(500)
+//   }
+  
+// });
 app.post("/api/validate-gift-card", (req, res) => {
   const { code } = req.body;
 
-  if (validDiscountCodes[code]) {
-    // res.json(validDiscountCodes[code]);
-    res.json('yess code works')
+  if (validDiscountCodes[code] && validDiscountCodes[code].isValid) {
+    res.json({ discountValue: validDiscountCodes[code].discountValue });
   } else {
-    res.json({ isValid: false, discountValue: 0 });
-     res.json("oh no");
+    res.status(400).json({ error: req.body });
   }
 });
 
+
+
 app.get("/api/cards", (req, res) => {
-  const { price, brands, page = 1, limit = 10 } = req.query;
+  const { price, brands, page = 1, limit = 6 } = req.query;
   console.log("Filters received:", { price, brands });
 
   let filteredCards = cardsData;
@@ -171,15 +184,12 @@ app.get("/api/cards", (req, res) => {
 });
 
 
-const calculateOrderAmount = (items) => {
-  // Replace this with the logic to calculate the order amount
-  // based on the `items` parameter from the request
-  return 1400; // Example amount in cents ($14.00)
-};
 
 
+app.post('ok',(req,res)=>{
 
-
+res.send(ok)
+})
 
 app.get('/get-predefined-data', (req, res) => {
     const responseData = {
@@ -292,8 +302,9 @@ app.post('/apply-discount', async (req, res) => {
 });
 
 const discountCodes = {
-  ABC123: { valid: true, discount: 10 }, // 10% discount
-  XYZ789: { valid: true, discount: 15 }, // 15% discount
+  "ABC123": { valid: true, discount: 100 }, // 10% discount
+  "XYZ789": { valid: true, discount: 100 }, // 15% discount
+  "cool": { valid: true, discount: 100 }, // 15% discount
   // ... more codes
 };
 
@@ -322,178 +333,117 @@ app.post('/api/initiateSession', async (req, res) => {
 // Sample data array with dummy objects
 // CROWD
 const cardsData = [
+{
+    id: 0,
+    name: "Gift Card A",
+    price: 100,
+    brand: "HEZEL",
+    imageUrl: "https://i.ibb.co/bBF9Px6/shop0.png",
+    description: "Amazon Gift Card worth $100",
+  },
   {
     id: 1,
     name: "Gift Card A",
     price: 100,
-    brand: "CROWD",
-    imageUrl: "/shop0.png",
+    brand: "GETHER 2",
+    imageUrl: "https://i.ibb.co/DkfXmPN/shop1.jpg",
     description: "Amazon Gift Card worth $100",
   },
   {
     id: 2,
     name: "Gift Card B",
     price: 200,
-    brand: "SAHIN",
-    imageUrl: "/shop1.png",
+    brand: "ELCT",
+    imageUrl: "https://i.ibb.co/FVMr576/shop2.png",
     description: "Apple Store Gift Card worth $200",
   },
   {
     id: 3,
     name: "Gift Card C",
     price: 300,
-    brand: "HAZEL",
-    imageUrl: "/shop2.png",
+    brand: "THE POP UP",
+    imageUrl: "https://i.ibb.co/PTcKjC2/shop3.png",
     description: "Google Play Gift Card worth $300",
   },
   {
     id: 4,
     name: "Gift Card D",
     price: 100,
-    brand: "HAZEL",
-    imageUrl: "/shop3.png",
+    brand: "DURMA",
+    imageUrl: "https://i.ibb.co/yqvgtWJ/shop4.png",
     description: "Steam Gift Card worth $100",
   },
   {
     id: 5,
     name: "Gift Card E",
     price: 200,
-    brand: "Google Play",
-    imageUrl: "/shop4.png",
+    brand: "FUN VIBES",
+    imageUrl: "https://i.ibb.co/6YQbQtg/shop5.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
     id: 6,
     name: "Gift Card E",
     price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop5.png",
+    brand: "RUMORS",
+    imageUrl: "https://i.ibb.co/0XT0TM0/shop6.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
     id: 7,
     name: "Gift Card E",
     price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop6.png",
+    brand: "KIN",
+    imageUrl: "https://i.ibb.co/68ZnHbD/shop7.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
     id: 8,
     name: "Gift Card E",
     price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop7.png",
+    brand: "SHAHIN",
+    imageUrl: "https://i.ibb.co/NZcqYk2/shop8.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
     id: 9,
     name: "Gift Card E",
     price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop8.png",
+    brand: "4TWINS",
+    imageUrl: "https://i.ibb.co/841wCL7/shop9.png",
     description: "PlayStation Gift Card worth $200",
   },
   {
     id: 9,
     name: "Gift Card E",
-    price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop9.png",
+    price: 300,
+    brand: "CROWD",
+    imageUrl: "https://i.ibb.co/2MFhbkb/shop10.png",
     description: "PlayStation Gift Card worth $200",
   },
-  {
-    id: 10,
-    name: "Gift Card E",
-    price: 200,
-    brand: "iTunes",
-    imageUrl: "/shop10.png",
+ 
+   {
+    id: 11,
+    name: "Gift Card F",
+    price: 500,
+    brand: "NAGD",
+    imageUrl: "https://i.ibb.co/QK0gpFG/shop12.png", // Note: This image URL may not be correct as it's the same as the previous one
     description: "PlayStation Gift Card worth $200",
-  },
+  }, 
+   {
+    id: 12,
+    name: "Gift Card F",
+    price: 500,
+    brand: "MOVEN",
+    imageUrl: "https://i.ibb.co/BVVxvkT/shop14.png", // Note: This image URL may not be correct as it's the same as the previous one
+    description: "PlayStation Gift Card worth $200",
+  }, 
+  
   //
   //  ... add more objects as necessary
 ];
 
 
-const stores = [
-  {
-    name: "HEZEL",
-    logo: "/shop0.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "GETHER",
-    logo: "/shop1.PNG",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "ELCT",
-    logo: "/shop2.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "THE POP UP",
-    logo: "/shop3.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "DURMA",
-    logo: "/images/shops/shop4.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "FUN WBES",
-    logo: "/images/shops/shop5.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "RUMORS",
-    logo: "/images/shops/shop6.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "KN",
-    logo: "/images/shops/shop7.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "SHAHIN",
-    logo: "/images/shops/shop8.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "TWINS",
-    logo: "/images/shops/shop9.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-  {
-    name: "CROWD",
-    logo: "/images/shops/shop10.png",
-    description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum, alias quod ex placeat soluta quis dolore debitis obcaecati hic delectus cumque eaque? In officiis odio, expedita id non blanditiis maxime!",
-    link: "#",
-  },
-];
 
 // Function to filter and paginate data
 function getPaginatedAndFilteredData(data, page, pageSize, filters) {
