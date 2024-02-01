@@ -19,11 +19,11 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 							onClick={() => onBrandChange({ name, logo })}
 							className={`overflow-hidden rounded-full  shadow-lg ${
 								name === brand.name
-									? "outline-none ring-2 ring-offset-8 ring-red-500"
+									? "outline-none ring-2 ring-offset-2 ring-red-500"
 									: ""
 							}`}
 						>
-							<img src={shop} alt="shape" className="w-[100px] h-[100px]  object-cover" />
+							<img src={shop} alt="shape" className="w-[100px] h-[100px]   object-cover" />
 						</button>
 					</li>
 				))}

@@ -27,7 +27,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 								<img
 									src={cardSitting.shape}
 									alt="gift card"
-										className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
+										className="rounded-2xl absolute top-[-10px] left-[-50px] object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
 						</div>
