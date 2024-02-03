@@ -11,8 +11,8 @@ const { Vonage } = require("@vonage/server-sdk");
 // const client = new Twilio(accountSid, authToken);
 const vonage = new Vonage({
   apiKey: "b6ceeb0c",
-  apiSecret: "1KFsoem91PCOQLd3",
-  applicationId: "8b695aea-c8cb-44e2-854c-09eb65382d19",
+  apiSecret: "d92c0b6a",
+  applicationId: " dd2cd09a-2c73-4a95-99bc-cc156a670709",
   privateKey: "./private.key",
 });
 app.use(cors())
