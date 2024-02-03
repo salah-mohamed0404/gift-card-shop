@@ -3,12 +3,18 @@ const app = express();
 const port = 3001;
 const cors = require('cors');
 const axios = require('axios');
+const { Vonage } = require("@vonage/server-sdk");
 // const { Twilio } = require('twilio');
 // Twilio setup - replace with your Twilio credentials
 // const accountSid = 'ACa5fb2c6c60350e228fd36d3a66ee8b6a';
 // const authToken = '17b492667376584b4ac557fbf0503df6';
 // const client = new Twilio(accountSid, authToken);
-
+const vonage = new Vonage({
+  apiKey: "b6ceeb0c",
+  apiSecret: "1KFsoem91PCOQLd3",
+  applicationId: "8b695aea-c8cb-44e2-854c-09eb65382d19",
+  privateKey: "./private.key",
+});
 app.use(cors())
 // Predefined data
 const predefinedImageUrls = [
@@ -202,58 +208,26 @@ app.get('/get-predefined-data', (req, res) => {
 });
 
 // Function to send card data and image via WhatsApp
-const sendWhatsAppMessage = async (cardData, imageUrl, userPhone) => {
-  try {
-    const message = await client.messages.create({
-      from: 'whatsapp:YOUR_TWILIO_WHATSAPP_NUMBER',
-      to: `whatsapp:${userPhone}`,
-      body: `Card: ${cardData.message}`, // Customize your message
-      mediaUrl: imageUrl,
-    });
-
-    return message.sid;
-  } catch (error) {
-    console.error('Error sending WhatsApp message:', error);
-    throw error;
-  }
-};
-
-// Function to send card data via SMS
-const sendSMS = async (cardData, userPhone) => {
-  try {
-    const message = await client.messages.create({
-      from: 'YOUR_TWILIO_SMS_NUMBER',
-      to: userPhone,
-      body: `Card: ${cardData.message}`, // Customize your message
-      // No mediaUrl for SMS, as it's plain text
-    });
-
-    return message.sid;
-  } catch (error) {
-    console.error('Error sending SMS:', error);
-    throw error;
-  }
-};
 
 // POST endpoint to send the card
-app.post('/send-card', async (req, res) => {
-  const { cardData, userPhone, method } = req.body; // Extract data from request body
-  try {
-    let messageId;
-    if (method === 'whatsapp') {
-      // Assume `imageUrl` is provided or generated previously
-      messageId = await sendWhatsAppMessage(cardData, 'http://example.com/image.png', userPhone);
-    } else if (method === 'sms') {
-      messageId = await sendSMS(cardData, userPhone);
-    } else {
-      return res.status(400).send({ error: 'Invalid messaging method' });
-    }
+// app.post('/send-card', async (req, res) => {
+//   const { cardData, userPhone, method } = req.body; // Extract data from request body
+//   try {
+//     let messageId;
+//     if (method === 'whatsapp') {
+//       // Assume `imageUrl` is provided or generated previously
+//       messageId = await sendWhatsAppMessage(cardData, 'http://example.com/image.png', userPhone);
+//     } else if (method === 'sms') {
+//       messageId = await sendSMS(cardData, userPhone);
+//     } else {
+//       return res.status(400).send({ error: 'Invalid messaging method' });
+//     }
     
-    res.send({ success: true, messageId });
-  } catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-});
+//     res.send({ success: true, messageId });
+//   } catch (error) {
+//     res.status(500).send({ error: error.message });
+//   }
+// });
 
 app.get('/card/:cardId', (req, res) => {
   const cardId = req.params.cardId;
@@ -310,25 +284,105 @@ const discountCodes = {
 
 
 app.post('/api/initiateSession', async (req, res) => {
-    try {
-        const myFatoorahResponse = await axios.post(
-          "https://apitest.myfatoorah.com/v2/InitiateSession",
-          {
-            headers: {
-              Authorization: "rLtt6JWvbUHDDhsZnfpAhpYk4dxYDQkbcPTyGaKp2TYqQgG7FGZ5Th_WD53Oq8Ebz6A53njUoo1w3pjU1D4vs_ZMqFiz_j0urb_BH9Oq9VZoKFoJEDAbRZepGcQanImyYrry7Kt6MnMdgfG5jn4HngWoRdKduNNyP4kzcp3mRv7x00ahkm9LAK7ZRieg7k1PDAnBIOG3EyVSJ5kK4WLMvYr7sCwHbHcu4A5WwelxYK0GMJy37bNAarSJDFQsJ2ZvJjvMDmfWwDVFEVe_5tOomfVNt6bOg9mexbGjMrnHBnKnZR1vQbBtQieDlQepzTZMuQrSuKn-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL",
-            },
-          }
-        );
+   const url = "https://apitest.myfatoorah.com/v2/InitiateSession";
+   const headers = {
+     Authorization:
+       "Bearer gfeOJzUq7K-9u3KgsPlrPWSbzTUPuS1rVUEwbqUJjeMHsLfsWoZgoXuhC0T3dib4LGeI-ttl3Oynxgw0uMuf1xKyGjmqvbRHaaas7B2SfYzH2vuWc2xXLwANaSSuW6la8tzqmyXkmVYH9nOxEnXtpa5kRfnyYJrjHzz58kvFQGqNzaoVHlP5Kb7WruKQ1_6mac_ueeEHhyTmDe89tqCXEm5DAmunUlc5KjbBgp8wE1fipASl5xQ0zuN6vBA3mp0rC1XxI69AtXehIB2wK-Rs6KmA09964kHpxGMIKWVcXZzJvpsqwwWpQCXY5y1nmNNfhI9SJfH2_wTn1_DtzpEbHbYHK70_wCfGHERyAYvCpVbr9r6x02x5t7cJ50U5RtHl1CGGeb-NjjhdYiHO9nWD_WMop1uFRQmn126W7shAQxgVIxOBviAYO9G6A3svU67U7aGCty6nPAzDdm5uJkfeVWSjam6GNdjOhSlwPXUBDkUAbWf-eThl6lTn6T0DZXEDoNW5EZWEAuUV90rW_upBQGFy4CseeJMUsvidkbsTxb3JiBWKHdiUxxyPsMX4GYXDLLAHRX_ufAFRKfmbCwOlGELjauMiuPCcv4o2bpvLNl9I5YRqeS1an-KNYJgaPAup3eGtDzespETDzS8ZX2smjUR22mHfLzaduKm7f3D3GOX8ynzraySsBh412axytAX_R3H3OEgWaS1-5MzTsrHwsv78RiWmKCO0lcQ8HsTr7ixOOB1s-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL", // Replace with your actual API key
+     "Content-Type": "application/json",
+   };
 
-        res.json({
-            countryCode: myFatoorahResponse.data.CountryCode,
-            sessionId: myFatoorahResponse.data.SessionId
-        });
-    } catch (error) {
-        console.error('Error initiating MyFatoorah session:', error);
-        res.status(500).send('Error initiating session');
-    }
+   axios
+     .post(url, {}, { headers: headers })
+     .then((response) => {
+       console.log("Session Initiated Successfully");
+       console.log(response.data);
+     })
+     .catch((error) => {
+       console.error("Error:", error.response.status, error.response.data);
+     });
 });
+
+
+app.post("/send-card", async (req, res) => {
+  const { cardData, userPhone, method } = req.body; // Extract data from request body
+
+  // try {
+  //   let messageId;
+
+  //   if (method === "whatsapp") {
+  //     // Send a WhatsApp message
+  //     const from = "+966557299119"; // Your WhatsApp number from Vonage
+  //     const to = "+201201095475"; // The recipient's number
+  //     const text = "good"; // The text message
+
+  //     vonage.channel.send(
+  //       { type: "whatsapp", number: to },
+  //       { type: "whatsapp", number: from },
+  //       {
+  //         content: {
+  //           type: "text",
+  //           text: text,
+  //         },
+  //       },
+  //       (err, data) => {
+  //         if (err) {
+  //           console.error(err);
+  //         } else {
+  //           messageId = data.message_uuid;
+  //           res.send({ success: true, messageId });
+  //         }
+  //       }
+  //     );
+  //   } else if (method === "sms") {
+  //     // Send an SMS message
+  //     vonage.message.sendSms(
+  //       "VONAGE_NUMBER",
+  //       userPhone,
+  //       cardData,
+  //       (err, responseData) => {
+  //         if (err) {
+  //           console.log(err);
+  //         } else {
+  //           if (responseData.messages[0]["status"] === "0") {
+  //             messageId = responseData.messages[0]["message-id"];
+  //             res.send({ success: true, messageId });
+  //           } else {
+  //             console.log(
+  //               `Message failed with error: ${responseData.messages[0]["error-text"]}`
+  //             );
+  //           }
+  //         }
+  //       }
+  //     );
+  //   } else {
+  //     return res.status(400).send({ error: "Invalid messaging method" });
+  //   }
+  // } catch (error) {
+  //   res.status(500).send({ error: error.message });
+  // }
+  // const text = 'A text message sent using the Vonage SMS API'
+const from = "Vonage APIs";
+const to = "201201095475";
+ const text = "A text message sent using the Vonage SMS API";
+
+ async function sendSMS() {
+   await vonage.sms
+     .send({ to, from, text })
+     .then((resp) => {
+       console.log("Message sent successfully");
+       console.log(resp);
+     })
+     .catch((err) => {
+       console.log("There was an error sending the messages.");
+       console.error(err);
+     });
+ }
+
+ sendSMS();
+ res.status(200)
+});
+
+
 // Sample data array - replace with your actual data retrieval logic
 // Sample data array with dummy objects
 // CROWD
