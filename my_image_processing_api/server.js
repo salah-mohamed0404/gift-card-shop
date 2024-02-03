@@ -306,80 +306,80 @@ app.post('/api/initiateSession', async (req, res) => {
 app.post("/send-card", async (req, res) => {
   const { cardData, userPhone, method } = req.body; // Extract data from request body
 
-  // try {
-  //   let messageId;
+  try {
+    let messageId;
 
-  //   if (method === "whatsapp") {
-  //     // Send a WhatsApp message
-  //     const from = "+966557299119"; // Your WhatsApp number from Vonage
-  //     const to = "+201201095475"; // The recipient's number
-  //     const text = "good"; // The text message
+    if (method === "whatsapp") {
+      // Send a WhatsApp message
+      const from = "14157386102"; // Your WhatsApp number from Vonage
+      const to = "201201095475"; // The recipient's number
+      const text = "good"; // The text message
 
-  //     vonage.channel.send(
-  //       { type: "whatsapp", number: to },
-  //       { type: "whatsapp", number: from },
-  //       {
-  //         content: {
-  //           type: "text",
-  //           text: text,
-  //         },
-  //       },
-  //       (err, data) => {
-  //         if (err) {
-  //           console.error(err);
-  //         } else {
-  //           messageId = data.message_uuid;
-  //           res.send({ success: true, messageId });
-  //         }
-  //       }
-  //     );
-  //   } else if (method === "sms") {
-  //     // Send an SMS message
-  //     vonage.message.sendSms(
-  //       "VONAGE_NUMBER",
-  //       userPhone,
-  //       cardData,
-  //       (err, responseData) => {
-  //         if (err) {
-  //           console.log(err);
-  //         } else {
-  //           if (responseData.messages[0]["status"] === "0") {
-  //             messageId = responseData.messages[0]["message-id"];
-  //             res.send({ success: true, messageId });
-  //           } else {
-  //             console.log(
-  //               `Message failed with error: ${responseData.messages[0]["error-text"]}`
-  //             );
-  //           }
-  //         }
-  //       }
-  //     );
-  //   } else {
-  //     return res.status(400).send({ error: "Invalid messaging method" });
-  //   }
-  // } catch (error) {
-  //   res.status(500).send({ error: error.message });
-  // }
+      vonage.channel.send(
+        { type: "whatsapp", number: to },
+        { type: "whatsapp", number: from },
+        {
+          content: {
+            type: "text",
+            text: text,
+          },
+        },
+        (err, data) => {
+          if (err) {
+            console.error(err);
+          } else {
+            messageId = data.message_uuid;
+            res.send({ success: true, messageId });
+          }
+        }
+      );
+    } else if (method === "sms") {
+      // Send an SMS message
+      vonage.message.sendSms(
+        "VONAGE_NUMBER",
+        userPhone,
+        cardData,
+        (err, responseData) => {
+          if (err) {
+            console.log(err);
+          } else {
+            if (responseData.messages[0]["status"] === "0") {
+              messageId = responseData.messages[0]["message-id"];
+              res.send({ success: true, messageId });
+            } else {
+              console.log(
+                `Message failed with error: ${responseData.messages[0]["error-text"]}`
+              );
+            }
+          }
+        }
+      );
+    } else {
+      return res.status(400).send({ error: "Invalid messaging method" });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
   // const text = 'A text message sent using the Vonage SMS API'
-const from = "Vonage APIs";
-const to = "201201095475";
- const text = "A text message sent using the Vonage SMS API";
+// const from = "Vonage APIs";
+// const to = "1201095475";
+//  const text = "A text message sent using the Vonage SMS API";
 
- async function sendSMS() {
-   await vonage.sms
-     .send({ to, from, text })
-     .then((resp) => {
-       console.log("Message sent successfully");
-       console.log(resp);
-     })
-     .catch((err) => {
-       console.log("There was an error sending the messages.");
-       console.error(err);
-     });
- }
+//  async function sendSMS() {
+//    await vonage.sms
+//      .send({ to, from, text })
+//      .then((resp) => {
+//        console.log("Message sent successfully");
+//        console.log(resp);
+//      })
+//      .catch((err) => {
+//        console.log("There was an error sending the messages.");
+//        console.error(err);
+//      });
+//  }
 
- sendSMS();
- res.status(200)
+//  sendSMS();
+//  res.status(200)
 });
 
 
