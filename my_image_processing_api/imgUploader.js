@@ -2,7 +2,7 @@ const axios = require("axios");
 const FormData = require("form-data");
 const fs = require("fs");
 
-const IMGUR_CLIENT_ID = "sargaharrey"; // Replace with your Imgur Client ID
+const IMGUR_CLIENT_ID = "e66077f60b9b4c2"; // Replace with your Imgur Client ID
 
 async function uploadToImgur(filePath) {
   try {

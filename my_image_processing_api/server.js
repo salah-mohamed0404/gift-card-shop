@@ -3,13 +3,12 @@ const app = express();
 const port = 3001;
 const cors = require('cors');
 const axios = require('axios');
-const { Vonage } = require("@vonage/server-sdk");
+// const { Vonage } = require("@vonage/server-sdk");
 const mongoose = require("mongoose");
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-
-
-
+require('dotenv').config();
+const {uploadToImgur} = require('./imgUploader');
 // Replace with your MongoDB URI
 
 // const { Twilio } = require('twilio');
@@ -52,12 +51,12 @@ const Card = mongoose.model("Card", cardsSchema); // Create a model for cards
 const Shape = mongoose.model("Shape", shapesSchema); // Create a model for shapes
 
 
-const vonage = new Vonage({
-  apiKey: "d92c0b6a",
-  apiSecret: "Ol9cYQoNaa1TwUk8",
-  applicationId: " dd2cd09a-2c73-4a95-99bc-cc156a670709",
-  privateKey: "./private.key",
-});
+// const vonage = new Vonage({
+//   apiKey: "d92c0b6a",
+//   apiSecret: "Ol9cYQoNaa1TwUk8",
+//   applicationId: " dd2cd09a-2c73-4a95-99bc-cc156a670709",
+//   privateKey: "./private.key",
+// });
 
 
 
@@ -106,57 +105,43 @@ const predefinedColorCodes = [
 app.use(express.json());
 
 
-// async function createMyFatoorahInvoice(apiUrl, apiKey, invoiceData) {
-//   try {
-//     const headers = {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer ${apiKey}`
-//     };
-
-//     const response = await axios.post(`${apiUrl}/v2/SendPayment`, invoiceData, { headers });
-//     return response.data; // Process response data as needed
-//   } catch (error) {
-//     console.error('Error creating MyFatoorah invoice:', error);
-//     // Handle error appropriately
-//     return null;
-//   }
-// }
 
 
-const myFatoorahApiUrl = "https://api.myfatoorah.com/";
-token =
-  "gfeOJzUq7K-9u3KgsPlrPWSbzTUPuS1rVUEwbqUJjeMHsLfsWoZgoXuhC0T3dib4LGeI-ttl3Oynxgw0uMuf1xKyGjmqvbRHaaas7B2SfYzH2vuWc2xXLwANaSSuW6la8tzqmyXkmVYH9nOxEnXtpa5kRfnyYJrjHzz58kvFQGqNzaoVHlP5Kb7WruKQ1_6mac_ueeEHhyTmDe89tqCXEm5DAmunUlc5KjbBgp8wE1fipASl5xQ0zuN6vBA3mp0rC1XxI69AtXehIB2wK-Rs6KmA09964kHpxGMIKWVcXZzJvpsqwwWpQCXY5y1nmNNfhI9SJfH2_wTn1_DtzpEbHbYHK70_wCfGHERyAYvCpVbr9r6x02x5t7cJ50U5RtHl1CGGeb-NjjhdYiHO9nWD_WMop1uFRQmn126W7shAQxgVIxOBviAYO9G6A3svU67U7aGCty6nPAzDdm5uJkfeVWSjam6GNdjOhSlwPXUBDkUAbWf-eThl6lTn6T0DZXEDoNW5EZWEAuUV90rW_upBQGFy4CseeJMUsvidkbsTxb3JiBWKHdiUxxyPsMX4GYXDLLAHRX_ufAFRKfmbCwOlGELjauMiuPCcv4o2bpvLNl9I5YRqeS1an-KNYJgaPAup3eGtDzespETDzS8ZX2smjUR22mHfLzaduKm7f3D3GOX8ynzraySsBh412axytAX_R3H3OEgWaS1-5MzTsrHwsv78RiWmKCO0lcQ8HsTr7ixOOB1s-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL"
 
 app.post("/process-payment", async (req, res) => {
-  const axios = require("axios");
+    const axios = require("axios");
 
-  async function initiatePaymentSession() {
-    const url = "https://api-sa.myfatoorah.com/v2/InitiatePayment"; // Use the appropriate URL for live environment
-    const apiKey = myFatoorahApiUrl; // Replace with your API Key
-    const data = {
-      InvoiceAmount: 0,
-      CurrencyIso: "SAU",
+    const { paymentMethod, amount, currency, customerDetails } = req.body;
+
+    // Define the payment data based on the received details
+    const paymentData = {
+        PaymentMethodId: determinePaymentMethodId(paymentMethod), // Implement this function based on your logic
+        InvoiceValue: amount,
+        CurrencyIso: currency,
+        CustomerName: customerDetails.name,
+        CustomerEmail: customerDetails.email,
+        CustomerMobile: customerDetails.mobile,
+        // ... add any other required fields
     };
 
+    const url = process.env.MYFATOORAH_API_URL + '/v2/SendPayment';
+
     try {
-      const response = await axios.post(url, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+        const response = await axios.post(url, paymentData, {
+            headers: {
+                Authorization: `Bearer ${process.env.MYFATOORAH_API_KEY}`,
+                "Content-Type": "application/json",
+            },
+        });
 
-      console.log("Payment Session Initiated:", response.data);
-      // Further processing here (e.g., redirect to payment page)
+        // Handle the response from MyFatoorah API
+        res.json(response.data);
     } catch (error) {
-      console.error("Error initiating payment session:", error);
-      // Handle errors here
+        console.error("Error processing payment:", error);
+        res.status(500).json({ error: "Error processing payment" });
     }
-  }
-
-  initiatePaymentSession();
-
 });
+
 // createMyFatoorahInvoice(myFatoorahApiUrl, myFatoorahApiKey, invoiceData)
 //   .then((invoice) => console.log("Invoice created:", invoice))
 //   .catch((err) => console.error("Error:", err));
@@ -166,7 +151,8 @@ const validDiscountCodes = {
   "XYZ789": { isValid: true, discountValue: 100 },
   // Add more codes as needed
 };
-
+const myFatoorahApiKey = process.env.MYFATOORAH_API_KEY;
+const myFatoorahApiUrl = process.env.MYFATOORAH_API_URL;
 
 // Mock API keys storage
 const validApiKeys = ["12345", "67890"]; // In real scenario, this should be stored securely
@@ -181,7 +167,15 @@ function authenticateApiKey(req, res, next) {
   }
 }
 
-
+function determinePaymentMethodId(paymentMethod) {
+    // Define your logic to map paymentMethod to MyFatoorah's PaymentMethodId
+    // For example:
+    if (paymentMethod === 'mada') {
+        return 2; // Assuming '2' is the ID for MADA in MyFatoorah
+    }
+    // Add more conditions as needed for different payment methods
+    return 1; // Default PaymentMethodId
+}
 
 // POST endpoint to validate gift cards with API key authentication
 // app.post("/api/validate-gift-card", (req, res) => {
@@ -243,12 +237,6 @@ app.get("/api/cards", (req, res) => {
 });
 
 
-
-
-app.post('ok',(req,res)=>{
-
-res.send(ok)
-})
 
 app.get('/get-predefined-data', (req, res) => {
     const responseData = {
@@ -337,25 +325,29 @@ const discountCodes = {
 
 
 app.post('/api/initiateSession', async (req, res) => {
-   const url = "https://apitest.myfatoorah.com/v2/InitiateSession";
+   const url = "https://api-sa.myfatoorah.com/v2/InitiateSession";
    const headers = {
      Authorization:
-       "Bearer gfeOJzUq7K-9u3KgsPlrPWSbzTUPuS1rVUEwbqUJjeMHsLfsWoZgoXuhC0T3dib4LGeI-ttl3Oynxgw0uMuf1xKyGjmqvbRHaaas7B2SfYzH2vuWc2xXLwANaSSuW6la8tzqmyXkmVYH9nOxEnXtpa5kRfnyYJrjHzz58kvFQGqNzaoVHlP5Kb7WruKQ1_6mac_ueeEHhyTmDe89tqCXEm5DAmunUlc5KjbBgp8wE1fipASl5xQ0zuN6vBA3mp0rC1XxI69AtXehIB2wK-Rs6KmA09964kHpxGMIKWVcXZzJvpsqwwWpQCXY5y1nmNNfhI9SJfH2_wTn1_DtzpEbHbYHK70_wCfGHERyAYvCpVbr9r6x02x5t7cJ50U5RtHl1CGGeb-NjjhdYiHO9nWD_WMop1uFRQmn126W7shAQxgVIxOBviAYO9G6A3svU67U7aGCty6nPAzDdm5uJkfeVWSjam6GNdjOhSlwPXUBDkUAbWf-eThl6lTn6T0DZXEDoNW5EZWEAuUV90rW_upBQGFy4CseeJMUsvidkbsTxb3JiBWKHdiUxxyPsMX4GYXDLLAHRX_ufAFRKfmbCwOlGELjauMiuPCcv4o2bpvLNl9I5YRqeS1an-KNYJgaPAup3eGtDzespETDzS8ZX2smjUR22mHfLzaduKm7f3D3GOX8ynzraySsBh412axytAX_R3H3OEgWaS1-5MzTsrHwsv78RiWmKCO0lcQ8HsTr7ixOOB1s-t5XZM7V6fCW7oP-uXGX-sMOajeX65JOf6XVpk29DP6ro8WTAflCDANC193yof8-f5_EYY-3hXhJj7RBXmizDpneEQDSaSz5sFk0sV5qPcARJ9zGG73vuGFyenjPPmtDtXtpx35A-BVcOSBYVIWe9kndG3nclfefjKEuZ3m4jL9Gg1h2JBvmXSMYiZtp9MR5I6pvbvylU_PP5xJFSjVTIz7IQSjcVGO41npnwIxRXNRxFOdIUHn0tjQ-7LwvEcTXyPsHXcMD8WtgBh-wxR8aKX7WPSsT1O8d8reb2aR7K3rkV3K82K_0OgawImEpwSvp9MNKynEAJQS6ZHe_J_l77652xwPNxMRTMASk1ZsJL", // Replace with your actual API key
+       "Bearer yoyMut7ruJnWX54Ai3S0cDbmEbeJrwOBCxC6EWUOcCk7rCeiLSPOViLoqfB8yueg6lRUwgdptSUgzd44_15apuAlsc9fpCMpdP-Yk-qYE0O9acZxBcGKPRoEmH2fRmH8ALHRhKsvMail6XCCeH2_DPNHd_Zy5uwHiD-EEzJf4wltdZyKMWtIsNdCMBZ8HYvMUa4gN6yZft-OvADDDG6jUxyB3bX1y3QBJYj8N_U0GS-RJp4RgnixWJSuclAzEKZWjCWPp8d-_1emGWFtyOwvKvyTBu0177sTXadNNqlkyWab_ZbNeB1nCpUlfkUvD0mJguNjicMjjRjPDpBG-U_mDBMIgWPCTzkPz9KhygQJFpsO_PzH3VZW8Usmg9xbH-75jsuW0XZWs2oWXAkrsR83ePzhHKvpzwIwaMBoCtzUmnoV3O9iNOG_IvnxL0qr8VhNXV1MOvXQqcuHDqQB5XJLqhc9pv2tPhpNGDtzAhKGU5ASBxyewiDLAsVZFKrPTQdOCbReRf3BhUCR3wsWUYTFgjRT1UvsrmNZnsUoocVhvp8XMBfCff5pNWUIwAK4lgLvwhbti-xdg_pNCmAxYDoYlLskc2rU-wRlTjCq26UrTC4X8EULrimkObxt2_pA6l8e3d-rye3FXGmtSkv4IggkFufViLEGbIc1vhViW-yrEd-aJbJaeieDvNOxqV1m4Kd3QJibTCom7PWAm6Zoyoyp3acm2VZEJ8z1ycN9bGTn1od59OW6", // Replace with your actual API key
      "Content-Type": "application/json",
    };
 
    axios
-     .post(url, {}, { headers: headers })
+     .post(url, {
+  "CustomerIdentifier": "123"
+
+}, { headers: headers })
      .then((response) => {
        console.log("Session Initiated Successfully");
        console.log(response.data);
+            res.send(response.data)
      })
      .catch((error) => {
        console.error("Error:", error.response.status, error.response.data);
      });
+
 });
-const infobipApiBaseUrl = 'https://api.infobip.com';
-const apiKey = 'bc1a23af85f92dfa33474222a444ff73-dc4124b3-5cec-4d08-b5b2-dc2362bb81b8';
+
 
 app.post("/send-card", async (req, res) => {
   const { cardData, userPhone, method } = req.body; // Extract data from request body
@@ -527,6 +519,80 @@ app.post(
     }
   }
 );
+
+
+
+
+app.post(
+  "/submit-card",
+  upload.fields([
+    { name: "cardFront", maxCount: 1 },
+    { name: "cardBack", maxCount: 1 },
+  ]),
+  async (req, res) => {
+
+
+
+    try {
+      // Extract text fields
+      const { price } = req.body;
+
+      // Extract file fields
+      const cardFront = req.files["cardFront"]
+        ? req.files["cardFront"][0]
+        : null;
+      const cardBack = req.files["cardBack"]
+        ? req.files["cardBack"][0]
+        : null;
+
+
+      // Upload files to Imgur and get URLs
+      const cardFrontImageUrl = cardFront
+        ? await uploadToImgur(cardFront.path)
+        : null;
+      const cardBackImageUrl = cardBack
+        ? await uploadToImgur(cardBack.path)
+        : null;
+
+      const newBrand = new Card({
+        price:price,
+        cardFront: cardFrontImageUrl,
+        cardBack:cardBackImageUrl,
+      
+      });
+
+      await newBrand.save();
+      res.status(201).send("Form data saved");
+    } catch (error) {
+      console.error("Error:", error);
+      res.status(500).send("Error saving form data");
+    }
+  }
+);
+app.post('/submit-custom-card',  upload.array('shapes'),async (req, res) => {
+    const colors = req.body.color; // Array of colors
+    const shapeFiles = req.files; // Array of shape files
+console.log(shapeFiles)
+    // Upload each shape file to Imgur and get the URLs
+    // const shapeImageUrls = await Promise.all(
+    //     req.files.map(file => uploadToImgur(file.path))
+    // );
+
+    // // Create a new CustomCard instance
+    // const newCustomCard = new Shape({
+    //     colors: colors, // Assuming colors is an array of color strings
+    //     shapeImages: shapeImageUrls // Array of Imgur URLs
+    // });
+
+    // try {
+    //     await newCustomCard.save(); // Save the new CustomCard to the database
+    //     res.status(201).send('Custom card data received and processed.');
+    // } catch (error) {
+    //     console.error('Error saving custom card data', error);
+    //     res.status(500).send('Error processing custom card data');
+    // }
+});
+
 // Sample data array - replace with your actual data retrieval logic
 // Sample data array with dummy objects
 // CROWD
