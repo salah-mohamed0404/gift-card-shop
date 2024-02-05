@@ -9,7 +9,7 @@ export default function CardItem({ card, front, back, brandImage, brandName }) {
 	const { t } = useTranslation();
 
 	return (
-		<div className="rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300">
+		<div className="rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
 			<div className="relative group flex justify-center md:h-[240px] h-[180px]" style={{ maxWidth: '480px' }}>
 				<div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> {/* Aspect ratio container */}
 					<img
@@ -28,13 +28,18 @@ export default function CardItem({ card, front, back, brandImage, brandName }) {
 			</div>
 			<CardContent>
 				<div className="flex justify-between items-center p-4">
-					<div className="flex items-center gap-2">
-						<img
-							src={brandImage}
-							alt={brandName}
-							style={{ width: '80px', height: '80px', objectFit: 'contain' }}
-						/>
-						<h3 className="text-2xl font-semibold text-gray-700">{brandName}</h3>
+					<div>
+						<div className="flex items-center gap-2">
+							<Avatar
+								src={brandImage}
+								alt={brandName}
+								style={{ width: '80px', height: '80px', objectFit: 'cover',border: '1px solid #000'}}
+							/>
+							<div>
+								<h3 className="text-2xl font-semibold text-gray-700">{brandName}</h3>
+								<p className="text-gray-800 text-xl">{`${card.price} ${t("currency")}`}</p>
+							</div>
+						</div>
 					</div>
 					<IconButton
 						className="text-primary-500 text-3xl"
@@ -43,7 +48,6 @@ export default function CardItem({ card, front, back, brandImage, brandName }) {
 						<AddCircle fontSize="inherit" />
 					</IconButton>
 				</div>
-				<p className="text-white p-2 text-2xl d-inline m-w-[80px] bg-primary-500">{`${card.price} ${t("currency")}`}</p>
 			</CardContent>
 			<AddToCartModal
 				t={t}

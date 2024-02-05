@@ -447,7 +447,7 @@ const Checkout = () => {
 						label="Schedule Delivery"
 						className="self-start"
 					/>
-
+					<div id="card-element"></div>
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
 						<StaticDateTimePicker
 							orientation="landscape"

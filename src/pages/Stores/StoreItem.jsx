@@ -1,10 +1,10 @@
 export default function StoreItem({ store }) {
 	return (
-		<div className="bg-white rounded-lg border border-gray-200 shadow-md overflow-hidden">
+		<div className="bg-white rounded-lg border border-gray-200 py-5 shadow-md overflow-hidden">
 			<a href={store.link} target="_blank" rel="noreferrer">
 				<img
 					src={store.logo}
-					className=" h-48 w-48 object-cover rounded-full mx-auto p-4"
+					className=" h-48 w-48 object-cover rounded-full mx-auto p-1 border-black border-2"
 					alt={`${store.name} logo`}
 				/>
 			</a>

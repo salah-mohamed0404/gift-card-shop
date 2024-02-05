@@ -7,6 +7,8 @@ import CustomGiftCard from "./pages/CustomGiftCard";
 import Checkout from "./pages/Checkout";
 import GiftCardPreview from "./pages/GiftCardPreview";
 import Stores from "./pages/Stores";
+import Dashboard from "./pages/Dashboard";
+
 
 export const router = createBrowserRouter([
 	{
@@ -35,6 +37,11 @@ export const router = createBrowserRouter([
 				path: "/stores",
 				element: <Stores />,
 			},
+			{
+				path: "/dashboard",
+				element: <Dashboard />,
+			},
 		],
+
 	},
 ]);

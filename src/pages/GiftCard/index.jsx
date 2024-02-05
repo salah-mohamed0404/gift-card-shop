@@ -75,7 +75,7 @@ export default function GiftCard() {
 				</div>
 
 				<ul className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-10 gap-y-6">
-					 {console.log(cards)}
+					
 					{cards && cards.map(card => <CardItem key={card.id} front={'/images/front.png'} back={'images/back.png'} brandImage={card.imageUrl} brandName={card.brand} card={card} t={t} />)}
 				</ul>
 
