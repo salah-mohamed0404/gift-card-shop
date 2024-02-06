@@ -38,18 +38,26 @@ const brandSchema = new Schema({
 });
 
 const cardsSchema = new Schema({
-  back: String,
-  front: String, // You might want to handle images differently, e.g., storing them in a file storage service
- 
+    cardFront: String,
+  cardBack: String,
+ logoImage: String,
+  price:String
 });
 
 const shapesSchema = new Schema({
-  image:String, // You might want to handle images differently, e.g., storing them in a file storage service
+  color:String,
+  shapes:Array // You might want to handle images differently, e.g., storing them in a file storage service
 });
 const Brand = mongoose.model("Brand", brandSchema); // Create a model for brands
 const Card = mongoose.model("Card", cardsSchema); // Create a model for cards
 const Shape = mongoose.model("Shape", shapesSchema); // Create a model for shapes
 
+const predefinedDataSchema = new mongoose.Schema({
+    color: String,
+    shapes: [String],
+});
+
+const PredefinedData = mongoose.model('PredefinedData', predefinedDataSchema);
 
 // const vonage = new Vonage({
 //   apiKey: "d92c0b6a",
@@ -201,52 +209,97 @@ app.post("/api/validate-gift-card", (req, res) => {
 
 
 
-app.get("/api/cards", (req, res) => {
+app.get("/api/cards", async (req, res) => {
   const { price, brands, page = 1, limit = 6 } = req.query;
   console.log("Filters received:", { price, brands });
 
-  let filteredCards = cardsData;
+  try {
+    // Fetch all brands data from MongoDB
+    let allBrands = await Brand.find({});
 
-  // Apply price filter
-  if (price) {
-    const priceRange = price.split("-").map(Number);
-    console.log(priceRange)
-    filteredCards = filteredCards.filter((card) =>
-    card.price  >= priceRange[0] && card.price <= priceRange[1]
-      
-    );
+    // Apply brand filter if provided
+    if (brands) {
+      const selectedBrands = brands.split(",");
+      allBrands = allBrands.filter(brand =>
+        selectedBrands.includes(brand.logoName) // Assuming logoName is the brand identifier
+      );
+    }
+
+    // Apply price filter if provided (This assumes you have a price field in your Brand model)
+    if (price) {
+      const priceRange = price.split("-").map(Number);
+      allBrands = allBrands.filter(brand =>
+        brand.price >= priceRange[0] && brand.price <= priceRange[1]
+      );
+    }
+
+    // Pagination logic
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedBrands = allBrands.slice(startIndex, endIndex);
+
+    res.json({
+      data: paginatedBrands,
+      totalPages: Math.ceil(allBrands.length / limit),
+    });
+  } catch (error) {
+    console.error("Error fetching brands data", error);
+    res.status(500).json({ message: "Error fetching brands data" });
   }
-
-  // Apply brand filter
-  if (brands) {
-    const selectedBrands = brands.split(",");
-    filteredCards = filteredCards.filter((card) =>
-      selectedBrands.includes(card.brand)
-    );
-  }
-
-  // Pagination logic
-  const startIndex = (page - 1) * limit;
-  const endIndex = startIndex + limit;
-  const paginatedCards = filteredCards.slice(startIndex, endIndex);
-
-  res.json({
-    data: paginatedCards,
-    totalPages: Math.ceil(filteredCards.length / limit),
-  });
 });
 
 
 
-app.get('/get-predefined-data', (req, res) => {
-    const responseData = {
-        imageUrls: predefinedImageUrls,
-        svgUrls: predefinedSvgUrls,
-        colorCodes: predefinedColorCodes
-    };
 
-    res.json(responseData);
+app.get('/get-custom-cards', async (req, res) => {
+    try {
+        // Fetch predefined data (colors and shapes)
+        const predefinedData = await PredefinedData.find({});
+        const colors = predefinedData.map(data => data.color);
+        const shapes = predefinedData.reduce((acc, data) => [...acc, ...data.shapes], []);
+
+        // Fetch logoWithoutBackground from Brand collection
+        const brandsData = await Brand.find({});
+        const logoWithoutBackgroundUrls = brandsData.map(brand => brand.logoWithoutBackground);
+
+        const responseData = {
+            colors: colors,
+            shapes: shapes,
+            logoWithoutBackgroundUrls: logoWithoutBackgroundUrls
+        };
+
+        res.json(responseData);
+    } catch (error) {
+        console.error("Error fetching predefined data", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
 });
+
+
+
+
+app.get('/get-card-data', async (req, res) => {
+    try {
+        // Fetch card data
+        const cards = await Card.find({});
+
+        // Fetch logoImage from Brand collection (assuming you need all brands)
+        const brands = await Brand.find({});
+        const logoImages = brands.map(brand => brand.logoImage);
+
+        const responseData = {
+            cards: cards,
+           
+        };
+
+        res.json(responseData);
+    } catch (error) {
+        console.error("Error fetching card data", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
+});
+
+
 
 // Function to send card data and image via WhatsApp
 
@@ -525,9 +578,12 @@ app.post(
 
 app.post(
   "/submit-card",
-  upload.fields([
+ upload.fields([
+    { name: "logoImage", maxCount: 1 },
     { name: "cardFront", maxCount: 1 },
     { name: "cardBack", maxCount: 1 },
+
+
   ]),
   async (req, res) => {
 
@@ -538,6 +594,9 @@ app.post(
       const { price } = req.body;
 
       // Extract file fields
+      const logoImage = req.files["logoImage"]
+      ? req.files["logoImage"][0]
+        : null; 
       const cardFront = req.files["cardFront"]
         ? req.files["cardFront"][0]
         : null;
@@ -545,7 +604,10 @@ app.post(
         ? req.files["cardBack"][0]
         : null;
 
-
+      // Upload files to Imgur and get URLs
+      const logoImageUrl = logoImage
+        ? await uploadToImgur(logoImage.path)
+        : null;
       // Upload files to Imgur and get URLs
       const cardFrontImageUrl = cardFront
         ? await uploadToImgur(cardFront.path)
@@ -558,6 +620,7 @@ app.post(
         price:price,
         cardFront: cardFrontImageUrl,
         cardBack:cardBackImageUrl,
+          logoImage: logoImageUrl,
       
       });
 
@@ -569,143 +632,39 @@ app.post(
     }
   }
 );
-app.post('/submit-custom-card',  upload.array('shapes'),async (req, res) => {
+app.post('/submit-custom-card',upload.fields([
+  { name: 'shapes', maxCount: 10 }
+]),async (req, res) => {
     const colors = req.body.color; // Array of colors
-    const shapeFiles = req.files; // Array of shape files
-console.log(shapeFiles)
-    // Upload each shape file to Imgur and get the URLs
-    // const shapeImageUrls = await Promise.all(
-    //     req.files.map(file => uploadToImgur(file.path))
-    // );
+    const shapeFiles = req.files['shapes']; // Array of shape files
+// Extract file fields
+     
+    try {
 
-    // // Create a new CustomCard instance
-    // const newCustomCard = new Shape({
-    //     colors: colors, // Assuming colors is an array of color strings
-    //     shapeImages: shapeImageUrls // Array of Imgur URLs
-    // });
+    const shapeImageUrls = await Promise.all(
+        shapeFiles.map(file => uploadToImgur(file.path))
+    );
 
-    // try {
-    //     await newCustomCard.save(); // Save the new CustomCard to the database
-    //     res.status(201).send('Custom card data received and processed.');
-    // } catch (error) {
-    //     console.error('Error saving custom card data', error);
-    //     res.status(500).send('Error processing custom card data');
-    // }
+    // Create a new CustomCard instance
+    const newCustomCard = new Shape({
+        color: colors, // Assuming colors is an array of color strings
+        shapes: shapeImageUrls // Array of Imgur URLs
+    });
+
+
+        await newCustomCard.save(); // Save the new CustomCard to the database
+        res.status(201).send('Custom card data received and processed.');
+    } catch (error) {
+        console.error('Error saving custom card data', error);
+        res.status(500).send('Error processing custom card data');
+    }
 });
 
 // Sample data array - replace with your actual data retrieval logic
 // Sample data array with dummy objects
 // CROWD
-const cardsData = [
-{
-    id: 0,
-    name: "Gift Card A",
-    price: 100,
-    brand: "HEZEL",
-    imageUrl: "https://i.ibb.co/bBF9Px6/shop0.png",
-    description: "Amazon Gift Card worth $100",
-  },
-  {
-    id: 1,
-    name: "Gift Card A",
-    price: 100,
-    brand: "GETHER 2",
-    imageUrl: "https://i.ibb.co/DkfXmPN/shop1.jpg",
-    description: "Amazon Gift Card worth $100",
-  },
-  {
-    id: 2,
-    name: "Gift Card B",
-    price: 200,
-    brand: "ELCT",
-    imageUrl: "https://i.ibb.co/FVMr576/shop2.png",
-    description: "Apple Store Gift Card worth $200",
-  },
-  {
-    id: 3,
-    name: "Gift Card C",
-    price: 300,
-    brand: "THE POP UP",
-    imageUrl: "https://i.ibb.co/PTcKjC2/shop3.png",
-    description: "Google Play Gift Card worth $300",
-  },
-  {
-    id: 4,
-    name: "Gift Card D",
-    price: 100,
-    brand: "DURMA",
-    imageUrl: "https://i.ibb.co/yqvgtWJ/shop4.png",
-    description: "Steam Gift Card worth $100",
-  },
-  {
-    id: 5,
-    name: "Gift Card E",
-    price: 200,
-    brand: "FUN VIBES",
-    imageUrl: "https://i.ibb.co/6YQbQtg/shop5.png",
-    description: "PlayStation Gift Card worth $200",
-  },
-  {
-    id: 6,
-    name: "Gift Card E",
-    price: 200,
-    brand: "RUMORS",
-    imageUrl: "https://i.ibb.co/0XT0TM0/shop6.png",
-    description: "PlayStation Gift Card worth $200",
-  },
-  {
-    id: 7,
-    name: "Gift Card E",
-    price: 200,
-    brand: "KIN",
-    imageUrl: "https://i.ibb.co/68ZnHbD/shop7.png",
-    description: "PlayStation Gift Card worth $200",
-  },
-  {
-    id: 8,
-    name: "Gift Card E",
-    price: 200,
-    brand: "SHAHIN",
-    imageUrl: "https://i.ibb.co/NZcqYk2/shop8.png",
-    description: "PlayStation Gift Card worth $200",
-  },
-  {
-    id: 9,
-    name: "Gift Card E",
-    price: 200,
-    brand: "4TWINS",
-    imageUrl: "https://i.ibb.co/841wCL7/shop9.png",
-    description: "PlayStation Gift Card worth $200",
-  },
-  {
-    id: 9,
-    name: "Gift Card E",
-    price: 300,
-    brand: "CROWD",
-    imageUrl: "https://i.ibb.co/2MFhbkb/shop10.png",
-    description: "PlayStation Gift Card worth $200",
-  },
- 
-   {
-    id: 11,
-    name: "Gift Card F",
-    price: 500,
-    brand: "NAGD",
-    imageUrl: "https://i.ibb.co/QK0gpFG/shop12.png", // Note: This image URL may not be correct as it's the same as the previous one
-    description: "PlayStation Gift Card worth $200",
-  }, 
-   {
-    id: 12,
-    name: "Gift Card F",
-    price: 500,
-    brand: "MOVEN",
-    imageUrl: "https://i.ibb.co/BVVxvkT/shop14.png", // Note: This image URL may not be correct as it's the same as the previous one
-    description: "PlayStation Gift Card worth $200",
-  }, 
-  
   //
-  //  ... add more objects as necessary
-];
+
 
 
 
