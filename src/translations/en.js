@@ -109,7 +109,7 @@ export default {
 			order: "order",
 			product: "Product Info",
 			productTotal: "Total",
-			billing: "Billing & Shipping",
+			billing: "Billing",
 			submit: "pay",
 			scheduled: "schedule",
 			rules:'I agree to the terms and conditions *'

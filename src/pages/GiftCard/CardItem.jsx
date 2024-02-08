@@ -4,14 +4,14 @@ import AddToCartModal from "./AddToCartModal";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-export default function CardItem({ card, front, back, brandImage, brandName }) {
+export default function CardItem({ card, front, back, brandImage, brandName ,price}) {
 	const [openCart, setOpenCart] = useState(false);
 	const { t } = useTranslation();
 
 	return (
 		<div className="rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
 			<div className="relative group flex justify-center md:h-[240px] h-[180px]" style={{ maxWidth: '480px' }}>
-				<div style={{ position: 'relative', width: '100%', paddingBottom: '50%' }}> {/* Aspect ratio container */}
+				<div style={{ position: 'relative', width: '100%' }}> {/* Aspect ratio container */}
 					<img
 						className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 						src={front}
@@ -31,12 +31,12 @@ export default function CardItem({ card, front, back, brandImage, brandName }) {
 					<div>
 						<div className="flex items-center gap-2">
 							<Avatar
-								src={brandImage}
-								alt={brandName}
+								src={card.logoImage}
+								alt={card.logoName}
 								style={{ width: '80px', height: '80px', objectFit: 'cover',border: '1px solid #000'}}
 							/>
 							<div>
-								<h3 className="text-2xl font-semibold text-gray-700">{brandName}</h3>
+								<h3 className="text-2xl font-semibold text-gray-700">{card.logoName}</h3>
 								<p className="text-gray-800 text-xl">{`${card.price} ${t("currency")}`}</p>
 							</div>
 						</div>

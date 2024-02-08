@@ -49,7 +49,7 @@ const shapesSchema = new Schema({
   shapes:Array // You might want to handle images differently, e.g., storing them in a file storage service
 });
 const Brand = mongoose.model("Brand", brandSchema); // Create a model for brands
-const Card = mongoose.model("Card", cardsSchema); // Create a model for cards
+const Card = mongoose.model("cards", cardsSchema); // Create a model for cards
 const Shape = mongoose.model("Shape", shapesSchema); // Create a model for shapes
 
 const predefinedDataSchema = new mongoose.Schema({
@@ -57,57 +57,10 @@ const predefinedDataSchema = new mongoose.Schema({
     shapes: [String],
 });
 
-const PredefinedData = mongoose.model('PredefinedData', predefinedDataSchema);
-
-// const vonage = new Vonage({
-//   apiKey: "d92c0b6a",
-//   apiSecret: "Ol9cYQoNaa1TwUk8",
-//   applicationId: " dd2cd09a-2c73-4a95-99bc-cc156a670709",
-//   privateKey: "./private.key",
-// });
-
+const PredefinedData = mongoose.model('shapes', predefinedDataSchema);
 
 
 app.use(cors())
-// Predefined data
-const predefinedImageUrls = [
-   './1.svg',
-   './2.svg',
-   './3.svg',
-   './4.svg',
-   './5.svg',
-   './6.svg',
-   './7.svg'
-
-    // ... add more as needed
-];
-
-
-const predefinedSvgUrls = [
-   './logoipsum-263.svg',
-   './logoipsum-274.svg',
-   './logoipsum-291.svg',
-   './logoipsum-294.svg',
-   './logoipsum-295.svg',
-   './logoipsum-297.svg',
-   './logoipsum-332.svg',
-   './logoipsum-287.svg',
-   './logoipsum-269.svg',
-   './logoipsum-298.svg'
-
-    // ... add more as needed
-];
-
-const predefinedColorCodes = [
-    "#FF5733", // Example color code
-    "#33FF57", // Example color code
-    "#000000",
-    "#ffffff",
-    "orange",
-    "#f7f8fa",
-    "#a43a34"
-    // ... add more as needed
-];
 
 
 app.use(express.json());
@@ -211,27 +164,13 @@ app.post("/api/validate-gift-card", (req, res) => {
 
 app.get("/api/cards", async (req, res) => {
   const { price, brands, page = 1, limit = 6 } = req.query;
-  console.log("Filters received:", { price, brands });
+
 
   try {
     // Fetch all brands data from MongoDB
     let allBrands = await Brand.find({});
-
-    // Apply brand filter if provided
-    if (brands) {
-      const selectedBrands = brands.split(",");
-      allBrands = allBrands.filter(brand =>
-        selectedBrands.includes(brand.logoName) // Assuming logoName is the brand identifier
-      );
-    }
-
-    // Apply price filter if provided (This assumes you have a price field in your Brand model)
-    if (price) {
-      const priceRange = price.split("-").map(Number);
-      allBrands = allBrands.filter(brand =>
-        brand.price >= priceRange[0] && brand.price <= priceRange[1]
-      );
-    }
+  
+  
 
     // Pagination logic
     const startIndex = (page - 1) * limit;
@@ -276,20 +215,46 @@ app.get('/get-custom-cards', async (req, res) => {
 });
 
 
+app.get('/price', async (req, res) => {
+    try {
+        // Fetch predefined data (colors and shapes)
+        const predefinedData = await PredefinedData.find({});
+
+
+        // Fetch logoWithoutBackground from Brand collection
+        const brandsData = await Brand.find({});
+        const logoWithoutBackgroundUrls = brandsData.map(brand => brand.logoWithoutBackground);
+
+        const responseData = {
+            colors: colors,
+            shapes: shapes,
+            logoWithoutBackgroundUrls: logoWithoutBackgroundUrls
+        };
+
+        res.json(responseData);
+    } catch (error) {
+        console.error("Error fetching predefined data", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
+});
+
 
 
 app.get('/get-card-data', async (req, res) => {
+    const {  page = 1, limit = 6 } = req.query;
+
     try {
         // Fetch card data
         const cards = await Card.find({});
-
-        // Fetch logoImage from Brand collection (assuming you need all brands)
-        const brands = await Brand.find({});
-        const logoImages = brands.map(brand => brand.logoImage);
-
+        console.log(cards.length) 
+ 
+        // const logoImages = brands.map(brand => brand.logoImage);
+  const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedCards = cards.slice(startIndex, endIndex);
         const responseData = {
-            cards: cards,
-           
+            cards: paginatedCards,
+            totalPages: Math.ceil(cards.length / limit),
         };
 
         res.json(responseData);
@@ -401,7 +366,27 @@ app.post('/api/initiateSession', async (req, res) => {
 
 });
 
+app.get('/shapes', async (req, res) => {
+    try {
+        // Fetch predefined data (colors and shapes)
+        const predefinedData = await PredefinedData.find({});
+        const colors = predefinedData.map(data => data.color);
+        const shapes = predefinedData.reduce((acc, data) => [...acc, ...data.shapes], []);
 
+        // Fetch logoWithoutBackground from Brand collection
+       
+        const responseData = {
+         
+            shapes: shapes,
+            
+        };
+
+        res.json(responseData);
+    } catch (error) {
+        console.error("Error fetching predefined data", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
+});
 app.post("/send-card", async (req, res) => {
   const { cardData, userPhone, method } = req.body; // Extract data from request body
 
@@ -633,7 +618,7 @@ app.post(
   }
 );
 app.post('/submit-custom-card',upload.fields([
-  { name: 'shapes', maxCount: 10 }
+  { name: 'shapes', maxCount: 100 }
 ]),async (req, res) => {
     const colors = req.body.color; // Array of colors
     const shapeFiles = req.files['shapes']; // Array of shape files

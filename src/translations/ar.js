@@ -109,7 +109,7 @@ export default {
 			order: "المنتج",
 			product: "تفاصيل القطعة",
 			productTotal: "المبلغ الكلى",
-			billing: "الدفع والتوصيل",
+			billing: "الدفع",
 			sumbit: "دفع",
 				scheduled: "الموعد", 
 			rules:'اوافق على جميع الشروط واﻻحكام'

@@ -22,12 +22,13 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 				<div className={'md:h-[240px] h-[180px]' } style={{ position: 'relative', width: '100%',maxWidth: '480px' }}> 
 				{!back ? (
 					<>
-						<div className="absolute h-full w-full">
+						<div className="absolute h-full w-full ">
 							{cardSitting.shape ? (
 								<img
 									src={cardSitting.shape}
+									height={200}
 									alt="gift card"
-										className="rounded-2xl absolute object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
+										className="rounded-2xl h-[240px] w-full object-cover absolute  transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
 						</div>
@@ -39,7 +40,7 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 									alt={`${cardSitting.brand.name} logo`}
 									width={80}
 									height={80}
-										className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
+										className="rounded-2xl object-contain transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 								/>
 							) : null}
 						</div>

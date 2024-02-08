@@ -23,16 +23,14 @@ export default function GiftCard() {
 		const fetchData = async () => {
 			const queryParams = new URLSearchParams({ page: currentPage });
 
-			if (filters.price && filters.price !== '0-500') { // Check against your default range
-				queryParams.set('price', filters.price);
-			}
-			if (filters.brand) {
-				queryParams.set('brands', filters.brand);
-			}
+			
 
 			try {
-				const response = await axios.get(`https://gift-stores-t2b2.vercel.app/api/cards?${queryParams}`);
-				setCards(response.data.data);
+				const response = await axios.get(`http://localhost:3001/get-card-data?${queryParams}`)
+				// const price = await axios.get(`http://localhost:3001/api/cards?${queryParams}`)
+
+				console.log(response.data.cards);
+				setCards(response.data.cards);
 				setTotalPages(response.data.totalPages);
 			} catch (error) {
 				console.error('Error fetching cards:', error);
