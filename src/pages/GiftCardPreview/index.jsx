@@ -15,8 +15,8 @@ export default function GiftCardPreview() {
 	};
 
 	useEffect(() => {
-		// TODO: fetch card from API
-	}, [cardId]);
+		  console.log(card)
+	}, []);
 
 	return (
 		<div

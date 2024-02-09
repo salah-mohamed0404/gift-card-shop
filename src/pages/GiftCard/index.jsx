@@ -19,18 +19,22 @@ export default function GiftCard() {
 	
 	
 
+	
 	useEffect(() => {
 		const fetchData = async () => {
 			const queryParams = new URLSearchParams({ page: currentPage });
 
+			if (filters.price && filters.price !== '0-500') { // Check against your default range
+				queryParams.set('price', filters.price);
+			}
+			if (filters.brand) {
+				queryParams.set('brands', filters.brand);
 			
+			}
 
 			try {
-				const response = await axios.get(`http://localhost:3001/get-card-data?${queryParams}`)
-				// const price = await axios.get(`http://localhost:3001/api/cards?${queryParams}`)
-
-				console.log(response.data.cards);
-				setCards(response.data.cards);
+				const response = await axios.get(`http://localhost:3001/api/cards?${queryParams}`);
+				setCards(response.data.data);
 				setTotalPages(response.data.totalPages);
 			} catch (error) {
 				console.error('Error fetching cards:', error);
@@ -40,16 +44,17 @@ export default function GiftCard() {
 		fetchData();
 	}, [currentPage, filters]);
 
-
 	
-	// Function to be called when a filter changes, e.g., a checkbox for a price is toggled
-	const handleFilterChange = (newFilters) => {
-		console.log('newFilters.price:', newFilters.price); // Debugging line
 
+const handleFilterChange = (newFilters) => {
+		console.log('newFilters.price:', newFilters); // Debugging line
+newFilters.brand =cards.brand
 		if (Array.isArray(newFilters.price)) {
 			newFilters.price = newFilters.price.join('-'); // Convert to '100-500' format
 		}
-
+if (Array.isArray(newFilters.brand)) {
+			newFilters.brand = newFilters.brand.join(','); // Convert to '100-500' format
+		}
 		setFilters(prevFilters => ({
 			...prevFilters,
 			...newFilters
@@ -84,72 +89,3 @@ export default function GiftCard() {
 		</main>
 	);
 }
-
-// const cards = [
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop1.png" },
-// 		price: 100,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop.png" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop2.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop3.png" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop4.png" },
-// 		price: 100,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logo1.webp" },
-// 		price: 200,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop5.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logos/shop6.png" },
-// 		price: 300,
-// 	},
-// 	{
-// 		front: "/images/front.png",
-// 		back: "/images/back.png",
-// 		brand: { name: "test", logo: "/images/logo1.webp" },
-// 		price: 200,
-// 	},
-// ];

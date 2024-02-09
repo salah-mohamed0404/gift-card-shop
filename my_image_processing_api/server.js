@@ -41,7 +41,8 @@ const cardsSchema = new Schema({
     cardFront: String,
   cardBack: String,
  logoImage: String,
-  price:String
+  price:String,
+  brand:String
 });
 
 const shapesSchema = new Schema({
@@ -163,7 +164,7 @@ app.post("/api/validate-gift-card", (req, res) => {
 
 
 app.get("/api/cards", async (req, res) => {
-  const { price, brands, page = 1, limit = 6 } = req.query;
+  const { price, brands, page = 1, limit = 100 } = req.query;
 
 
   try {
@@ -576,7 +577,7 @@ app.post(
 
     try {
       // Extract text fields
-      const { price } = req.body;
+      const { price,brand } = req.body;
 
       // Extract file fields
       const logoImage = req.files["logoImage"]
@@ -606,7 +607,7 @@ app.post(
         cardFront: cardFrontImageUrl,
         cardBack:cardBackImageUrl,
           logoImage: logoImageUrl,
-      
+        brand: brand
       });
 
       await newBrand.save();

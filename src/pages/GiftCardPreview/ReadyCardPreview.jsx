@@ -1,8 +1,12 @@
+import React from "react";
 import { Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
 export default function ReadyCardPreview({ card, back }) {
 	const { t } = useTranslation();
+React.useEffect(() => {
+		  console.log(card)
+	}, []);
 
 	return (
 		<div className="w-[250px]">
@@ -20,12 +24,12 @@ export default function ReadyCardPreview({ card, back }) {
 			<div className="flex justify-between items-center w-full px-5 mt-4">
 				<h3 className="flex items-center gap-2 text-xl">
 					<Avatar
-						src={card.brand.logo}
-						alt={card.brand.name}
+						src={card.brand.logoWithoutBackground}
+						alt={card.brand.logoName}
 						className="[&_img]:object-contain"
 						sx={{ width: 56, height: 56 }}
 					/>
-					{card.brand.name}
+					{card.brand.logoName}
 				</h3>
 				<p className="text-xl">
 					{card.price} {t("currency")}

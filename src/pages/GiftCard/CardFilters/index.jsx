@@ -46,7 +46,7 @@ export default function CardFilters({ t,onFilterChange ,filters}) {
 		if (brands) {
 			setBrands((prev) => {
 				return prev.map((brand) => {
-					if (brands.split("-").includes(brand.name)) {
+					if (brands.split(",").includes(brand)) {
 						return { ...brand, checked: true };
 					} else {
 						return { ...brand, checked: false };

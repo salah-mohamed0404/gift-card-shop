@@ -153,7 +153,10 @@ const Dashboard = () => {
                     <label htmlFor="Price" className="block text-gray-700 text-md font-bold mb-2">price</label>
                     <input type="number" min='100' max='500' id="Price" name="price" onChange={handleInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
-                
+                  <div className="mb-5">
+                    <label htmlFor="brand" className="block text-gray-700 text-md font-bold mb-2">brand </label>
+                <input type="text" id="brand" name="brand" onChange={handleInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                </div>
                     <button type="submit" className="bg-secondary-500 hover:bg-rose-500 text-white font-bold py-2 w-full  px-4 rounded focus:outline-none focus:shadow-outline">
                     Submit
                 </button>

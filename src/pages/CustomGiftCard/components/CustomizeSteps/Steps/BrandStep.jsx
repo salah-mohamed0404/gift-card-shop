@@ -1,6 +1,30 @@
+import React from "react";
 import { Typography } from "@mui/material";
+import axios from "axios";
+
 
 export default function BrandStep({ brand, onBrandChange, t }) {
+	console.log(brand)
+const [stores,setStores] = React.useState([])
+	React.useEffect(() => {
+		const fetchData = async () => {
+		
+
+			
+			try {
+				const response = await axios.get(`http://localhost:3001/api/cards`)
+				console.log(response.data.data);
+				setStores(response.data.data);
+			
+			} catch (error) {
+				console.error('Error fetching cards:', error);
+			}
+		};
+
+		fetchData();
+	}, []);
+
+
 	return (
 		<div className="flex flex-col items-center gap-6">
 			<Typography
@@ -12,18 +36,20 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 			</Typography>
 
 			<ul className="flex justify-center gap-12 flex-wrap">
-				{brands.map(({ name, logo,shop }) => (
-					<li key={name}>
+				{stores.map(({ logoName,logoWithoutBackground, logoImage, }) => (
+				
+					<li key={logoName}>
+						
 						<button
 							type="button"
-							onClick={() => onBrandChange({ name, logo })}
+							onClick={() => onBrandChange({ logoName, logoWithoutBackground })}
 							className={`overflow-hidden rounded-full  shadow-lg ${
-								name === brand.name
+								logoName === brand.logoName
 									? "outline-none ring-2 ring-offset-2 ring-red-500"
 									: ""
 							}`}
 						>
-							<img src={shop} alt="shape" className="w-[100px] h-[100px]   object-cover" />
+							<img src={logoImage} alt="shape" className="w-[100px] h-[100px]   object-cover" />
 						</button>
 					</li>
 				))}
@@ -32,22 +58,5 @@ export default function BrandStep({ brand, onBrandChange, t }) {
 	);
 }
 
-const brands = [
-	{ name: "test-1", logo: "https://i.ibb.co/KF9Cn1k/shop0-logo.png", shop: "https://i.ibb.co/bBF9Px6/shop0.png" },
-	{ name: "test-2", logo: "https://i.ibb.co/h7k913h/shop9-logo.png", shop: "https://i.ibb.co/DkfXmPN/shop1.jpg" }, 
-	{ name: "test-3", logo: "https://i.ibb.co/SJbG73c/shop8-logo.png", shop: "https://i.ibb.co/FVMr576/shop2.png" },
-	{ name: "test-4", logo: "https://i.ibb.co/VYGscSG/shop7-logo.png", shop: "https://i.ibb.co/PTcKjC2/shop3.png" }, 
-	{ name: "test-5", logo: "https://i.ibb.co/dQbw0dX/shop6-logo.png", shop: "https://i.ibb.co/yqvgtWJ/shop4.png" }, 
-	{ name: "test-6", logo: "https://i.ibb.co/JtWpqgd/shop5-logo.png", shop: "https://i.ibb.co/6YQbQtg/shop5.png" },
-	{ name: "test-7", logo: "https://i.ibb.co/R4hT9Qq/shop4-logo.png", shop: "https://i.ibb.co/0XT0TM0/shop6.png" },
-	{ name: "test-8", logo: "https://i.ibb.co/km8QLw1/shop3-logo.png", shop: "https://i.ibb.co/68ZnHbD/shop7.png" },
-	{ name: "test-9", logo: "https://i.ibb.co/sb6DQLw/shop2-logo.png", shop: "https://i.ibb.co/NZcqYk2/shop8.png" },
-	{ name: "test-10", logo: "https://i.ibb.co/x3nCPC0/shop1-logo.png", shop: "https://i.ibb.co/841wCL7/shop9.png" },
-	{ name: "test-11", logo: "https://i.ibb.co/YTVnDtX/shop10-removebg-preview-1.png", shop: "https://i.ibb.co/2MFhbkb/shop10.png" },
-	{ name: "test-12", logo: "https://i.ibb.co/BVVxvkT/shop10.png", shop: "https://i.ibb.co/XzZtjmt/shop11.png" },
-	
-	{ name: "test-13", logo: "https://i.ibb.co/FVCys6L/shop12-removebg.png", shop: "https://i.ibb.co/QK0gpFG/shop12.png" }
 
-	
-];
 

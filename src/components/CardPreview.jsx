@@ -34,10 +34,10 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 						</div>
 
 							<div className={`absolute top-2 right-2 z-10`}>
-							{cardSitting.brand.logo ? (
+							{cardSitting.brand.logoName ? (
 								<img
-									src={cardSitting.brand.logo}
-									alt={`${cardSitting.brand.name} logo`}
+									src={cardSitting.brand.logoWithoutBackground}
+									alt={`${cardSitting.brand.logoName} logo`}
 									width={80}
 									height={80}
 										className="rounded-2xl object-contain transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
@@ -77,12 +77,12 @@ export default function CardPreview({ cardSitting, back, ShowBrand }) {
 				<div className="flex justify-between items-center w-full px-5 mt-4">
 					<h3 className="flex items-center gap-2 text-xl">
 						<Avatar
-							src={cardSitting.brand.logo}
-							alt={cardSitting.brand.name}
+							src={cardSitting.brand.logoWithoutBackground}
+							alt={cardSitting.brand.logoName}
 							className="[&_img]:object-contain"
 							sx={{ width: 56, height: 56 }}
 						/>
-						{cardSitting.brand.name}
+						{cardSitting.brand.logoName}
 					</h3>
 					<p className="text-xl">
 						{cardSitting.price} {t("currency")}

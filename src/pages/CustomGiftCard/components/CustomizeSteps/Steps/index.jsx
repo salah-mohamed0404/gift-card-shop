@@ -44,11 +44,13 @@ export default function Steps({
 				<BrandStep
 					t={t}
 					brand={cardSitting.brand}
-					onBrandChange={(brand) =>
+					onBrandChange={(brand) =>{
+						console.log(brand)
 						dispatchCardSitting({
 							type: cardSittingActions.SET_BRAND,
 							payload: brand,
 						})
+					}
 					}
 				/>
 			)}

@@ -21,7 +21,7 @@ export default function useCardSitting() {
 const initialState = {
 	color: blue[500],
 	shape: "",
-	brand: { name: "", logo: "" },
+	brand: { logoImage: "", logoName: "" },
 	message: "Card Description",
 	textColor: "white",
 	font: "ARAHAMAH1982",
