@@ -24,7 +24,7 @@ export default function Stores() {
 
 			
 			try {
-				const response = await axios.get(`http://localhost:3001/api/cards?${queryParams}`)
+				const response = await axios.get(`http://localhost:3001/stores?${queryParams}`)
 				console.log(response.data.data);
 				setStores(response.data.data);
 			setTotalPages(response.data.totalPages);

@@ -12,9 +12,9 @@ export default function Cart({ t, language }) {
 
 	// Function to handle checkout navigation
 	const handleCheckout = (index) => {
-		navigate(`/checkout/${index}`); // Navigate to checkout with index as parameter
+		navigate(`/checkout/${cart[0]._id}`); // Navigate to checkout with index as parameter
 	};
-
+console.log(cart)
 	return(
 		<Badge
 			badgeContent={cart.length}
@@ -74,7 +74,7 @@ export default function Cart({ t, language }) {
 								<div className="grid place-items-center">
 									<IconButton
 										
-										onClick={() => handleCheckout(index)}
+										onClick={() => handleCheckout(cart.id)}
 										className="!text-red-500 !bg-white "
 										
 									>

@@ -56,18 +56,23 @@ export default function CardFilters({ t,onFilterChange ,filters}) {
 		}
 	}, [searchParams]);
 	const handleFilter = (e) => {
-		e.preventDefault();
+  e.preventDefault();
 
-		const priceFilterValue = priceRange.join("-"); // priceRange should be an array
-		const selectedBrands = brands
-			.filter(brand => brand.checked)
-			.map(brand => brand.name)
-			.join(","); // Joining as string
+  const priceFilterValue = priceRange.join("-");
+  const selectedBrands = brands
+    .filter(brand => brand.checked)
+    .map(brand => brand.name)
+    .join(",");
+console.log(selectedBrands)
+  // Update search params
+  const newSearchParams = new URLSearchParams();
+  if (priceFilterValue) newSearchParams.set("price", priceFilterValue);
+  if (selectedBrands) newSearchParams.set("brand", selectedBrands);
+  setSearchParams(newSearchParams);
 
-		onFilterChange({ price: priceFilterValue, brand: selectedBrands });
-		setIsDrawerOpen(false);
-	};
-
+  onFilterChange({ price: priceFilterValue, brand: selectedBrands });
+  setIsDrawerOpen(false);
+};
 
 
 	return (

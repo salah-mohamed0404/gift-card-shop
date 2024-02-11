@@ -65,9 +65,85 @@ app.use(cors())
 
 
 app.use(express.json());
+const receiverInfoSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  }
+}, { _id: false });
 
+const cartSchema = new mongoose.Schema({
+   items: [{ cardFront: {
+    type: String,
+    required: true
+  },
+  cardBack: {
+    type: String,
+    required: true
+  },
+  logoImage: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  brand: {
+    type: String,
+    required: true
+  }}],
+  receiverInfo: receiverInfoSchema // Embedding receiverInfo schema
+}, { timestamps: true });
 
+const Cart = mongoose.model('carts', cartSchema);
+app.get('/api/cart', async (req, res) => {
+  try {
+    const cart = await Cart.findOne(); // Assuming a single cart for simplicity
+    res.json(cart);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
+// Add item to cart
+app.post('/api/cart/add', async (req, res) => {
+  try {
+    let cart = await Cart.findOne();
+    if (!cart) {
+      // If no cart exists, create a new cart with the item
+      cart = new Cart({
+        items: [req.body] // Assuming req.body is structured correctly for the item
+      });
+    } else {
+      // If a cart exists, add the new item
+      cart.items.push(req.body);
+    }
+    await cart.save();
+    res.json(cart);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+// Remove item from cart
+app.delete('/api/cart/remove/:itemId', async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    let cart = await Cart.findOne();
+    if (cart) {
+      cart.items = cart.items.filter(item => item.id !== itemId);
+      await cart.save();
+    }
+    res.json(cart);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
 
 
 app.post("/process-payment", async (req, res) => {
@@ -163,8 +239,8 @@ app.post("/api/validate-gift-card", (req, res) => {
 
 
 
-app.get("/api/cards", async (req, res) => {
-  const { price, brands, page = 1, limit = 100 } = req.query;
+app.get("/stores", async (req, res) => {
+  const { price, brands, page = 1, limit = 6 } = req.query;
 
 
   try {
@@ -188,6 +264,36 @@ app.get("/api/cards", async (req, res) => {
   }
 });
 
+app.get("/api/cards", async (req, res) => {
+  const { price, brands, page = 1, limit = 6 } = req.query;
+  let filter = {};
+  
+  if (price) {
+    let [minPrice, maxPrice] = price.split("-").map(Number);
+    filter.price = { $gte: minPrice, $lte: maxPrice };
+  }
+
+  if (brands) {
+    filter.brand = { $in: brands.split(",") };
+  }
+console.log(filter)
+  try {
+    const cards = await Card.find(filter)
+                            .limit(limit * 1)
+                            .skip((page - 1) * limit);
+
+    const count = await Card.countDocuments(filter);
+
+    res.json({
+      data: cards,
+      totalPages: Math.ceil(count / limit),
+      currentPage: page,
+    });
+  } catch (error) {
+    console.error("Error fetching cards data", error);
+    res.status(500).json({ message: "Error fetching cards data" });
+  }
+});
 
 
 

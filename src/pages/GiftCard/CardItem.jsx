@@ -14,13 +14,13 @@ export default function CardItem({ card, front, back, brandImage, brandName ,pri
 				<div style={{ position: 'relative', width: '100%' }}> {/* Aspect ratio container */}
 					<img
 						className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
-						src={front}
+						src={card.cardFront}
 						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
 						alt="card front face"
 					/>
 					<img
 						className="rounded-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
-						src={back}
+						src={card.cardBack}
 						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
 						alt="card back face"
 					/>
@@ -37,7 +37,7 @@ export default function CardItem({ card, front, back, brandImage, brandName ,pri
 							/>
 							<div>
 								<h3 className="text-2xl font-semibold text-gray-700">{card.logoName}</h3>
-								<p className="text-gray-800 text-xl">{`${card.price} ${t("currency")}`}</p>
+								<p className="text-gray-800 text-xl">{`${price} ${t("currency")}`}</p>
 							</div>
 						</div>
 					</div>
