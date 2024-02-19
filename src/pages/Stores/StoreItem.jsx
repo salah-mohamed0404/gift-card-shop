@@ -4,7 +4,10 @@ export default function StoreItem({ store }) {
 			<a href={'#'} target="_blank" rel="noreferrer">
 				<img
 					src={store.logoImage}
-					className=" h-48 w-48 object-cover rounded-full mx-auto p-1 border-black border-2"
+					width={80}
+					height={80}
+
+					className=" h-48 w-48 object-fill rounded-full mx-auto p-1 "
 					alt={`${store.logoName} logo`}
 				/>
 			</a>

@@ -12,10 +12,10 @@ const [stores,setStores] = React.useState([])
 
 			
 			try {
-				const response = await axios.get(`http://localhost:3001/api/cards`)
-				console.log(response.data.data);
-				setStores(response.data.data);
-			
+				const response = await axios.get(`http://localhost:3001/get-shops-logos`)
+				console.log(response.data);
+				setStores(response.data);
+			  console.log(stores)
 			} catch (error) {
 				console.error('Error fetching cards:', error);
 			}

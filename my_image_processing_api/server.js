@@ -101,13 +101,25 @@ const cartSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Cart = mongoose.model('carts', cartSchema);
-app.get('/api/cart', async (req, res) => {
-  try {
-    const cart = await Cart.findOne(); // Assuming a single cart for simplicity
-    res.json(cart);
-  } catch (err) {
-    res.status(500).send('Server error');
-  }
+app.post('/api/cart', async (req, res) => {
+    try {
+        let cart = await Cart.findOne(); // Assuming a single cart for simplicity, you can add user-specific logic here.
+        if (!cart) {
+            // If no cart exists, create a new cart with the received items
+            cart = new Cart({
+                items: [req.body], // Assuming req.body contains the item data
+                // Add additional fields as necessary, e.g., user ID
+            });
+        } else {
+            // If a cart exists, add the new item
+            cart.items.push(req.body);
+        }
+        await cart.save();
+        res.status(201).json(cart); // Send back the updated cart
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server error');
+    }
 });
 
 // Add item to cart
@@ -365,6 +377,28 @@ app.get('/get-card-data', async (req, res) => {
         };
 
         res.json(responseData);
+    } catch (error) {
+        console.error("Error fetching card data", error);
+        res.status(500).json({ message: "Error fetching data" });
+    }
+});
+
+app.get('/get-shops-logos', async (req, res) => {
+  
+
+    try {
+        // Fetch card data
+        const brandsData = await Brand.find({});
+
+ 
+        // const logoImages = brands.map(brand => brand.logoImage);
+  
+        const responseData = {
+            brandsData: brandsData,
+      
+        };
+
+        res.json(brandsData);
     } catch (error) {
         console.error("Error fetching card data", error);
         res.status(500).json({ message: "Error fetching data" });

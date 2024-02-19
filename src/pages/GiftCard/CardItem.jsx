@@ -10,24 +10,24 @@ export default function CardItem({ card, front, back, brandImage, brandName ,pri
 
 	return (
 		<div className="rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 bg-white">
-			<div className="relative group flex justify-center md:h-[240px] h-[180px]" style={{ maxWidth: '480px' }}>
+			<div className="relative group flex justify-center md:h-[240px] h-[180px]" style={{ maxWidth: '480px',margin:'auto' }}>
 				<div style={{ position: 'relative', width: '100%' }}> {/* Aspect ratio container */}
 					<img
 						className="rounded-2xl object-cover transition duration-500 group-hover:opacity-0 group-hover:scale-75 z-10"
 						src={card.cardFront}
-						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',objectFit: 'fill' }} 
 						alt="card front face"
 					/>
 					<img
 						className="rounded-2xl object-cover opacity-0 scale-x-75 transition group-hover:opacity-100 group-hover:scale-x-100"
 						src={card.cardBack}
-						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+						style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' ,objectFit: 'fill'}}
 						alt="card back face"
 					/>
 				</div>
 			</div>
 			<CardContent>
-				<div className="flex justify-between items-center p-4">
+				<div className="flex justify-between items-center p-4 py-0">
 					<div>
 						<div className="flex items-center gap-2">
 							<Avatar

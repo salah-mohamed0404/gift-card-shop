@@ -45,6 +45,8 @@ const Checkout = () => {
   email: '',
   mobile: ''
 });
+const [cartItems, setCartItems] = useState([]); // For storing list of items
+const [totalPrice, setTotalPrice] = useState(0); // For storing total price
 
 const handleCustomerDetailsChange = (event) => {
   const { name, value } = event.target;
@@ -91,19 +93,7 @@ const { t } = useTranslation();
     };
 
     // Function to initiate MyFatoorah
-    const initMyFatoorah = () => {
-        if (window.myFatoorah) {
-            var config = {
-                countryCode: "SAU",
-                sessionId: sessionDetails.sessionId,
-                cardViewId: "card-element",
-            };
-            window.myFatoorah.init(config);
-		
-            setMyFatoorahInitialized(true);
-        }
-		console.log(myFatoorahInitialized)
-    };
+  
 
     // Function to call MyFatoorah InitiateSession API
    const initiateSession = async () => {
@@ -128,15 +118,35 @@ const { t } = useTranslation();
         initiateSession();
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
 	
-        if (sessionDetails.sessionId && !myFatoorahInitialized) {
+    //     if (sessionDetails.sessionId && !myFatoorahInitialized) {
+    //         loadMyFatoorahScript(
+    //             "https://sa.myfatoorah.com/cardview/v2/session.js",
+    //             initMyFatoorah
+    //         );
+    //     }
+    // }, [sessionDetails.sessionId]);
+
+
+	 useEffect(() => {
+        if (!myFatoorahInitialized && sessionDetails.sessionId) {
             loadMyFatoorahScript(
                 "https://sa.myfatoorah.com/cardview/v2/session.js",
-                initMyFatoorah
+                () => {
+                    var config = {
+                        countryCode: "SAU",
+                        sessionId: sessionDetails.sessionId,
+                        cardViewId: "card-element",
+                    };
+                    if (window.myFatoorah) {
+                        window.myFatoorah.init(config);
+                        setMyFatoorahInitialized(true);
+                    }
+                }
             );
         }
-    }, [sessionDetails.sessionId]);
+    }, [sessionDetails.sessionId, myFatoorahInitialized]);
 const handleInputChange = (event) => {
         const { name, value } = event.target;
         setBillingDetails({
@@ -146,40 +156,74 @@ const handleInputChange = (event) => {
     };
 
     // Handle form submission
-    const handlePayment = async (e) => {
-        e.preventDefault();
-        if (window.myFatoorah && !paymentSubmitted) {
-            setPaymentSubmitted(true);
-            window.myFatoorah.submit().then(
-                function (response) {
-                    // Handle the response from MyFatoorah
-                    console.log('Payment successful', response);
-                    // You might want to send the response to your server
-                },
-                function (error) {
-                    // Handle errors
-                    console.log('Payment failed', error);
-                    setPaymentSubmitted(false);
-                }
-            );
+const handlePayment = async (e) => {
+    e.preventDefault();
+
+    // Ensure MyFatoorah is initialized
+    if (!myFatoorahInitialized) {
+        console.error('MyFatoorah is not initialized.');
+        return;
+    }
+
+    // Construct the payment data
+    const paymentData = {
+        PaymentMethod: selectedPaymentMethod,
+        CustomerName: customerDetails.name,
+        DisplayCurrencyIso: 'SAR',
+        MobileCountryCode: customerDetails.mobileCountryCode || '+966', // Just an example, adjust as necessary
+        CustomerMobile: customerDetails.mobile,
+        CustomerEmail: customerDetails.email,
+        InvoiceValue: totalPrice,
+        Language: 'en', // or 'ar' depending on your requirement
+        // Add other necessary fields as per MyFatoorah's API documentation
+    };
+
+    setIsLoading(true);
+
+    try {
+        const response = await axios.post('http://localhost:3001/api/process-payment', paymentData);
+
+        if (response.data && response.data.IsSuccess) {
+            console.log('Payment successful', response.data);
+            // Here, you might want to update your UI or redirect the user to a success page
+        } else {
+            setError('Payment failed: ' + (response.data.ErrorMessage || 'Unknown error'));
         }
-		  const paymentData = {
-    paymentMethod: selectedPaymentMethod,
-    amount: 199.99, // example amount
-    currency: 'SAR', // example currency
-    customerDetails
-  };
- try {
-    // Make API call to process payment
-    const response = await axios.post('http://localhost:3001/process-payment', paymentData);
-	console.log(response)
-    // Handle response...
-  } catch (error) {
-    // Handle error...
-  }
+    } catch (error) {
+        console.error('Payment failed', error);
+        setError('Payment failed: ' + error.message);
+    } finally {
+        setIsLoading(false);
+    }
+};
+
+
+
 
  
+   
+useEffect(() => {
+    const fetchCartData = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get('http://localhost:3001/api/cart');
+            if (response.data) {
+				console.log(response.data)
+                setCartItems(response.data.items);
+                const total = response.data.items.reduce((acc, item) => acc + item.price, 0);
+                setTotalPrice(total); // Ensure this is updating correctly
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+            setError('Failed to load cart data.');
+            setIsLoading(false);
+        }
     };
+
+    fetchCartData();
+}, []);
+
 
 	return (
 		<LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -223,22 +267,24 @@ const handleInputChange = (event) => {
 				</div>
 
 				{/* Your Order Section */}
-				<div>
-					<h3 className="font-bold mb-2 text-lg">{t("checkout.order")}</h3>
-					<div className="mb-4">
-						{/* Map through your order items here */}
-						<div className="flex justify-between py-2">
-							<span>{t("checkout.product")}</span>
-							<span>$19.99</span>
-						</div>
-						{/* Add more products and total cost */}
-						<div className="flex justify-between py-2 font-bold">
-							<span>{t("checkout.productTotal")}</span>
-							<span>$199.99</span>
-						</div>
-					</div>
-					<Divider />
-				</div>
+<div>
+    <h3 className="font-bold mb-2 text-lg">{t("checkout.order")}</h3>
+    <div className="mb-4">
+        {/* Map through your order items here */}
+        {cartItems.map((item, index) => (
+            <div key={index} className="flex justify-between py-2">
+                <span>{item.name}</span>
+                <span>{`${item.price.toFixed(2)} SAR`}</span>
+            </div>
+        ))}
+        {/* Total cost */}
+        <div className="flex justify-between py-2 font-bold">
+            <span>{t("checkout.total")}</span>
+            <span>{`${totalPrice.toFixed(2)} SAR`}</span>
+        </div>
+    </div>
+    <Divider />
+</div>
 
 
 				{/* Payment Section - Assuming PaymentForm includes all necessary payment fields */}
