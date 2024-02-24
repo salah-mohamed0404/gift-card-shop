@@ -14,7 +14,7 @@ export default function Cart({ t, language }) {
 	const handleCheckout = (index) => {
 		navigate(`/checkout/${cart[0]._id}`); // Navigate to checkout with index as parameter
 	};
-console.log(cart)
+
 	return(
 		<Badge
 			badgeContent={cart.length}
@@ -34,31 +34,31 @@ console.log(cart)
 				</Typography>
 
 				<ul className="h-[80dvh] overflow-y-auto">
-					{cart.map((item, index) => (
+					{cart&& cart.map((item, index) => (
 						<li
-							key={`${item.brand.name}-${item.receiverInfo.name}-${index}`}
+							key={`${item?.brand}-${item?.receiverInfo?.name}-${index}`}
 							className="flex justify-between items-center bg-primary-500 text-white rounded-lg p-4 my-4"
 							style={
-								item.color && {
-									backgroundColor: item.color,
-									color: item.textColor,
+								item?.color && {
+									backgroundColor: item?.color,
+									color: item?.textColor,
 								}
 							}
 						>
 							<div>
 								<Typography variant="h6">
-									{item.color ? t("cart.customCard") : t("cart.readyCard")}
+									{item?.color ? t("cart.customCard") : t("cart.readyCard")}
 								</Typography>
 								<Typography variant="subtitle2">
-									{t("cart.receiverInfo")}: {item.receiverInfo.name} - +966
-									{item.receiverInfo.phone}
+									{t("cart.receiverInfo")}: {item.receiverInfo?.name} - +966
+									{item.receiverInfo?.phone}
 								</Typography>
 								<div className="flex gap-5">
 									<Typography variant="subtitle2">
-										{t("cart.brand")}: {item.brand.name}
+										{t("cart.brand")}: {item.items[0].brand}
 									</Typography>
 									<Typography variant="subtitle2">
-										{t("cart.price")}: {item.price} {t("currency")}
+										{t("cart.price")}: {item.items[0].price} {t("currency")}
 									</Typography>
 								</div>
 							</div>

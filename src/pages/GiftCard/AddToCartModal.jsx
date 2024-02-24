@@ -19,47 +19,53 @@ const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function AddToCartModal({ t, open, onClose, card }) {
+export default function AddToCartModal({ t, open, onClose, card, front, back, brandImage, brand ,price }) {
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [errorMsg, setErrorMsg] = useState("");
 	const [successMsg, setSuccessMsg] = useState("");
+	const [receiverInfo, setReceiverInfo] = useState({});
+
 	const { dispatchCart } = useContext(CartContext);
+    
+const handleAddToCart = async () => {
+  if (name.trim() === "") {
+    return setErrorMsg("Please enter a name");
+  } else if (phone.trim() === "") {
+    return setErrorMsg("Please enter a phone number");
+  }
 
-	const handleAddToCart = async () => {
-    if (name.trim() === "") return setErrorMsg("Please enter a name");
-    else if (phone.trim() === "") return setErrorMsg("Please enter a phone number");
+  const receiverInfoPayload = { name: name, phone: phone };
 
-    // Constructing item data based on your cart model
-    const itemData = {
-        ...card, // Assuming card contains the necessary item data like price, etc.
-        receiverInfo: { name, phone },
-    };
+  try {
+    const response = await fetch('http://localhost:3001/api/cart', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        card: card, // Ensure this object matches your server-side schema
+        receiverInfo: receiverInfoPayload,
+      })
+    });
 
-    try {
-        const response = await fetch('http://localhost:3001/api/cart', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(itemData),
-        });
-
-        const responseData = await response.json();
-        if (response.ok) {
-            setSuccessMsg(t("addToCartSuccess"));
-            onClose(); // Close the modal
-            dispatchCart({
-                type: "ADD_ITEM",
-                payload: responseData // Update local cart state if necessary
-            });
-        } else {
-            setErrorMsg(responseData.message || 'Error adding to cart');
-        }
-    } catch (error) {
-        setErrorMsg('Network error');
+    const responseData = await response.json();
+    if (response.ok) {
+      setSuccessMsg(t("addToCartSuccess"));
+      onClose(); // Close the modal
+      dispatchCart({
+        type: "ADD_ITEM",
+        payload: { ...responseData, receiverInfo: receiverInfoPayload }, // Pass the entire response data back
+      });
+    } else {
+      setErrorMsg(responseData.message || 'Error adding to cart');
     }
+  } catch (error) {
+    setErrorMsg('Network error');
+  }
 };
+
+
 
 
 	return (
